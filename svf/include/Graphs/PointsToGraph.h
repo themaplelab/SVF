@@ -52,6 +52,8 @@ namespace SVF{
     };
 
     class Steensgaard;
+    class AndersenWaveDiff;
+
 
     typedef GenericGraph<PointsToGraphNode, PointsToGraphEdge> GenericPointsToGraphTy;
     class PointsToGraph : public GenericPointsToGraphTy{
@@ -63,6 +65,8 @@ namespace SVF{
 
         public:
             PointsToGraph(Steensgaard *steen);
+            PointsToGraph(AndersenWaveDiff *ander);
+
 
             /// Add call graph edge
             inline void addEdge(PointsToGraphEdge* edge){

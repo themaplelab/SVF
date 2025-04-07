@@ -241,6 +241,7 @@ public:
     }
     virtual inline bool unionPts(NodeID id, const PointsTo& target)
     {
+        
         id = sccRepNode(id);
         return getPTDataTy()->unionPts(id, target);
     }

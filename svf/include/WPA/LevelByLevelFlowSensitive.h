@@ -17,6 +17,7 @@ namespace SVF{
     // class SVFModule;
 
     class Steensgaard;
+    class AndersenWaveDiff;
 
 
     typedef WPAFSSolver<SVFG*> WPASVFGFSSolver;
@@ -46,12 +47,21 @@ namespace SVF{
                 ptgScc->find();            
             }
 
+            void computePointerLevels(std::map<NodeID, std::set<NodeID>>&);
+            size_t getPointerLevel(NodeID id, std::map<NodeID, std::set<NodeID>>&);
+
+
 
 
         private:
             Steensgaard *steen;
             PointsToGraphSCC *ptgScc;
             PointsToGraph *ptg;
+            std::map<NodeID, size_t> pointerLevelMap;
+            std::map<size_t, std::set<NodeID>> pointerLevelToNodeIDsMap;
+
+            AndersenWaveDiff *ander;
+
 
 
     };

@@ -582,6 +582,7 @@ bool Andersen::processStore(NodeID node, const ConstraintEdge* store)
     numOfProcessedStore++;
 
     NodeID src = store->getSrcID();
+    // outs() << "Add copy edge " << src << " " << node << "\n";
     return addCopyEdge(src, node);
 }
 
@@ -598,7 +599,14 @@ bool Andersen::processCopy(NodeID node, const ConstraintEdge* edge)
     NodeID dst = edge->getDstID();
     const PointsTo& srcPts = getDiffPts(node);
 
+    // outs() << "UnionPts " << dst << " " << sccRepNode(dst) << "\n";
+    // outs() << getPts(dst).empty() << "\n";
     bool changed = unionPts(dst, srcPts);
+    // outs() << getPts(dst).empty() << "\n";
+    // for(auto p : getPts(dst)){
+    //     outs() << "\t" << p << "\n";
+    // }
+
     if (changed)
         pushIntoWorklist(dst);
     return changed;
