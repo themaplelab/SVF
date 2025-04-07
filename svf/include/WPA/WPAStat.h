@@ -34,6 +34,7 @@
 #include "Util/PTAStat.h"
 #include "WPA/FlowSensitive.h"
 #include "WPA/VersionedFlowSensitive.h"
+#include "WPA/LevelByLevelFlowSensitive.h"
 
 namespace SVF
 {
@@ -217,6 +218,26 @@ private:
     /// Average points-to set size for address-taken objects.
     double _AvgVersionPtsSize;
 };
+
+class LevelByLevelFlowSensitiveStat : public PTAStat{
+    public:
+
+        LevelByLevelFlowSensitiveStat(LevelByLevelFlowSensitive *pta): PTAStat(pta){
+            levpa = pta;
+            // clearStat();
+            // startClk();
+        }
+
+        LevelByLevelFlowSensitive *levpa;
+
+        virtual ~LevelByLevelFlowSensitiveStat() { }
+
+        virtual void performStat();
+};
+
+
+
+
 } // End namespace SVF
 
 #endif /* FLOWSENSITIVESTAT_H_ */

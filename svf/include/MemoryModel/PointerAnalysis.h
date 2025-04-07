@@ -84,6 +84,9 @@ public:
         PathS_DDA,		///< Guarded value-flow DDA
         Cxt_DDA,		///< context sensitive DDA
 
+        // LFSPA
+        LevPA_WPA,
+
 
         Default_PTA		///< default pta without any analysis
     };

@@ -42,6 +42,7 @@
 #include "WPA/VersionedFlowSensitive.h"
 #include "WPA/TypeAnalysis.h"
 #include "WPA/Steensgaard.h"
+#include "WPA/LevelByLevelFlowSensitive.h"
 
 using namespace SVF;
 
@@ -107,6 +108,9 @@ void WPAPass::runPointerAnalysis(SVFIR* pag, u32_t kind)
         break;
     case PointerAnalysis::TypeCPP_WPA:
         _pta = new TypeAnalysis(pag);
+        break;
+    case PointerAnalysis::LevPA_WPA:
+        _pta = new LevelByLevelFlowSensitive(pag);
         break;
     default:
         assert(false && "This pointer analysis has not been implemented yet.\n");

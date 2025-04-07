@@ -64,7 +64,7 @@ void SVFGBuilder::buildSVFG()
 /// Create DDA SVFG
 SVFG* SVFGBuilder::build(BVDataPTAImpl* pta, VFG::VFGK kind)
 {
-
+    // JH todo: build mssa for each layer.
     auto mssa = buildMSSA(pta, (VFG::PTRONLYSVFG==kind || VFG::PTRONLYSVFG_OPT==kind));
 
     DBOUT(DGENERAL, outs() << pasMsg("Build Sparse Value-Flow Graph \n"));
