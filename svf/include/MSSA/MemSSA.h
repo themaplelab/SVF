@@ -130,6 +130,17 @@ protected:
     virtual void SSARename(const FunObjVar& fun);
     /// SSA rename for a basic block
     virtual void SSARenameBB(const SVFBasicBlock& bb);
+
+    virtual void createMUCHIForPointerLevel(const FunObjVar& fun, size_t pl, std::map<NodeID, size_t>& plMap);
+    virtual void insertPHIForPointerLevel(const FunObjVar& fun, size_t pl, std::map<NodeID, size_t>& plMap);
+    virtual void SSARenameForPointerLevel(const FunObjVar& fun, size_t pl, std::map<NodeID, size_t>& plMap);
+    virtual void SSARenameBBForPointerLevel(const SVFBasicBlock& bb, size_t pl, std::map<NodeID, size_t>& plMap);
+
+
+
+
+
+
 private:
     LoadToMUSetMap load2MuSetMap;
     StoreToChiSetMap store2ChiSetMap;
@@ -316,6 +327,8 @@ public:
     }
     /// We start from here
     virtual void buildMemSSA(const FunObjVar& fun);
+    virtual void buildMemSsaForPointerLevel(const FunObjVar& fun, size_t pl, std::map<NodeID, size_t>& plMap);
+
 
     /// Perform statistics
     void performStat();

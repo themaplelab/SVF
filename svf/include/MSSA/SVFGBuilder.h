@@ -57,6 +57,9 @@ public:
     SVFG* buildPTROnlySVFG(BVDataPTAImpl* pta);
     SVFG* buildFullSVFG(BVDataPTAImpl* pta);
 
+    SVFG* buildPTROnlySvfgForPointerLevel(BVDataPTAImpl* pta, size_t pl, std::map<NodeID, size_t>& plMap);
+
+
     /// Get SVFG instance
     inline SVFG* getSVFG() const
     {
@@ -77,14 +80,21 @@ public:
 
     /// Build Memory SSA
     virtual std::unique_ptr<MemSSA> buildMSSA(BVDataPTAImpl* pta, bool ptrOnlyMSSA);
+    std::unique_ptr<MemSSA> buildMssaForPointerLevel(BVDataPTAImpl* pta, bool ptrOnlyMSSA, size_t pl, std::map<NodeID, size_t>& plMap);
+
 
 protected:
     /// Create a DDA SVFG. By default actualOut and FormalIN are removed, unless withAOFI is set true.
     SVFG* build(BVDataPTAImpl* pta, VFG::VFGK kind);
+    SVFG* buildPointerLevel(BVDataPTAImpl* pta, VFG::VFGK kind, size_t pl, std::map<NodeID, size_t>& plMap);
+
     /// Can be rewritten by subclasses
     virtual void buildSVFG();
     /// Release global SVFG
     virtual void releaseMemory();
+
+    virtual void buildSVFGForPointerLevel(size_t pl, std::map<NodeID, size_t>& plMap);
+
 
     /// SVFG Edges connected at indirect call/ret sites
     SVFGEdgeSet vfEdgesAtIndCallSite;

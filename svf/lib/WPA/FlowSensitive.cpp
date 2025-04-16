@@ -135,6 +135,7 @@ void FlowSensitive::analyze()
         if(Options::WriteAnder().empty())
         {
             initialize();
+            dumpTopLevelPtsTo();
             solveConstraints();
             finalize();
         }

@@ -1,0 +1,3898 @@
+Levpa analyze.
+aaaa
+bbbb
+push svfg node 74
+push svfg node 73
+push svfg node 71
+push svfg node 70
+push svfg node 69
+push svfg node 67
+push svfg node 66
+push svfg node 63
+push svfg node 62
+push svfg node 61
+push svfg node 60
+push svfg node 59
+push svfg node 58
+push svfg node 50
+push svfg node 46
+push svfg node 45
+push svfg node 44
+push svfg node 42
+push svfg node 57
+push svfg node 41
+push svfg node 56
+push svfg node 36
+push svfg node 21
+push svfg node 20
+push svfg node 19
+push svfg node 18
+push svfg node 17
+push svfg node 16
+push svfg node 15
+push svfg node 14
+push svfg node 13
+push svfg node 12
+push svfg node 28
+push svfg node 11
+push svfg node 10
+push svfg node 30
+push svfg node 26
+push svfg node 8
+push svfg node 7
+push svfg node 5
+push svfg node 4
+push svfg node 3
+push svfg node 2
+push svfg node 0
+push svfg node 1
+
+*********General Stats***************
+################ (program : interSwap.ll)###############
+AddrsNum            19
+BBWith2Succ         1
+BBWith3Succ         0
+CallsNum            2
+ConstArrayObj       0
+ConstStructObj      0
+ConstantObj         0
+CopysNum            3
+FIObjNum            0
+FSObjNum            13
+FunctionObjs        2
+GepsNum             1
+GlobalObjs          0
+HeapObjs            1
+IndCallSites        0
+LoadsNum            14
+MaxStructSize       0
+NonPtrObj           6
+ReturnsNum          0
+StackObjs           10
+StoresNum           13
+TotalCallSite       1
+TotalFieldObjects   0
+TotalObjects        14
+TotalPTASVFStmts    39
+TotalPointers       63
+TotalSVFStmts       57
+VarArrayObj         2
+VarStructObj        0
+----------------Time and memory stats--------------------
+LLVMIRTime          0.003
+SVFIRTime           0
+SymbolTableTime     0.001
+#######################################################
+
+*********PTACallGraph Stats (Andersen analysis)***************
+################ (program : interSwap.ll)###############
+----------------Numbers stats----------------------------
+CalRetPairInCycle   0
+MaxNodeInCycle      0
+NodeInCycle         0
+TotalCycle          0
+TotalEdge           1
+TotalNode           2
+#######################################################
+
+*********Andersen Pointer Analysis Stats***************
+################ (program : interSwap.ll)###############
+----------------Time and memory stats--------------------
+AvgIn/OutAddrEdge   0.27907
+AvgIn/OutCopyEdge   0.139535
+AvgIn/OutEdge       0.906977
+AvgIn/OutLoadEdge   0.27907
+AvgIn/OutStoreEdge  0.209302
+AvgPtsSetSize       0.298701
+AvgTopLvlPtsSize    0.7
+CollapseTime        0
+CopyGepTime         0
+LoadStoreTime       0
+MemoryUsageVmrss    0
+MemoryUsageVmsize   0
+SCCDetectTime       0
+SCCMergeTime        0
+TotalTime           0
+UpdateCGTime        0
+----------------Numbers stats----------------------------
+AddrProcessed       12
+CopyProcessed       0
+DummyFieldPtrs      0
+FieldObjs           0
+GepProcessed        0
+IndCallSites        0
+IndEdgeSolved       0
+LoadProcessed       0
+LocalVarInRecur     0
+MaxInAddrEdge       1
+MaxInCopyEdge       1
+MaxInLoadEdge       1
+MaxInStoreEdge      1
+MaxNodesInSCC       0
+MaxOutAddrEdge      1
+MaxOutCopyEdge      2
+MaxOutLoadEdge      3
+MaxOutStoreEdge     1
+MaxPtsSetSize       1
+MemObjects          14
+NodesInCycles       0
+NullPointer         5
+NumOfAddrs          12
+NumOfCGEdge         27
+NumOfCGNode         45
+NumOfCopys          5
+NumOfFieldExpand    0
+NumOfGeps           1
+NumOfLoads          12
+NumOfSCCDetect      0
+NumOfSFRs           0
+NumOfStores         9
+NumOfValidNode      43
+NumOfValidObjNode   12
+Pointers            63
+PointsToBlkPtr      0
+PointsToConstPtr    0
+SolveIterations     1
+StoreProcessed      0
+TotalCycleNum       0
+TotalObjects        14
+TotalPWCCycleNum    0
+TotalPointers       63
+#######################################################
+
+NodeID 0 		PointsTo: {empty}
+
+
+NodeID 4 		PointsTo: { 5 }
+
+
+NodeID 7 		PointsTo: { 8 }
+
+
+NodeID 10 		PointsTo: { 11 }
+
+
+NodeID 12 		PointsTo: { 13 }
+
+
+NodeID 14 		PointsTo: { 15 }
+
+
+NodeID 16 		PointsTo: { 17 }
+
+
+NodeID 18 		PointsTo: { 19 }
+
+
+NodeID 20 		PointsTo: { 21 }
+
+
+NodeID 26 		PointsTo: { 11 }
+
+
+NodeID 28 		PointsTo: { 13 }
+
+
+NodeID 30 		PointsTo: { 11 }
+
+
+NodeID 36 		PointsTo: {empty}
+
+
+NodeID 41 		PointsTo: { 15 }
+
+
+NodeID 42 		PointsTo: { 17 }
+
+
+NodeID 44 		PointsTo: { 45 }
+
+
+NodeID 46 		PointsTo: {empty}
+
+
+NodeID 50 		PointsTo: {empty}
+
+
+NodeID 56 		PointsTo: { 15 }
+
+
+NodeID 57 		PointsTo: { 17 }
+
+
+NodeID 58 		PointsTo: { 59 }
+
+
+NodeID 60 		PointsTo: { 61 }
+
+
+NodeID 62 		PointsTo: { 63 }
+
+
+NodeID 66 		PointsTo: { 15 }
+
+
+NodeID 67 		PointsTo: {empty}
+
+
+NodeID 69 		PointsTo: { 17 }
+
+
+NodeID 70 		PointsTo: {empty}
+
+
+NodeID 71 		PointsTo: {empty}
+
+
+NodeID 73 		PointsTo: {empty}
+
+
+NodeID 74 		PointsTo: {empty}
+
+
+****Persistent Points-To Cache Statistics: Andersen's analysis bitvector****
+################ (program : interSwap.ll)###############
+UniquePointsToSets       13
+TotalUnions              36
+PropertyUnions           36
+UniqueUnions             0
+LookupUnions             0
+PreemptiveUnions         0
+TotalComplements         0
+PropertyComplements      0
+UniqueComplements        0
+LookupComplements        0
+PreemptiveComplements    0
+TotalIntersections       0
+PropertyIntersections    0
+UniqueIntersections      0
+LookupIntersections      0
+PreemptiveIntersections  0
+#######################################################
+aaaa
+bbbb
+aaaa
+bbbb
+aaaa
+bbbb
+
+*********PTACallGraph Stats (Andersen analysis)***************
+################ (program : interSwap.ll)###############
+----------------Numbers stats----------------------------
+CalRetPairInCycle   0
+MaxNodeInCycle      0
+NodeInCycle         0
+TotalCycle          0
+TotalEdge           1
+TotalNode           2
+#######################################################
+
+*********Andersen Pointer Analysis Stats***************
+################ (program : interSwap.ll)###############
+----------------Time and memory stats--------------------
+AvgIn/OutAddrEdge   0.263158
+AvgIn/OutCopyEdge   0.552632
+AvgIn/OutEdge       1.36842
+AvgIn/OutLoadEdge   0.315789
+AvgIn/OutStoreEdge  0.236842
+AvgPtsSetSize       0.576923
+AvgTopLvlPtsSize    1.16667
+CollapseTime        0
+CopyGepTime         0
+LoadStoreTime       0
+MemoryUsageVmrss    0
+MemoryUsageVmsize   0
+SCCDetectTime       0
+SCCMergeTime        0
+TotalTime           0
+UpdateCGTime        0
+----------------Numbers stats----------------------------
+AddrProcessed       24
+CopyProcessed       22
+DummyFieldPtrs      0
+FieldObjs           1
+GepProcessed        1
+IndCallSites        0
+IndEdgeSolved       0
+LoadProcessed       12
+LocalVarInRecur     0
+MaxInAddrEdge       1
+MaxInCopyEdge       2
+MaxInLoadEdge       3
+MaxInStoreEdge      1
+MaxNodesInSCC       6
+MaxOutAddrEdge      1
+MaxOutCopyEdge      3
+MaxOutLoadEdge      3
+MaxOutStoreEdge     3
+MaxPtsSetSize       2
+MemObjects          14
+NodesInCycles       6
+NullPointer         0
+NumOfAddrs          10
+NumOfCGEdge         42
+NumOfCGNode         41
+NumOfCopys          20
+NumOfFieldExpand    0
+NumOfGeps           1
+NumOfLoads          12
+NumOfSCCDetect      3
+NumOfSFRs           0
+NumOfStores         9
+NumOfValidNode      38
+NumOfValidObjNode   10
+Pointers            63
+PointsToBlkPtr      0
+PointsToConstPtr    0
+SolveIterations     3
+StoreProcessed      9
+TotalCycleNum       1
+TotalObjects        14
+TotalPWCCycleNum    0
+TotalPointers       63
+#######################################################
+
+NodeID 0 		PointsTo: {empty}
+
+NodeID 4 		PointsTo: { 5 }
+
+NodeID 7 		PointsTo: { 8 }
+
+NodeID 10 		PointsTo: { 11 }
+
+NodeID 12 		PointsTo: { 13 }
+
+NodeID 14 		PointsTo: { 15 }
+
+NodeID 16 		PointsTo: { 17 }
+
+NodeID 18 		PointsTo: { 19 }
+
+NodeID 20 		PointsTo: { 21 }
+
+NodeID 26 		PointsTo: { 11 }
+
+NodeID 28 		PointsTo: { 13 }
+
+NodeID 30 		PointsTo: { 77 }
+
+NodeID 36 		PointsTo: { 11 13 }
+
+NodeID 41 		PointsTo: { 15 }
+
+NodeID 42 		PointsTo: { 17 }
+
+NodeID 44 		PointsTo: { 45 }
+
+NodeID 46 		PointsTo: { 11 13 }
+
+NodeID 50 		PointsTo: { 11 13 }
+
+NodeID 56 		PointsTo: { 15 }
+
+NodeID 57 		PointsTo: { 17 }
+
+NodeID 58 		PointsTo: { 59 }
+
+NodeID 60 		PointsTo: { 61 }
+
+NodeID 62 		PointsTo: { 63 }
+
+NodeID 66 		PointsTo: { 15 }
+
+NodeID 67 		PointsTo: { 11 13 }
+
+NodeID 69 		PointsTo: { 17 }
+
+NodeID 70 		PointsTo: { 11 13 }
+
+NodeID 71 		PointsTo: { 15 }
+
+NodeID 73 		PointsTo: { 11 13 }
+
+NodeID 74 		PointsTo: { 17 }
+
+****Persistent Points-To Cache Statistics: Andersen's analysis bitvector****
+################ (program : interSwap.ll)###############
+UniquePointsToSets       15
+TotalUnions              42
+PropertyUnions           36
+UniqueUnions             1
+LookupUnions             3
+PreemptiveUnions         2
+TotalComplements         133
+PropertyComplements      129
+UniqueComplements        1
+LookupComplements        2
+PreemptiveComplements    1
+TotalIntersections       28
+PropertyIntersections    26
+UniqueIntersections      0
+LookupIntersections      0
+PreemptiveIntersections  2
+#######################################################
+Add store chi StoreStmt: [Var18 <-- Var14]	
+ValVar ID: 24
+   store ptr %a, ptr %t1, align 8 
+Add store chi StoreStmt: [Var20 <-- Var16]	
+ValVar ID: 25
+   store ptr %b, ptr %t2, align 8 
+Add load mu LoadStmt: [Var41 <-- Var18]	
+ValVar ID: 41
+   %4 = load ptr, ptr %t1, align 8 
+Add load mu LoadStmt: [Var42 <-- Var20]	
+ValVar ID: 42
+   %5 = load ptr, ptr %t2, align 8 
+Add store chi StoreStmt: [Var58 <-- Var56]	
+ValVar ID: 64
+   store ptr %p, ptr %p.addr, align 8 
+Add store chi StoreStmt: [Var60 <-- Var57]	
+ValVar ID: 65
+   store ptr %q, ptr %q.addr, align 8 
+Add load mu LoadStmt: [Var66 <-- Var58]	
+ValVar ID: 66
+   %0 = load ptr, ptr %p.addr, align 8 
+Add load mu LoadStmt: [Var69 <-- Var60]	
+ValVar ID: 69
+   %2 = load ptr, ptr %q.addr, align 8 
+Add load mu LoadStmt: [Var71 <-- Var58]	
+ValVar ID: 71
+   %4 = load ptr, ptr %p.addr, align 8 
+Add load mu LoadStmt: [Var74 <-- Var60]	
+ValVar ID: 74
+   %6 = load ptr, ptr %q.addr, align 8 
+
+*********Memory SSA Statistics***************
+################ (program : interSwap.ll)###############
+----------------Time and memory stats--------------------
+AverageRegSize      1
+GenMUCHITime        0
+GenRegionTime       0.001
+InsertPHITime       0
+SSARenameTime       0
+TotalMSSATime       0.001
+----------------Numbers stats----------------------------
+BBHasMSSAPhi        1
+CSChiNode           2
+CSHasChi            1
+CSHasMu             1
+CSMuNode            2
+FunEntryChi         6
+FunHasEntryChi      2
+FunHasRetMu         2
+FunRetMu            6
+LoadHasMu           12
+LoadMuNode          6
+MSSAPhi             2
+MaxRegSize          1
+MemRegions          7
+StoreChiNode        4
+StoreHasChi         9
+#######################################################
+Adding direct edge 0 13
+Adding direct edge 3 14
+Adding direct edge 4 15
+Adding direct edge 3 16
+Adding direct edge 5 17
+Adding direct edge 5 18
+Adding direct edge 5 19
+Adding direct edge 7 20
+Adding direct edge 8 21
+Adding direct edge 10 22
+Adding direct edge 10 23
+Adding direct edge 11 24
+Adding direct edge 11 25
+Adding direct edge 12 26
+Adding direct edge 22 27
+Adding direct edge 24 28
+Adding direct edge 5 29
+Adding direct edge 7 29
+Adding direct edge 6 30
+Adding direct edge 8 30
+Adding direct edge 14 31
+Adding direct edge 5 31
+Adding direct edge 15 32
+Adding direct edge 6 32
+Adding direct edge 40 33
+Adding direct edge 10 33
+Adding direct edge 41 34
+Adding direct edge 11 34
+Adding direct edge 27 35
+Adding direct edge 12 35
+Adding direct edge 28 36
+Adding direct edge 23 36
+Adding direct edge 26 37
+Adding direct edge 25 37
+Adding direct edge 20 38
+Adding direct edge 21 39
+setting def MRVERID: 8 MemRegion: pts{19 } MRVERSION: 2 MSSADef: 1, pts{19 } StoreVFGNode ID: 29 StoreStmt: [Var18 <-- Var14]	
+ValVar ID: 24
+   store ptr %a, ptr %t1, align 8 
+setting def MRVERID: 9 MemRegion: pts{21 } MRVERSION: 2 MSSADef: 1, pts{21 } StoreVFGNode ID: 30 StoreStmt: [Var20 <-- Var16]	
+ValVar ID: 25
+   store ptr %b, ptr %t2, align 8 
+skipping StoreStmt: [Var14 <-- Var26]	
+ValVar ID: 27
+   store ptr %0, ptr %a, align 8 
+skipping StoreStmt: [Var16 <-- Var28]	
+ValVar ID: 29
+   store ptr %1, ptr %b, align 8 
+setting def MRVERID: 18 MemRegion: pts{59 } MRVERSION: 2 MSSADef: 1, pts{59 } StoreVFGNode ID: 33 StoreStmt: [Var58 <-- Var56]	
+ValVar ID: 64
+   store ptr %p, ptr %p.addr, align 8 
+setting def MRVERID: 19 MemRegion: pts{61 } MRVERSION: 2 MSSADef: 1, pts{61 } StoreVFGNode ID: 34 StoreStmt: [Var60 <-- Var57]	
+ValVar ID: 65
+   store ptr %q, ptr %q.addr, align 8 
+skipping StoreStmt: [Var62 <-- Var67]	
+ValVar ID: 68
+   store ptr %1, ptr %tmp, align 8 
+skipping StoreStmt: [Var71 <-- Var70]	
+ValVar ID: 72
+   store ptr %3, ptr %4, align 8 
+skipping StoreStmt: [Var74 <-- Var73]	
+ValVar ID: 75
+   store ptr %5, ptr %6, align 8 
+Writing 'test.dot'...mu LoadStmt: [Var41 <-- Var18]	
+ValVar ID: 41
+   %4 = load ptr, ptr %t1, align 8 
+add intra indirect edge from load 29 20
+mu LoadStmt: [Var42 <-- Var20]	
+ValVar ID: 42
+   %5 = load ptr, ptr %t2, align 8 
+add intra indirect edge from load 30 21
+mu LoadStmt: [Var66 <-- Var58]	
+ValVar ID: 66
+   %0 = load ptr, ptr %p.addr, align 8 
+add intra indirect edge from load 33 22
+mu LoadStmt: [Var71 <-- Var58]	
+ValVar ID: 71
+   %4 = load ptr, ptr %p.addr, align 8 
+add intra indirect edge from load 33 23
+mu LoadStmt: [Var69 <-- Var60]	
+ValVar ID: 69
+   %2 = load ptr, ptr %q.addr, align 8 
+add intra indirect edge from load 34 24
+mu LoadStmt: [Var74 <-- Var60]	
+ValVar ID: 74
+   %6 = load ptr, ptr %q.addr, align 8 
+add intra indirect edge from load 34 25
+add intra indirect edge from store 48 29
+add intra indirect edge from store 46 30
+add intra indirect edge from store 45 33
+add intra indirect edge from store 44 34
+add intra indirect edge from phi 58 42
+add intra indirect edge from phi 47 42
+add intra indirect edge from phi 59 43
+add intra indirect edge from phi 49 43
+add intra indirect edge from formal out 34 50
+add intra indirect edge from formal out 33 51
+add intra indirect edge from formal out 30 52
+add intra indirect edge from formal out 29 53
+add intra indirect edge from formal out 42 54
+add intra indirect edge from formal out 43 55
+add intra indirect edge from actual in 47 56
+add intra indirect edge from actual in 49 57
+Writing 'test2.dot'...
+*********SVFG Statistics***************
+################ (program : interSwap.ll)###############
+----------------Time and memory stats--------------------
+ATNodeTime          0
+AvgWeight           1
+ConnDirEdgeTime     0
+ConnIndEdgeTime     0
+OptTime             0
+TLNodeTime          0
+TotalTime           0
+----------------Numbers stats----------------------------
+ActualIn            2
+ActualOut           2
+ActualParam         2
+ActualRet           0
+Addr                12
+AvgInDegree         1
+AvgIndInDeg         1
+AvgIndOutDeg        1
+AvgOutDegree        1
+Copy                3
+DirectCallEdge      2
+DirectEdge          38
+DirectRetEdge       0
+FormalIn            6
+FormalOut           6
+FormalParam         2
+FormalRet           0
+Gep                 1
+IndCallEdge         0
+IndRetEdge          0
+IndirectEdge        22
+IndirectEdgeLabels  22
+Load                12
+MSSAPhi             2
+MaxInDegree         3
+MaxIndInDeg         2
+MaxIndOutDeg        3
+MaxOutDegree        5
+PHI                 0
+Store               9
+TotalEdge           60
+TotalNode           60
+#######################################################
+Writing 'maxpl.dot'...
+NodeID 0 		PointsTo: {empty}
+
+
+NodeID 4 		PointsTo: {empty}
+
+
+NodeID 7 		PointsTo: {empty}
+
+
+NodeID 10 		PointsTo: {empty}
+
+
+NodeID 12 		PointsTo: {empty}
+
+
+NodeID 14 		PointsTo: {empty}
+
+
+NodeID 16 		PointsTo: {empty}
+
+
+NodeID 18 		PointsTo: {empty}
+
+
+NodeID 20 		PointsTo: {empty}
+
+
+NodeID 26 		PointsTo: {empty}
+
+
+NodeID 28 		PointsTo: {empty}
+
+
+NodeID 30 		PointsTo: {empty}
+
+
+NodeID 36 		PointsTo: {empty}
+
+
+NodeID 41 		PointsTo: {empty}
+
+
+NodeID 42 		PointsTo: {empty}
+
+
+NodeID 44 		PointsTo: {empty}
+
+
+NodeID 46 		PointsTo: {empty}
+
+
+NodeID 50 		PointsTo: {empty}
+
+
+NodeID 56 		PointsTo: {empty}
+
+
+NodeID 57 		PointsTo: {empty}
+
+
+NodeID 58 		PointsTo: {empty}
+
+
+NodeID 60 		PointsTo: {empty}
+
+
+NodeID 62 		PointsTo: {empty}
+
+
+NodeID 66 		PointsTo: {empty}
+
+
+NodeID 67 		PointsTo: {empty}
+
+
+NodeID 69 		PointsTo: {empty}
+
+
+NodeID 70 		PointsTo: {empty}
+
+
+NodeID 71 		PointsTo: {empty}
+
+
+NodeID 73 		PointsTo: {empty}
+
+
+NodeID 74 		PointsTo: {empty}
+
+End of initialization
+Current pointer level 3
+1111
+aaaa
+0
+60
+push svfg node 7 with pointer level 3
+push svfg node 8 with pointer level 3
+push svfg node 10 with pointer level 3
+push svfg node 11 with pointer level 3
+Looking at child FormalOUTSVFGNode ID: 54 {fun: main}RETMU(4V_3)
+pts{17 }
+
+Looking at child FormalOUTSVFGNode ID: 55 {fun: main}RETMU(2V_3)
+pts{15 }
+
+Looking at child StoreVFGNode ID: 34 StoreStmt: [Var60 <-- Var57]	
+ValVar ID: 65
+   store ptr %q, ptr %q.addr, align 8 
+Looking at child StoreVFGNode ID: 33 StoreStmt: [Var58 <-- Var56]	
+ValVar ID: 64
+   store ptr %p, ptr %p.addr, align 8 
+Looking at child StoreVFGNode ID: 30 StoreStmt: [Var20 <-- Var16]	
+ValVar ID: 25
+   store ptr %b, ptr %t2, align 8 
+Looking at child IntraMSSAPHISVFGNode ID: 42 {fun: main}MSSAPHISVFGNode ID: 42 {fun: main}MR_4V_3 = PHI(MR_4V_2, MR_4V_1, )
+pts{17 }
+Looking at child ActualINSVFGNode ID: 56 at callsite:    call void @swap(ptr %4, ptr %5) CallICFGNode:  {fun: main}CSMU(4V_1)
+pts{17 }
+CS[CallICFGNode: ]
+Looking at child StoreVFGNode ID: 29 StoreStmt: [Var18 <-- Var14]	
+ValVar ID: 24
+   store ptr %a, ptr %t1, align 8 
+Looking at child IntraMSSAPHISVFGNode ID: 43 {fun: main}MSSAPHISVFGNode ID: 43 {fun: main}MR_2V_3 = PHI(MR_2V_2, MR_2V_1, )
+pts{15 }
+Looking at child ActualINSVFGNode ID: 57 at callsite:    call void @swap(ptr %4, ptr %5) CallICFGNode:  {fun: main}CSMU(2V_1)
+pts{15 }
+CS[CallICFGNode: ]
+Looking at child IntraMSSAPHISVFGNode ID: 42 {fun: main}MSSAPHISVFGNode ID: 42 {fun: main}MR_4V_3 = PHI(MR_4V_2, MR_4V_1, )
+pts{17 }
+Looking at child IntraMSSAPHISVFGNode ID: 43 {fun: main}MSSAPHISVFGNode ID: 43 {fun: main}MR_2V_3 = PHI(MR_2V_2, MR_2V_1, )
+pts{15 }
+2222
+Processing node AddrVFGNode ID: 7 AddrStmt: [Var18 <-- Var19]	
+ValVar ID: 18
+   %t1 = alloca ptr, align 8 
+Processed node AddrVFGNode ID: 7 AddrStmt: [Var18 <-- Var19]	
+ValVar ID: 18
+   %t1 = alloca ptr, align 8  1
+Start propagating.
+xxxxxxxx 20
+PROPAGATION: push svfg node 20 by 7
+xxxxxxxx 29
+PROPAGATION: push svfg node 29 by 7
+Processing node AddrVFGNode ID: 8 AddrStmt: [Var20 <-- Var21]	
+ValVar ID: 20
+   %t2 = alloca ptr, align 8 
+Processed node AddrVFGNode ID: 8 AddrStmt: [Var20 <-- Var21]	
+ValVar ID: 20
+   %t2 = alloca ptr, align 8  1
+Start propagating.
+xxxxxxxx 21
+PROPAGATION: push svfg node 21 by 8
+xxxxxxxx 30
+PROPAGATION: push svfg node 30 by 8
+Processing node AddrVFGNode ID: 10 AddrStmt: [Var58 <-- Var59]	
+ValVar ID: 58
+   %p.addr = alloca ptr, align 8 
+Processed node AddrVFGNode ID: 10 AddrStmt: [Var58 <-- Var59]	
+ValVar ID: 58
+   %p.addr = alloca ptr, align 8  1
+Start propagating.
+xxxxxxxx 22
+PROPAGATION: push svfg node 22 by 10
+xxxxxxxx 23
+PROPAGATION: push svfg node 23 by 10
+xxxxxxxx 33
+PROPAGATION: push svfg node 33 by 10
+Processing node AddrVFGNode ID: 11 AddrStmt: [Var60 <-- Var61]	
+ValVar ID: 60
+   %q.addr = alloca ptr, align 8 
+Processed node AddrVFGNode ID: 11 AddrStmt: [Var60 <-- Var61]	
+ValVar ID: 60
+   %q.addr = alloca ptr, align 8  1
+Start propagating.
+xxxxxxxx 24
+PROPAGATION: push svfg node 24 by 11
+xxxxxxxx 25
+PROPAGATION: push svfg node 25 by 11
+xxxxxxxx 34
+PROPAGATION: push svfg node 34 by 11
+Processing node LoadVFGNode ID: 20 LoadStmt: [Var41 <-- Var18]	
+ValVar ID: 41
+   %4 = load ptr, ptr %t1, align 8 
+Processed node LoadVFGNode ID: 20 LoadStmt: [Var41 <-- Var18]	
+ValVar ID: 41
+   %4 = load ptr, ptr %t1, align 8  0
+Processing node StoreVFGNode ID: 29 StoreStmt: [Var18 <-- Var14]	
+ValVar ID: 24
+   store ptr %a, ptr %t1, align 8 
+store dst id: 18
+Is strong update? 1 0
+Processed node StoreVFGNode ID: 29 StoreStmt: [Var18 <-- Var14]	
+ValVar ID: 24
+   store ptr %a, ptr %t1, align 8  0
+Processing node LoadVFGNode ID: 21 LoadStmt: [Var42 <-- Var20]	
+ValVar ID: 42
+   %5 = load ptr, ptr %t2, align 8 
+Processed node LoadVFGNode ID: 21 LoadStmt: [Var42 <-- Var20]	
+ValVar ID: 42
+   %5 = load ptr, ptr %t2, align 8  0
+Processing node StoreVFGNode ID: 30 StoreStmt: [Var20 <-- Var16]	
+ValVar ID: 25
+   store ptr %b, ptr %t2, align 8 
+store dst id: 20
+Is strong update? 1 0
+Processed node StoreVFGNode ID: 30 StoreStmt: [Var20 <-- Var16]	
+ValVar ID: 25
+   store ptr %b, ptr %t2, align 8  0
+Processing node LoadVFGNode ID: 22 LoadStmt: [Var66 <-- Var58]	
+ValVar ID: 66
+   %0 = load ptr, ptr %p.addr, align 8 
+Processed node LoadVFGNode ID: 22 LoadStmt: [Var66 <-- Var58]	
+ValVar ID: 66
+   %0 = load ptr, ptr %p.addr, align 8  0
+Processing node LoadVFGNode ID: 23 LoadStmt: [Var71 <-- Var58]	
+ValVar ID: 71
+   %4 = load ptr, ptr %p.addr, align 8 
+Processed node LoadVFGNode ID: 23 LoadStmt: [Var71 <-- Var58]	
+ValVar ID: 71
+   %4 = load ptr, ptr %p.addr, align 8  0
+Processing node StoreVFGNode ID: 33 StoreStmt: [Var58 <-- Var56]	
+ValVar ID: 64
+   store ptr %p, ptr %p.addr, align 8 
+store dst id: 58
+Is strong update? 1 0
+Processed node StoreVFGNode ID: 33 StoreStmt: [Var58 <-- Var56]	
+ValVar ID: 64
+   store ptr %p, ptr %p.addr, align 8  0
+Processing node LoadVFGNode ID: 24 LoadStmt: [Var69 <-- Var60]	
+ValVar ID: 69
+   %2 = load ptr, ptr %q.addr, align 8 
+Processed node LoadVFGNode ID: 24 LoadStmt: [Var69 <-- Var60]	
+ValVar ID: 69
+   %2 = load ptr, ptr %q.addr, align 8  0
+Processing node LoadVFGNode ID: 25 LoadStmt: [Var74 <-- Var60]	
+ValVar ID: 74
+   %6 = load ptr, ptr %q.addr, align 8 
+Processed node LoadVFGNode ID: 25 LoadStmt: [Var74 <-- Var60]	
+ValVar ID: 74
+   %6 = load ptr, ptr %q.addr, align 8  0
+Processing node StoreVFGNode ID: 34 StoreStmt: [Var60 <-- Var57]	
+ValVar ID: 65
+   store ptr %q, ptr %q.addr, align 8 
+store dst id: 60
+Is strong update? 1 0
+Processed node StoreVFGNode ID: 34 StoreStmt: [Var60 <-- Var57]	
+ValVar ID: 65
+   store ptr %q, ptr %q.addr, align 8  0
+3333
+----------------------------------------------
+##<> Source Loc: { constant data }
+Ptr 0 		PointsTo: {empty}
+
+----------------------------------------------
+
+Ptr 1 		PointsTo: {empty}
+
+----------------------------------------------
+##<Dummy Obj > id:2
+Ptr 2 		PointsTo: {empty}
+
+----------------------------------------------
+##<Dummy Obj > id:3
+Ptr 3 		PointsTo: {empty}
+
+----------------------------------------------
+##<main> Source Loc: 
+Ptr 4 		PointsTo: {empty}
+
+----------------------------------------------
+##<main> Source Loc: 
+Ptr 5 		PointsTo: {empty}
+
+----------------------------------------------
+##<main> Source Loc: 
+Ptr 6 		PointsTo: {empty}
+
+----------------------------------------------
+##<retval> Source Loc: 
+Ptr 7 		PointsTo: {empty}
+
+----------------------------------------------
+##<retval> Source Loc: 
+Ptr 8 		PointsTo: {empty}
+
+----------------------------------------------
+##<> Source Loc: { constant data }
+Ptr 9 		PointsTo: {empty}
+
+----------------------------------------------
+##<A> Source Loc: 
+Ptr 10 		PointsTo: {empty}
+
+----------------------------------------------
+##<A> Source Loc: 
+Ptr 11 		PointsTo: {empty}
+
+----------------------------------------------
+##<B> Source Loc: 
+Ptr 12 		PointsTo: {empty}
+
+----------------------------------------------
+##<B> Source Loc: 
+Ptr 13 		PointsTo: {empty}
+
+----------------------------------------------
+##<a> Source Loc: 
+Ptr 14 		PointsTo: {empty}
+
+----------------------------------------------
+##<a> Source Loc: 
+Ptr 15 		PointsTo: {empty}
+
+----------------------------------------------
+##<b> Source Loc: 
+Ptr 16 		PointsTo: {empty}
+
+----------------------------------------------
+##<b> Source Loc: 
+Ptr 17 		PointsTo: {empty}
+
+----------------------------------------------
+##<t1> Source Loc: 
+Ptr 18 		PointsTo: { 19 }
+
+!!Target NodeID 19	 [<t1> Source Loc: ] 
+----------------------------------------------
+##<t1> Source Loc: 
+Ptr 19 		PointsTo: {empty}
+
+----------------------------------------------
+##<t2> Source Loc: 
+Ptr 20 		PointsTo: { 21 }
+
+!!Target NodeID 21	 [<t2> Source Loc: ] 
+----------------------------------------------
+##<t2> Source Loc: 
+Ptr 21 		PointsTo: {empty}
+
+----------------------------------------------
+##<> Source Loc: 
+Ptr 22 		PointsTo: {empty}
+
+----------------------------------------------
+##<> Source Loc: { constant data }
+Ptr 23 		PointsTo: {empty}
+
+----------------------------------------------
+##<> Source Loc: 
+Ptr 24 		PointsTo: {empty}
+
+----------------------------------------------
+##<> Source Loc: 
+Ptr 25 		PointsTo: {empty}
+
+----------------------------------------------
+##<> Source Loc: 
+Ptr 26 		PointsTo: {empty}
+
+----------------------------------------------
+##<> Source Loc: 
+Ptr 27 		PointsTo: {empty}
+
+----------------------------------------------
+##<> Source Loc: 
+Ptr 28 		PointsTo: {empty}
+
+----------------------------------------------
+##<> Source Loc: 
+Ptr 29 		PointsTo: {empty}
+
+----------------------------------------------
+##<arrayidx> Source Loc: 
+Ptr 30 		PointsTo: {empty}
+
+----------------------------------------------
+##<> Source Loc: { constant data }
+Ptr 31 		PointsTo: {empty}
+
+----------------------------------------------
+##<> Source Loc: 
+Ptr 32 		PointsTo: {empty}
+
+----------------------------------------------
+##<tobool> Source Loc: 
+Ptr 33 		PointsTo: {empty}
+
+----------------------------------------------
+##<> Source Loc: { constant data }
+Ptr 34 		PointsTo: {empty}
+
+----------------------------------------------
+##<> Source Loc: 
+Ptr 35 		PointsTo: {empty}
+
+----------------------------------------------
+##<> Source Loc: 
+Ptr 36 		PointsTo: {empty}
+
+----------------------------------------------
+##<> Source Loc: 
+Ptr 37 		PointsTo: {empty}
+
+----------------------------------------------
+##<> Source Loc: { constant data }
+Ptr 38 		PointsTo: {empty}
+
+----------------------------------------------
+##<> Source Loc: 
+Ptr 39 		PointsTo: {empty}
+
+----------------------------------------------
+##<if.end> Source Loc: { "basic block": if.end, "location":  }
+Ptr 40 		PointsTo: {empty}
+
+----------------------------------------------
+##<> Source Loc: 
+Ptr 41 		PointsTo: {empty}
+
+----------------------------------------------
+##<> Source Loc: 
+Ptr 42 		PointsTo: {empty}
+
+----------------------------------------------
+##<> Source Loc: 
+Ptr 43 		PointsTo: {empty}
+
+----------------------------------------------
+##<swap> Source Loc: 
+Ptr 44 		PointsTo: {empty}
+
+----------------------------------------------
+##<swap> Source Loc: 
+Ptr 45 		PointsTo: {empty}
+
+----------------------------------------------
+##<> Source Loc: 
+Ptr 46 		PointsTo: {empty}
+
+----------------------------------------------
+##<> Source Loc: 
+Ptr 47 		PointsTo: {empty}
+
+----------------------------------------------
+##<> Source Loc: { constant data }
+Ptr 48 		PointsTo: {empty}
+
+----------------------------------------------
+##<> Source Loc: 
+Ptr 49 		PointsTo: {empty}
+
+----------------------------------------------
+##<> Source Loc: 
+Ptr 50 		PointsTo: {empty}
+
+----------------------------------------------
+##<> Source Loc: 
+Ptr 51 		PointsTo: {empty}
+
+----------------------------------------------
+##<> Source Loc: { constant data }
+Ptr 52 		PointsTo: {empty}
+
+----------------------------------------------
+##<> Source Loc: 
+Ptr 53 		PointsTo: {empty}
+
+----------------------------------------------
+##<> Source Loc: 
+Ptr 54 		PointsTo: {empty}
+
+----------------------------------------------
+##<swap> Source Loc: 
+Ptr 55 		PointsTo: {empty}
+
+----------------------------------------------
+##<p> Source Loc: { 0th arg swap  }
+Ptr 56 		PointsTo: {empty}
+
+----------------------------------------------
+##<q> Source Loc: { 1st arg swap  }
+Ptr 57 		PointsTo: {empty}
+
+----------------------------------------------
+##<p.addr> Source Loc: 
+Ptr 58 		PointsTo: { 59 }
+
+!!Target NodeID 59	 [<p.addr> Source Loc: ] 
+----------------------------------------------
+##<p.addr> Source Loc: 
+Ptr 59 		PointsTo: {empty}
+
+----------------------------------------------
+##<q.addr> Source Loc: 
+Ptr 60 		PointsTo: { 61 }
+
+!!Target NodeID 61	 [<q.addr> Source Loc: ] 
+----------------------------------------------
+##<q.addr> Source Loc: 
+Ptr 61 		PointsTo: {empty}
+
+----------------------------------------------
+##<tmp> Source Loc: 
+Ptr 62 		PointsTo: {empty}
+
+----------------------------------------------
+##<tmp> Source Loc: 
+Ptr 63 		PointsTo: {empty}
+
+----------------------------------------------
+##<> Source Loc: 
+Ptr 64 		PointsTo: {empty}
+
+----------------------------------------------
+##<> Source Loc: 
+Ptr 65 		PointsTo: {empty}
+
+----------------------------------------------
+##<> Source Loc: 
+Ptr 66 		PointsTo: {empty}
+
+----------------------------------------------
+##<> Source Loc: 
+Ptr 67 		PointsTo: {empty}
+
+----------------------------------------------
+##<> Source Loc: 
+Ptr 68 		PointsTo: {empty}
+
+----------------------------------------------
+##<> Source Loc: 
+Ptr 69 		PointsTo: {empty}
+
+----------------------------------------------
+##<> Source Loc: 
+Ptr 70 		PointsTo: {empty}
+
+----------------------------------------------
+##<> Source Loc: 
+Ptr 71 		PointsTo: {empty}
+
+----------------------------------------------
+##<> Source Loc: 
+Ptr 72 		PointsTo: {empty}
+
+----------------------------------------------
+##<> Source Loc: 
+Ptr 73 		PointsTo: {empty}
+
+----------------------------------------------
+##<> Source Loc: 
+Ptr 74 		PointsTo: {empty}
+
+----------------------------------------------
+##<> Source Loc: 
+Ptr 75 		PointsTo: {empty}
+
+----------------------------------------------
+##<> Source Loc: 
+Ptr 76 		PointsTo: {empty}
+
+----------------------------------------------
+##<> Source Loc: 
+Ptr 77 		PointsTo: {empty}
+
+----------------------------------------------
+4444
+Add store chi StoreStmt: [Var18 <-- Var14]	
+ValVar ID: 24
+   store ptr %a, ptr %t1, align 8 
+Add store chi StoreStmt: [Var20 <-- Var16]	
+ValVar ID: 25
+   store ptr %b, ptr %t2, align 8 
+Add store chi StoreStmt: [Var14 <-- Var26]	
+ValVar ID: 27
+   store ptr %0, ptr %a, align 8 
+Add store chi StoreStmt: [Var16 <-- Var28]	
+ValVar ID: 29
+   store ptr %1, ptr %b, align 8 
+Add load mu LoadStmt: [Var41 <-- Var18]	
+ValVar ID: 41
+   %4 = load ptr, ptr %t1, align 8 
+Add load mu LoadStmt: [Var42 <-- Var20]	
+ValVar ID: 42
+   %5 = load ptr, ptr %t2, align 8 
+Add load mu LoadStmt: [Var46 <-- Var14]	
+ValVar ID: 46
+   %6 = load ptr, ptr %a, align 8 
+Add load mu LoadStmt: [Var50 <-- Var14]	
+ValVar ID: 50
+   %7 = load ptr, ptr %a, align 8 
+Add load mu LoadStmt: [Var36 <-- Var14]	
+ValVar ID: 36
+   %3 = load ptr, ptr %a, align 8 
+Add store chi StoreStmt: [Var58 <-- Var56]	
+ValVar ID: 64
+   store ptr %p, ptr %p.addr, align 8 
+Add store chi StoreStmt: [Var60 <-- Var57]	
+ValVar ID: 65
+   store ptr %q, ptr %q.addr, align 8 
+Add load mu LoadStmt: [Var66 <-- Var58]	
+ValVar ID: 66
+   %0 = load ptr, ptr %p.addr, align 8 
+Add load mu LoadStmt: [Var67 <-- Var66]	
+ValVar ID: 67
+   %1 = load ptr, ptr %0, align 8 
+Add store chi StoreStmt: [Var62 <-- Var67]	
+ValVar ID: 68
+   store ptr %1, ptr %tmp, align 8 
+Add load mu LoadStmt: [Var69 <-- Var60]	
+ValVar ID: 69
+   %2 = load ptr, ptr %q.addr, align 8 
+Add load mu LoadStmt: [Var70 <-- Var69]	
+ValVar ID: 70
+   %3 = load ptr, ptr %2, align 8 
+Add load mu LoadStmt: [Var71 <-- Var58]	
+ValVar ID: 71
+   %4 = load ptr, ptr %p.addr, align 8 
+Add store chi StoreStmt: [Var71 <-- Var70]	
+ValVar ID: 72
+   store ptr %3, ptr %4, align 8 
+Add load mu LoadStmt: [Var73 <-- Var62]	
+ValVar ID: 73
+   %5 = load ptr, ptr %tmp, align 8 
+Add load mu LoadStmt: [Var74 <-- Var60]	
+ValVar ID: 74
+   %6 = load ptr, ptr %q.addr, align 8 
+Add store chi StoreStmt: [Var74 <-- Var73]	
+ValVar ID: 75
+   store ptr %5, ptr %6, align 8 
+
+*********Memory SSA Statistics***************
+################ (program : interSwap.ll)###############
+----------------Time and memory stats--------------------
+AverageRegSize      1
+GenMUCHITime        0.001
+GenRegionTime       0
+InsertPHITime       0
+SSARenameTime       0
+TotalMSSATime       0.001
+----------------Numbers stats----------------------------
+BBHasMSSAPhi        1
+CSChiNode           2
+CSHasChi            1
+CSHasMu             1
+CSMuNode            2
+FunEntryChi         9
+FunHasEntryChi      2
+FunHasRetMu         2
+FunRetMu            9
+LoadHasMu           12
+LoadMuNode          12
+MSSAPhi             2
+MaxRegSize          1
+MemRegions          7
+StoreChiNode        9
+StoreHasChi         9
+#######################################################
+Adding direct edge 0 13
+Adding direct edge 3 14
+Adding direct edge 4 15
+Adding direct edge 3 16
+Adding direct edge 5 17
+Adding direct edge 5 18
+Adding direct edge 5 19
+Adding direct edge 7 20
+Adding direct edge 8 21
+Adding direct edge 10 22
+Adding direct edge 10 23
+Adding direct edge 11 24
+Adding direct edge 11 25
+Adding direct edge 12 26
+Adding direct edge 22 27
+Adding direct edge 24 28
+Adding direct edge 5 29
+Adding direct edge 7 29
+Adding direct edge 6 30
+Adding direct edge 8 30
+Adding direct edge 14 31
+Adding direct edge 5 31
+Adding direct edge 15 32
+Adding direct edge 6 32
+Adding direct edge 40 33
+Adding direct edge 10 33
+Adding direct edge 41 34
+Adding direct edge 11 34
+Adding direct edge 27 35
+Adding direct edge 12 35
+Adding direct edge 28 36
+Adding direct edge 23 36
+Adding direct edge 26 37
+Adding direct edge 25 37
+Adding direct edge 20 38
+Adding direct edge 21 39
+setting def MRVERID: 28 MemRegion: pts{19 } MRVERSION: 2 MSSADef: 1, pts{19 } StoreVFGNode ID: 29 StoreStmt: [Var18 <-- Var14]	
+ValVar ID: 24
+   store ptr %a, ptr %t1, align 8 
+setting def MRVERID: 29 MemRegion: pts{21 } MRVERSION: 2 MSSADef: 1, pts{21 } StoreVFGNode ID: 30 StoreStmt: [Var20 <-- Var16]	
+ValVar ID: 25
+   store ptr %b, ptr %t2, align 8 
+setting def MRVERID: 30 MemRegion: pts{15 } MRVERSION: 2 MSSADef: 1, pts{15 } StoreVFGNode ID: 31 StoreStmt: [Var14 <-- Var26]	
+ValVar ID: 27
+   store ptr %0, ptr %a, align 8 
+setting def MRVERID: 31 MemRegion: pts{17 } MRVERSION: 2 MSSADef: 1, pts{17 } StoreVFGNode ID: 32 StoreStmt: [Var16 <-- Var28]	
+ValVar ID: 29
+   store ptr %1, ptr %b, align 8 
+setting def MRVERID: 46 MemRegion: pts{59 } MRVERSION: 2 MSSADef: 1, pts{59 } StoreVFGNode ID: 33 StoreStmt: [Var58 <-- Var56]	
+ValVar ID: 64
+   store ptr %p, ptr %p.addr, align 8 
+setting def MRVERID: 47 MemRegion: pts{61 } MRVERSION: 2 MSSADef: 1, pts{61 } StoreVFGNode ID: 34 StoreStmt: [Var60 <-- Var57]	
+ValVar ID: 65
+   store ptr %q, ptr %q.addr, align 8 
+setting def MRVERID: 48 MemRegion: pts{63 } MRVERSION: 2 MSSADef: 1, pts{63 } StoreVFGNode ID: 35 StoreStmt: [Var62 <-- Var67]	
+ValVar ID: 68
+   store ptr %1, ptr %tmp, align 8 
+setting def MRVERID: 49 MemRegion: pts{15 } MRVERSION: 2 MSSADef: 1, pts{15 } StoreVFGNode ID: 36 StoreStmt: [Var71 <-- Var70]	
+ValVar ID: 72
+   store ptr %3, ptr %4, align 8 
+setting def MRVERID: 50 MemRegion: pts{17 } MRVERSION: 2 MSSADef: 1, pts{17 } StoreVFGNode ID: 37 StoreStmt: [Var74 <-- Var73]	
+ValVar ID: 75
+   store ptr %5, ptr %6, align 8 
+Writing 'test.dot'...mu LoadStmt: [Var36 <-- Var14]	
+ValVar ID: 36
+   %3 = load ptr, ptr %a, align 8 
+add intra indirect edge from load 31 17
+mu LoadStmt: [Var46 <-- Var14]	
+ValVar ID: 46
+   %6 = load ptr, ptr %a, align 8 
+add intra indirect edge from load 65 18
+mu LoadStmt: [Var50 <-- Var14]	
+ValVar ID: 50
+   %7 = load ptr, ptr %a, align 8 
+add intra indirect edge from load 43 19
+mu LoadStmt: [Var41 <-- Var18]	
+ValVar ID: 41
+   %4 = load ptr, ptr %t1, align 8 
+add intra indirect edge from load 29 20
+mu LoadStmt: [Var42 <-- Var20]	
+ValVar ID: 42
+   %5 = load ptr, ptr %t2, align 8 
+add intra indirect edge from load 30 21
+mu LoadStmt: [Var66 <-- Var58]	
+ValVar ID: 66
+   %0 = load ptr, ptr %p.addr, align 8 
+add intra indirect edge from load 33 22
+mu LoadStmt: [Var71 <-- Var58]	
+ValVar ID: 71
+   %4 = load ptr, ptr %p.addr, align 8 
+add intra indirect edge from load 33 23
+mu LoadStmt: [Var69 <-- Var60]	
+ValVar ID: 69
+   %2 = load ptr, ptr %q.addr, align 8 
+add intra indirect edge from load 34 24
+mu LoadStmt: [Var74 <-- Var60]	
+ValVar ID: 74
+   %6 = load ptr, ptr %q.addr, align 8 
+add intra indirect edge from load 34 25
+mu LoadStmt: [Var73 <-- Var62]	
+ValVar ID: 73
+   %5 = load ptr, ptr %tmp, align 8 
+add intra indirect edge from load 35 26
+mu LoadStmt: [Var67 <-- Var66]	
+ValVar ID: 67
+   %1 = load ptr, ptr %0, align 8 
+add intra indirect edge from load 48 27
+mu LoadStmt: [Var70 <-- Var69]	
+ValVar ID: 70
+   %3 = load ptr, ptr %2, align 8 
+add intra indirect edge from load 46 28
+add intra indirect edge from store 50 29
+add intra indirect edge from store 49 30
+add intra indirect edge from store 52 31
+add intra indirect edge from store 51 32
+add intra indirect edge from store 45 33
+add intra indirect edge from store 44 34
+add intra indirect edge from store 47 35
+add intra indirect edge from store 48 36
+add intra indirect edge from store 46 37
+add intra indirect edge from phi 64 42
+add intra indirect edge from phi 32 42
+add intra indirect edge from phi 65 43
+add intra indirect edge from phi 31 43
+add call indirect edge from store 0x600003ce8dc0 0x600003ce8a50
+add call indirect edge from store 0x600003ce8e70 0x600003ce88f0
+add intra indirect edge from formal out 35 53
+add intra indirect edge from formal out 34 54
+add intra indirect edge from formal out 33 55
+add return indirect edge from store 0x600003ce8370 0x600003ce8f20
+add intra indirect edge from formal out 37 56
+add return indirect edge from store 0x600003ce82c0 0x600003ce8fd0
+add intra indirect edge from formal out 36 57
+add intra indirect edge from formal out 30 58
+add intra indirect edge from formal out 29 59
+add intra indirect edge from formal out 42 60
+add intra indirect edge from formal out 43 61
+add intra indirect edge from actual in 32 62
+add intra indirect edge from actual in 31 63
+Writing 'test2.dot'...
+*********SVFG Statistics***************
+################ (program : interSwap.ll)###############
+----------------Time and memory stats--------------------
+ATNodeTime          0
+AvgWeight           1
+ConnDirEdgeTime     0
+ConnIndEdgeTime     0
+OptTime             0
+TLNodeTime          0
+TotalTime           0
+----------------Numbers stats----------------------------
+ActualIn            2
+ActualOut           2
+ActualParam         2
+ActualRet           0
+Addr                12
+AvgInDegree         1
+AvgIndInDeg         1
+AvgIndOutDeg        1
+AvgOutDegree        1
+Copy                3
+DirectCallEdge      2
+DirectEdge          38
+DirectRetEdge       0
+FormalIn            9
+FormalOut           9
+FormalParam         2
+FormalRet           0
+Gep                 1
+IndCallEdge         2
+IndRetEdge          2
+IndirectEdge        40
+IndirectEdgeLabels  40
+Load                12
+MSSAPhi             2
+MaxInDegree         3
+MaxIndInDeg         2
+MaxIndOutDeg        3
+MaxOutDegree        5
+PHI                 0
+Store               9
+TotalEdge           78
+TotalNode           66
+#######################################################
+Writing 'svfg-pl2.dot'...5555
+Current pointer level 2
+1111
+aaaa
+push svfg node 22 with pointer level 2
+push svfg node 23 with pointer level 2
+Looking at child StoreVFGNode ID: 32 StoreStmt: [Var16 <-- Var28]	
+ValVar ID: 29
+   store ptr %1, ptr %b, align 8 
+push svfg node 33 with pointer level 2
+push svfg node 40 with pointer level 2
+push svfg node 38 with pointer level 2
+push svfg node 20 with pointer level 2
+push svfg node 29 with pointer level 2
+push svfg node 5 with pointer level 2
+push svfg node 24 with pointer level 2
+push svfg node 25 with pointer level 2
+Looking at child StoreVFGNode ID: 29 StoreStmt: [Var18 <-- Var14]	
+ValVar ID: 24
+   store ptr %a, ptr %t1, align 8 
+push svfg node 50 with pointer level Looking at child StoreVFGNode ID: 29 StoreStmt: [Var18 <-- Var14]	
+ValVar ID: 24
+   store ptr %a, ptr %t1, align 8 
+2
+push svfg node 34 with pointer level 2
+push svfg node 41 with pointer level 2
+push svfg node 39 with pointer level 2
+push svfg node 21 with pointer level 2
+Looking at child StoreVFGNode ID: 31 StoreStmt: [Var14 <-- Var26]	
+ValVar ID: 27
+   store ptr %0, ptr %a, align 8 
+push svfg node 30 with pointer level 2
+push svfg node 6 with pointer level 2
+push svfg node 12 with pointer level 2
+Looking at child FormalOUTSVFGNode ID: 60 {fun: main}RETMU(34V_4)
+pts{17 }
+
+Looking at child LoadVFGNode ID: 19 LoadStmt: [Var50 <-- Var14]	
+ValVar ID: 50
+   %7 = load ptr, ptr %a, align 8 
+Looking at child StoreVFGNode ID: 34 StoreStmt: [Var60 <-- Var57]	
+ValVar ID: 65
+   store ptr %q, ptr %q.addr, align 8 
+push svfg node 44 with pointer level Looking at child StoreVFGNode ID: 34 StoreStmt: [Var60 <-- Var57]	
+ValVar ID: 65
+   store ptr %q, ptr %q.addr, align 8 
+2
+Looking at child StoreVFGNode ID: 33 StoreStmt: [Var58 <-- Var56]	
+ValVar ID: 64
+   store ptr %p, ptr %p.addr, align 8 
+push svfg node 45 with pointer level Looking at child StoreVFGNode ID: 33 StoreStmt: [Var58 <-- Var56]	
+ValVar ID: 64
+   store ptr %p, ptr %p.addr, align 8 
+2
+Looking at child LoadVFGNode ID: 28 LoadStmt: [Var70 <-- Var69]	
+ValVar ID: 70
+   %3 = load ptr, ptr %2, align 8 
+Looking at child ActualOUTSVFGNode ID: 64 at callsite:    call void @swap(ptr %4, ptr %5) CallICFGNode:  {fun: main}34V_3 = CSCHI(MR_34V_3)
+pts{17 }
+CS[CallICFGNode: ]
+Looking at child StoreVFGNode ID: 35 StoreStmt: [Var62 <-- Var67]	
+ValVar ID: 68
+   store ptr %1, ptr %tmp, align 8 
+Looking at child LoadVFGNode ID: 27 LoadStmt: [Var67 <-- Var66]	
+ValVar ID: 67
+   %1 = load ptr, ptr %0, align 8 
+Looking at child ActualOUTSVFGNode ID: 65 at callsite:    call void @swap(ptr %4, ptr %5) CallICFGNode:  {fun: main}32V_3 = CSCHI(MR_32V_3)
+pts{15 }
+CS[CallICFGNode: ]
+Looking at child StoreVFGNode ID: 30 StoreStmt: [Var20 <-- Var16]	
+ValVar ID: 25
+   store ptr %b, ptr %t2, align 8 
+push svfg node 49 with pointer level Looking at child StoreVFGNode ID: 30 StoreStmt: [Var20 <-- Var16]	
+ValVar ID: 25
+   store ptr %b, ptr %t2, align 8 
+2
+2222
+Processing node LoadVFGNode ID: 22 LoadStmt: [Var66 <-- Var58]	
+ValVar ID: 66
+   %0 = load ptr, ptr %p.addr, align 8 
+Processed node LoadVFGNode ID: 22 LoadStmt: [Var66 <-- Var58]	
+ValVar ID: 66
+   %0 = load ptr, ptr %p.addr, align 8  0
+Processing node LoadVFGNode ID: 23 LoadStmt: [Var71 <-- Var58]	
+ValVar ID: 71
+   %4 = load ptr, ptr %p.addr, align 8 
+Processed node LoadVFGNode ID: 23 LoadStmt: [Var71 <-- Var58]	
+ValVar ID: 71
+   %4 = load ptr, ptr %p.addr, align 8  0
+Processing node StoreVFGNode ID: 33 StoreStmt: [Var58 <-- Var56]	
+ValVar ID: 64
+   store ptr %p, ptr %p.addr, align 8 
+store dst id: 58
+Is strong update? 1 0
+Processed node StoreVFGNode ID: 33 StoreStmt: [Var58 <-- Var56]	
+ValVar ID: 64
+   store ptr %p, ptr %p.addr, align 8  0
+Processing node FormalParmVFGNode ID: 40 Fun[swap]ArgValVar ID: 56
+ ptr %p { 0th arg swap  }
+Processed node FormalParmVFGNode ID: 40 Fun[swap]ArgValVar ID: 56
+ ptr %p { 0th arg swap  } 1
+Start propagating.
+xxxxxxxx 33
+PROPAGATION: push svfg node 33 by 40
+Processing node ActualParmVFGNode ID: 38 CS[CallICFGNode: ]ValVar ID: 41
+   %4 = load ptr, ptr %t1, align 8 
+Processed node ActualParmVFGNode ID: 38 CS[CallICFGNode: ]ValVar ID: 41
+   %4 = load ptr, ptr %t1, align 8  1
+Start propagating.
+xxxxxxxx 40
+Processing node LoadVFGNode ID: 20 LoadStmt: [Var41 <-- Var18]	
+ValVar ID: 41
+   %4 = load ptr, ptr %t1, align 8 
+Processed node LoadVFGNode ID: 20 LoadStmt: [Var41 <-- Var18]	
+ValVar ID: 41
+   %4 = load ptr, ptr %t1, align 8  0
+Processing node StoreVFGNode ID: 29 StoreStmt: [Var18 <-- Var14]	
+ValVar ID: 24
+   store ptr %a, ptr %t1, align 8 
+store dst id: 18
+Is strong update? 1 0
+Processed node StoreVFGNode ID: 29 StoreStmt: [Var18 <-- Var14]	
+ValVar ID: 24
+   store ptr %a, ptr %t1, align 8  0
+Processing node AddrVFGNode ID: 5 AddrStmt: [Var14 <-- Var15]	
+ValVar ID: 14
+   %a = alloca ptr, align 8 
+Processed node AddrVFGNode ID: 5 AddrStmt: [Var14 <-- Var15]	
+ValVar ID: 14
+   %a = alloca ptr, align 8  1
+Start propagating.
+xxxxxxxx 17
+PROPAGATION: push svfg node 17 by 5
+xxxxxxxx 18
+PROPAGATION: push svfg node 18 by 5
+xxxxxxxx 19
+PROPAGATION: push svfg node 19 by 5
+xxxxxxxx 29
+PROPAGATION: push svfg node 29 by 5
+xxxxxxxx 31
+PROPAGATION: push svfg node 31 by 5
+Processing node LoadVFGNode ID: 24 LoadStmt: [Var69 <-- Var60]	
+ValVar ID: 69
+   %2 = load ptr, ptr %q.addr, align 8 
+Processed node LoadVFGNode ID: 24 LoadStmt: [Var69 <-- Var60]	
+ValVar ID: 69
+   %2 = load ptr, ptr %q.addr, align 8  0
+Processing node LoadVFGNode ID: 25 LoadStmt: [Var74 <-- Var60]	
+ValVar ID: 74
+   %6 = load ptr, ptr %q.addr, align 8 
+Processed node LoadVFGNode ID: 25 LoadStmt: [Var74 <-- Var60]	
+ValVar ID: 74
+   %6 = load ptr, ptr %q.addr, align 8  0
+Processing node FormalINSVFGNode ID: 50 {fun: main}44V_1 = ENCHI(MR_44V_1)
+pts{19 }
+
+Processed node FormalINSVFGNode ID: 50 {fun: main}44V_1 = ENCHI(MR_44V_1)
+pts{19 }
+ 1
+Start propagating.
+xxxxxxxx 29
+Processing node StoreVFGNode ID: 34 StoreStmt: [Var60 <-- Var57]	
+ValVar ID: 65
+   store ptr %q, ptr %q.addr, align 8 
+store dst id: 60
+Is strong update? 1 0
+Processed node StoreVFGNode ID: 34 StoreStmt: [Var60 <-- Var57]	
+ValVar ID: 65
+   store ptr %q, ptr %q.addr, align 8  0
+Processing node FormalParmVFGNode ID: 41 Fun[swap]ArgValVar ID: 57
+ ptr %q { 1st arg swap  }
+Processed node FormalParmVFGNode ID: 41 Fun[swap]ArgValVar ID: 57
+ ptr %q { 1st arg swap  } 1
+Start propagating.
+xxxxxxxx 34
+PROPAGATION: push svfg node 34 by 41
+Processing node ActualParmVFGNode ID: 39 CS[CallICFGNode: ]ValVar ID: 42
+   %5 = load ptr, ptr %t2, align 8 
+Processed node ActualParmVFGNode ID: 39 CS[CallICFGNode: ]ValVar ID: 42
+   %5 = load ptr, ptr %t2, align 8  1
+Start propagating.
+xxxxxxxx 41
+Processing node LoadVFGNode ID: 21 LoadStmt: [Var42 <-- Var20]	
+ValVar ID: 42
+   %5 = load ptr, ptr %t2, align 8 
+Processed node LoadVFGNode ID: 21 LoadStmt: [Var42 <-- Var20]	
+ValVar ID: 42
+   %5 = load ptr, ptr %t2, align 8  0
+Processing node StoreVFGNode ID: 30 StoreStmt: [Var20 <-- Var16]	
+ValVar ID: 25
+   store ptr %b, ptr %t2, align 8 
+store dst id: 20
+Is strong update? 1 0
+Processed node StoreVFGNode ID: 30 StoreStmt: [Var20 <-- Var16]	
+ValVar ID: 25
+   store ptr %b, ptr %t2, align 8  0
+Processing node AddrVFGNode ID: 6 AddrStmt: [Var16 <-- Var17]	
+ValVar ID: 16
+   %b = alloca ptr, align 8 
+Processed node AddrVFGNode ID: 6 AddrStmt: [Var16 <-- Var17]	
+ValVar ID: 16
+   %b = alloca ptr, align 8  1
+Start propagating.
+xxxxxxxx 30
+PROPAGATION: push svfg node 30 by 6
+xxxxxxxx 32
+PROPAGATION: push svfg node 32 by 6
+Processing node AddrVFGNode ID: 12 AddrStmt: [Var62 <-- Var63]	
+ValVar ID: 62
+   %tmp = alloca ptr, align 8 
+Processed node AddrVFGNode ID: 12 AddrStmt: [Var62 <-- Var63]	
+ValVar ID: 62
+   %tmp = alloca ptr, align 8  1
+Start propagating.
+xxxxxxxx 26
+PROPAGATION: push svfg node 26 by 12
+xxxxxxxx 35
+PROPAGATION: push svfg node 35 by 12
+Processing node FormalINSVFGNode ID: 44 {fun: swap}38V_1 = ENCHI(MR_38V_1)
+pts{61 }
+
+Processed node FormalINSVFGNode ID: 44 {fun: swap}38V_1 = ENCHI(MR_38V_1)
+pts{61 }
+ 1
+Start propagating.
+xxxxxxxx 34
+Processing node FormalINSVFGNode ID: 45 {fun: swap}36V_1 = ENCHI(MR_36V_1)
+pts{59 }
+
+Processed node FormalINSVFGNode ID: 45 {fun: swap}36V_1 = ENCHI(MR_36V_1)
+pts{59 }
+ 1
+Start propagating.
+xxxxxxxx 33
+Processing node FormalINSVFGNode ID: 49 {fun: main}46V_1 = ENCHI(MR_46V_1)
+pts{21 }
+
+Processed node FormalINSVFGNode ID: 49 {fun: main}46V_1 = ENCHI(MR_46V_1)
+pts{21 }
+ 1
+Start propagating.
+xxxxxxxx 30
+Processing node StoreVFGNode ID: 33 StoreStmt: [Var58 <-- Var56]	
+ValVar ID: 64
+   store ptr %p, ptr %p.addr, align 8 
+store dst id: 58
+Is strong update? 1 0
+Processed node StoreVFGNode ID: 33 StoreStmt: [Var58 <-- Var56]	
+ValVar ID: 64
+   store ptr %p, ptr %p.addr, align 8  0
+Processing node LoadVFGNode ID: 17 LoadStmt: [Var36 <-- Var14]	
+ValVar ID: 36
+   %3 = load ptr, ptr %a, align 8 
+Processed node LoadVFGNode ID: 17 LoadStmt: [Var36 <-- Var14]	
+ValVar ID: 36
+   %3 = load ptr, ptr %a, align 8  0
+Processing node LoadVFGNode ID: 18 LoadStmt: [Var46 <-- Var14]	
+ValVar ID: 46
+   %6 = load ptr, ptr %a, align 8 
+Processed node LoadVFGNode ID: 18 LoadStmt: [Var46 <-- Var14]	
+ValVar ID: 46
+   %6 = load ptr, ptr %a, align 8  0
+Processing node LoadVFGNode ID: 19 LoadStmt: [Var50 <-- Var14]	
+ValVar ID: 50
+   %7 = load ptr, ptr %a, align 8 
+Processed node LoadVFGNode ID: 19 LoadStmt: [Var50 <-- Var14]	
+ValVar ID: 50
+   %7 = load ptr, ptr %a, align 8  0
+Processing node StoreVFGNode ID: 29 StoreStmt: [Var18 <-- Var14]	
+ValVar ID: 24
+   store ptr %a, ptr %t1, align 8 
+store dst id: 18
+Is strong update? 1 1
+Processed node StoreVFGNode ID: 29 StoreStmt: [Var18 <-- Var14]	
+ValVar ID: 24
+   store ptr %a, ptr %t1, align 8  1
+Start propagating.
+xxxxxxxx 20
+PROPAGATION: push svfg node 20 by 29
+xxxxxxxx 59
+PROPAGATION: push svfg node 59 by 29
+Processing node StoreVFGNode ID: 31 StoreStmt: [Var14 <-- Var26]	
+ValVar ID: 27
+   store ptr %0, ptr %a, align 8 
+store dst id: 14
+Is strong update? 1 0
+Processed node StoreVFGNode ID: 31 StoreStmt: [Var14 <-- Var26]	
+ValVar ID: 27
+   store ptr %0, ptr %a, align 8  0
+Processing node StoreVFGNode ID: 34 StoreStmt: [Var60 <-- Var57]	
+ValVar ID: 65
+   store ptr %q, ptr %q.addr, align 8 
+store dst id: 60
+Is strong update? 1 0
+Processed node StoreVFGNode ID: 34 StoreStmt: [Var60 <-- Var57]	
+ValVar ID: 65
+   store ptr %q, ptr %q.addr, align 8  0
+Processing node StoreVFGNode ID: 30 StoreStmt: [Var20 <-- Var16]	
+ValVar ID: 25
+   store ptr %b, ptr %t2, align 8 
+store dst id: 20
+Is strong update? 1 1
+Processed node StoreVFGNode ID: 30 StoreStmt: [Var20 <-- Var16]	
+ValVar ID: 25
+   store ptr %b, ptr %t2, align 8  1
+Start propagating.
+xxxxxxxx 21
+PROPAGATION: push svfg node 21 by 30
+xxxxxxxx 58
+PROPAGATION: push svfg node 58 by 30
+Processing node StoreVFGNode ID: 32 StoreStmt: [Var16 <-- Var28]	
+ValVar ID: 29
+   store ptr %1, ptr %b, align 8 
+store dst id: 16
+Is strong update? 1 0
+Processed node StoreVFGNode ID: 32 StoreStmt: [Var16 <-- Var28]	
+ValVar ID: 29
+   store ptr %1, ptr %b, align 8  0
+Processing node LoadVFGNode ID: 26 LoadStmt: [Var73 <-- Var62]	
+ValVar ID: 73
+   %5 = load ptr, ptr %tmp, align 8 
+Processed node LoadVFGNode ID: 26 LoadStmt: [Var73 <-- Var62]	
+ValVar ID: 73
+   %5 = load ptr, ptr %tmp, align 8  0
+Processing node StoreVFGNode ID: 35 StoreStmt: [Var62 <-- Var67]	
+ValVar ID: 68
+   store ptr %1, ptr %tmp, align 8 
+store dst id: 62
+Is strong update? 1 0
+Processed node StoreVFGNode ID: 35 StoreStmt: [Var62 <-- Var67]	
+ValVar ID: 68
+   store ptr %1, ptr %tmp, align 8  0
+Processing node LoadVFGNode ID: 20 LoadStmt: [Var41 <-- Var18]	
+ValVar ID: 41
+   %4 = load ptr, ptr %t1, align 8 
+Processed node LoadVFGNode ID: 20 LoadStmt: [Var41 <-- Var18]	
+ValVar ID: 41
+   %4 = load ptr, ptr %t1, align 8  1
+Start propagating.
+xxxxxxxx 38
+PROPAGATION: push svfg node 38 by 20
+Processing node FormalOUTSVFGNode ID: 59 {fun: main}RETMU(44V_2)
+pts{19 }
+
+Processed node FormalOUTSVFGNode ID: 59 {fun: main}RETMU(44V_2)
+pts{19 }
+ 1
+Start propagating.
+Processing node LoadVFGNode ID: 21 LoadStmt: [Var42 <-- Var20]	
+ValVar ID: 42
+   %5 = load ptr, ptr %t2, align 8 
+Processed node LoadVFGNode ID: 21 LoadStmt: [Var42 <-- Var20]	
+ValVar ID: 42
+   %5 = load ptr, ptr %t2, align 8  1
+Start propagating.
+xxxxxxxx 39
+PROPAGATION: push svfg node 39 by 21
+Processing node FormalOUTSVFGNode ID: 58 {fun: main}RETMU(46V_2)
+pts{21 }
+
+Processed node FormalOUTSVFGNode ID: 58 {fun: main}RETMU(46V_2)
+pts{21 }
+ 1
+Start propagating.
+Processing node ActualParmVFGNode ID: 38 CS[CallICFGNode: ]ValVar ID: 41
+   %4 = load ptr, ptr %t1, align 8 
+Processed node ActualParmVFGNode ID: 38 CS[CallICFGNode: ]ValVar ID: 41
+   %4 = load ptr, ptr %t1, align 8  1
+Start propagating.
+xxxxxxxx 40
+PROPAGATION: push svfg node 40 by 38
+Processing node ActualParmVFGNode ID: 39 CS[CallICFGNode: ]ValVar ID: 42
+   %5 = load ptr, ptr %t2, align 8 
+Processed node ActualParmVFGNode ID: 39 CS[CallICFGNode: ]ValVar ID: 42
+   %5 = load ptr, ptr %t2, align 8  1
+Start propagating.
+xxxxxxxx 41
+PROPAGATION: push svfg node 41 by 39
+Processing node FormalParmVFGNode ID: 40 Fun[swap]ArgValVar ID: 56
+ ptr %p { 0th arg swap  }
+Processed node FormalParmVFGNode ID: 40 Fun[swap]ArgValVar ID: 56
+ ptr %p { 0th arg swap  } 1
+Start propagating.
+xxxxxxxx 33
+PROPAGATION: push svfg node 33 by 40
+Processing node FormalParmVFGNode ID: 41 Fun[swap]ArgValVar ID: 57
+ ptr %q { 1st arg swap  }
+Processed node FormalParmVFGNode ID: 41 Fun[swap]ArgValVar ID: 57
+ ptr %q { 1st arg swap  } 1
+Start propagating.
+xxxxxxxx 34
+PROPAGATION: push svfg node 34 by 41
+Processing node StoreVFGNode ID: 33 StoreStmt: [Var58 <-- Var56]	
+ValVar ID: 64
+   store ptr %p, ptr %p.addr, align 8 
+store dst id: 58
+Is strong update? 1 1
+Processed node StoreVFGNode ID: 33 StoreStmt: [Var58 <-- Var56]	
+ValVar ID: 64
+   store ptr %p, ptr %p.addr, align 8  1
+Start propagating.
+xxxxxxxx 22
+PROPAGATION: push svfg node 22 by 33
+xxxxxxxx 23
+PROPAGATION: push svfg node 23 by 33
+xxxxxxxx 55
+PROPAGATION: push svfg node 55 by 33
+Processing node StoreVFGNode ID: 34 StoreStmt: [Var60 <-- Var57]	
+ValVar ID: 65
+   store ptr %q, ptr %q.addr, align 8 
+store dst id: 60
+Is strong update? 1 1
+Processed node StoreVFGNode ID: 34 StoreStmt: [Var60 <-- Var57]	
+ValVar ID: 65
+   store ptr %q, ptr %q.addr, align 8  1
+Start propagating.
+xxxxxxxx 24
+PROPAGATION: push svfg node 24 by 34
+xxxxxxxx 25
+PROPAGATION: push svfg node 25 by 34
+xxxxxxxx 54
+PROPAGATION: push svfg node 54 by 34
+Processing node LoadVFGNode ID: 22 LoadStmt: [Var66 <-- Var58]	
+ValVar ID: 66
+   %0 = load ptr, ptr %p.addr, align 8 
+Processed node LoadVFGNode ID: 22 LoadStmt: [Var66 <-- Var58]	
+ValVar ID: 66
+   %0 = load ptr, ptr %p.addr, align 8  1
+Start propagating.
+xxxxxxxx 27
+PROPAGATION: push svfg node 27 by 22
+Processing node LoadVFGNode ID: 23 LoadStmt: [Var71 <-- Var58]	
+ValVar ID: 71
+   %4 = load ptr, ptr %p.addr, align 8 
+Processed node LoadVFGNode ID: 23 LoadStmt: [Var71 <-- Var58]	
+ValVar ID: 71
+   %4 = load ptr, ptr %p.addr, align 8  1
+Start propagating.
+xxxxxxxx 36
+PROPAGATION: push svfg node 36 by 23
+Processing node FormalOUTSVFGNode ID: 55 {fun: swap}RETMU(36V_2)
+pts{59 }
+
+Processed node FormalOUTSVFGNode ID: 55 {fun: swap}RETMU(36V_2)
+pts{59 }
+ 1
+Start propagating.
+Processing node LoadVFGNode ID: 24 LoadStmt: [Var69 <-- Var60]	
+ValVar ID: 69
+   %2 = load ptr, ptr %q.addr, align 8 
+Processed node LoadVFGNode ID: 24 LoadStmt: [Var69 <-- Var60]	
+ValVar ID: 69
+   %2 = load ptr, ptr %q.addr, align 8  1
+Start propagating.
+xxxxxxxx 28
+PROPAGATION: push svfg node 28 by 24
+Processing node LoadVFGNode ID: 25 LoadStmt: [Var74 <-- Var60]	
+ValVar ID: 74
+   %6 = load ptr, ptr %q.addr, align 8 
+Processed node LoadVFGNode ID: 25 LoadStmt: [Var74 <-- Var60]	
+ValVar ID: 74
+   %6 = load ptr, ptr %q.addr, align 8  1
+Start propagating.
+xxxxxxxx 37
+PROPAGATION: push svfg node 37 by 25
+Processing node FormalOUTSVFGNode ID: 54 {fun: swap}RETMU(38V_2)
+pts{61 }
+
+Processed node FormalOUTSVFGNode ID: 54 {fun: swap}RETMU(38V_2)
+pts{61 }
+ 1
+Start propagating.
+Processing node LoadVFGNode ID: 27 LoadStmt: [Var67 <-- Var66]	
+ValVar ID: 67
+   %1 = load ptr, ptr %0, align 8 
+Processed node LoadVFGNode ID: 27 LoadStmt: [Var67 <-- Var66]	
+ValVar ID: 67
+   %1 = load ptr, ptr %0, align 8  0
+Processing node StoreVFGNode ID: 36 StoreStmt: [Var71 <-- Var70]	
+ValVar ID: 72
+   store ptr %3, ptr %4, align 8 
+store dst id: 71
+Is strong update? 1 0
+Processed node StoreVFGNode ID: 36 StoreStmt: [Var71 <-- Var70]	
+ValVar ID: 72
+   store ptr %3, ptr %4, align 8  0
+Processing node LoadVFGNode ID: 28 LoadStmt: [Var70 <-- Var69]	
+ValVar ID: 70
+   %3 = load ptr, ptr %2, align 8 
+Processed node LoadVFGNode ID: 28 LoadStmt: [Var70 <-- Var69]	
+ValVar ID: 70
+   %3 = load ptr, ptr %2, align 8  0
+Processing node StoreVFGNode ID: 37 StoreStmt: [Var74 <-- Var73]	
+ValVar ID: 75
+   store ptr %5, ptr %6, align 8 
+store dst id: 74
+Is strong update? 1 0
+Processed node StoreVFGNode ID: 37 StoreStmt: [Var74 <-- Var73]	
+ValVar ID: 75
+   store ptr %5, ptr %6, align 8  0
+3333
+----------------------------------------------
+##<> Source Loc: { constant data }
+Ptr 0 		PointsTo: {empty}
+
+----------------------------------------------
+
+Ptr 1 		PointsTo: {empty}
+
+----------------------------------------------
+##<Dummy Obj > id:2
+Ptr 2 		PointsTo: {empty}
+
+----------------------------------------------
+##<Dummy Obj > id:3
+Ptr 3 		PointsTo: {empty}
+
+----------------------------------------------
+##<main> Source Loc: 
+Ptr 4 		PointsTo: {empty}
+
+----------------------------------------------
+##<main> Source Loc: 
+Ptr 5 		PointsTo: {empty}
+
+----------------------------------------------
+##<main> Source Loc: 
+Ptr 6 		PointsTo: {empty}
+
+----------------------------------------------
+##<retval> Source Loc: 
+Ptr 7 		PointsTo: {empty}
+
+----------------------------------------------
+##<retval> Source Loc: 
+Ptr 8 		PointsTo: {empty}
+
+----------------------------------------------
+##<> Source Loc: { constant data }
+Ptr 9 		PointsTo: {empty}
+
+----------------------------------------------
+##<A> Source Loc: 
+Ptr 10 		PointsTo: {empty}
+
+----------------------------------------------
+##<A> Source Loc: 
+Ptr 11 		PointsTo: {empty}
+
+----------------------------------------------
+##<B> Source Loc: 
+Ptr 12 		PointsTo: {empty}
+
+----------------------------------------------
+##<B> Source Loc: 
+Ptr 13 		PointsTo: {empty}
+
+----------------------------------------------
+##<a> Source Loc: 
+Ptr 14 		PointsTo: { 15 }
+
+!!Target NodeID 15	 [<a> Source Loc: ] 
+----------------------------------------------
+##<a> Source Loc: 
+Ptr 15 		PointsTo: {empty}
+
+----------------------------------------------
+##<b> Source Loc: 
+Ptr 16 		PointsTo: { 17 }
+
+!!Target NodeID 17	 [<b> Source Loc: ] 
+----------------------------------------------
+##<b> Source Loc: 
+Ptr 17 		PointsTo: {empty}
+
+----------------------------------------------
+##<t1> Source Loc: 
+Ptr 18 		PointsTo: { 19 }
+
+!!Target NodeID 19	 [<t1> Source Loc: ] 
+----------------------------------------------
+##<t1> Source Loc: 
+Ptr 19 		PointsTo: {empty}
+
+----------------------------------------------
+##<t2> Source Loc: 
+Ptr 20 		PointsTo: { 21 }
+
+!!Target NodeID 21	 [<t2> Source Loc: ] 
+----------------------------------------------
+##<t2> Source Loc: 
+Ptr 21 		PointsTo: {empty}
+
+----------------------------------------------
+##<> Source Loc: 
+Ptr 22 		PointsTo: {empty}
+
+----------------------------------------------
+##<> Source Loc: { constant data }
+Ptr 23 		PointsTo: {empty}
+
+----------------------------------------------
+##<> Source Loc: 
+Ptr 24 		PointsTo: {empty}
+
+----------------------------------------------
+##<> Source Loc: 
+Ptr 25 		PointsTo: {empty}
+
+----------------------------------------------
+##<> Source Loc: 
+Ptr 26 		PointsTo: {empty}
+
+----------------------------------------------
+##<> Source Loc: 
+Ptr 27 		PointsTo: {empty}
+
+----------------------------------------------
+##<> Source Loc: 
+Ptr 28 		PointsTo: {empty}
+
+----------------------------------------------
+##<> Source Loc: 
+Ptr 29 		PointsTo: {empty}
+
+----------------------------------------------
+##<arrayidx> Source Loc: 
+Ptr 30 		PointsTo: {empty}
+
+----------------------------------------------
+##<> Source Loc: { constant data }
+Ptr 31 		PointsTo: {empty}
+
+----------------------------------------------
+##<> Source Loc: 
+Ptr 32 		PointsTo: {empty}
+
+----------------------------------------------
+##<tobool> Source Loc: 
+Ptr 33 		PointsTo: {empty}
+
+----------------------------------------------
+##<> Source Loc: { constant data }
+Ptr 34 		PointsTo: {empty}
+
+----------------------------------------------
+##<> Source Loc: 
+Ptr 35 		PointsTo: {empty}
+
+----------------------------------------------
+##<> Source Loc: 
+Ptr 36 		PointsTo: {empty}
+
+----------------------------------------------
+##<> Source Loc: 
+Ptr 37 		PointsTo: {empty}
+
+----------------------------------------------
+##<> Source Loc: { constant data }
+Ptr 38 		PointsTo: {empty}
+
+----------------------------------------------
+##<> Source Loc: 
+Ptr 39 		PointsTo: {empty}
+
+----------------------------------------------
+##<if.end> Source Loc: { "basic block": if.end, "location":  }
+Ptr 40 		PointsTo: {empty}
+
+----------------------------------------------
+##<> Source Loc: 
+Ptr 41 		PointsTo: { 15 }
+
+!!Target NodeID 15	 [<a> Source Loc: ] 
+----------------------------------------------
+##<> Source Loc: 
+Ptr 42 		PointsTo: { 17 }
+
+!!Target NodeID 17	 [<b> Source Loc: ] 
+----------------------------------------------
+##<> Source Loc: 
+Ptr 43 		PointsTo: {empty}
+
+----------------------------------------------
+##<swap> Source Loc: 
+Ptr 44 		PointsTo: {empty}
+
+----------------------------------------------
+##<swap> Source Loc: 
+Ptr 45 		PointsTo: {empty}
+
+----------------------------------------------
+##<> Source Loc: 
+Ptr 46 		PointsTo: {empty}
+
+----------------------------------------------
+##<> Source Loc: 
+Ptr 47 		PointsTo: {empty}
+
+----------------------------------------------
+##<> Source Loc: { constant data }
+Ptr 48 		PointsTo: {empty}
+
+----------------------------------------------
+##<> Source Loc: 
+Ptr 49 		PointsTo: {empty}
+
+----------------------------------------------
+##<> Source Loc: 
+Ptr 50 		PointsTo: {empty}
+
+----------------------------------------------
+##<> Source Loc: 
+Ptr 51 		PointsTo: {empty}
+
+----------------------------------------------
+##<> Source Loc: { constant data }
+Ptr 52 		PointsTo: {empty}
+
+----------------------------------------------
+##<> Source Loc: 
+Ptr 53 		PointsTo: {empty}
+
+----------------------------------------------
+##<> Source Loc: 
+Ptr 54 		PointsTo: {empty}
+
+----------------------------------------------
+##<swap> Source Loc: 
+Ptr 55 		PointsTo: {empty}
+
+----------------------------------------------
+##<p> Source Loc: { 0th arg swap  }
+Ptr 56 		PointsTo: { 15 }
+
+!!Target NodeID 15	 [<a> Source Loc: ] 
+----------------------------------------------
+##<q> Source Loc: { 1st arg swap  }
+Ptr 57 		PointsTo: { 17 }
+
+!!Target NodeID 17	 [<b> Source Loc: ] 
+----------------------------------------------
+##<p.addr> Source Loc: 
+Ptr 58 		PointsTo: { 59 }
+
+!!Target NodeID 59	 [<p.addr> Source Loc: ] 
+----------------------------------------------
+##<p.addr> Source Loc: 
+Ptr 59 		PointsTo: {empty}
+
+----------------------------------------------
+##<q.addr> Source Loc: 
+Ptr 60 		PointsTo: { 61 }
+
+!!Target NodeID 61	 [<q.addr> Source Loc: ] 
+----------------------------------------------
+##<q.addr> Source Loc: 
+Ptr 61 		PointsTo: {empty}
+
+----------------------------------------------
+##<tmp> Source Loc: 
+Ptr 62 		PointsTo: { 63 }
+
+!!Target NodeID 63	 [<tmp> Source Loc: ] 
+----------------------------------------------
+##<tmp> Source Loc: 
+Ptr 63 		PointsTo: {empty}
+
+----------------------------------------------
+##<> Source Loc: 
+Ptr 64 		PointsTo: {empty}
+
+----------------------------------------------
+##<> Source Loc: 
+Ptr 65 		PointsTo: {empty}
+
+----------------------------------------------
+##<> Source Loc: 
+Ptr 66 		PointsTo: { 15 }
+
+!!Target NodeID 15	 [<a> Source Loc: ] 
+----------------------------------------------
+##<> Source Loc: 
+Ptr 67 		PointsTo: {empty}
+
+----------------------------------------------
+##<> Source Loc: 
+Ptr 68 		PointsTo: {empty}
+
+----------------------------------------------
+##<> Source Loc: 
+Ptr 69 		PointsTo: { 17 }
+
+!!Target NodeID 17	 [<b> Source Loc: ] 
+----------------------------------------------
+##<> Source Loc: 
+Ptr 70 		PointsTo: {empty}
+
+----------------------------------------------
+##<> Source Loc: 
+Ptr 71 		PointsTo: { 15 }
+
+!!Target NodeID 15	 [<a> Source Loc: ] 
+----------------------------------------------
+##<> Source Loc: 
+Ptr 72 		PointsTo: {empty}
+
+----------------------------------------------
+##<> Source Loc: 
+Ptr 73 		PointsTo: {empty}
+
+----------------------------------------------
+##<> Source Loc: 
+Ptr 74 		PointsTo: { 17 }
+
+!!Target NodeID 17	 [<b> Source Loc: ] 
+----------------------------------------------
+##<> Source Loc: 
+Ptr 75 		PointsTo: {empty}
+
+----------------------------------------------
+##<> Source Loc: 
+Ptr 76 		PointsTo: {empty}
+
+----------------------------------------------
+##<> Source Loc: 
+Ptr 77 		PointsTo: {empty}
+
+----------------------------------------------
+4444
+Add store chi StoreStmt: [Var18 <-- Var14]	
+ValVar ID: 24
+   store ptr %a, ptr %t1, align 8 
+Add store chi StoreStmt: [Var20 <-- Var16]	
+ValVar ID: 25
+   store ptr %b, ptr %t2, align 8 
+Add store chi StoreStmt: [Var14 <-- Var26]	
+ValVar ID: 27
+   store ptr %0, ptr %a, align 8 
+Add store chi StoreStmt: [Var16 <-- Var28]	
+ValVar ID: 29
+   store ptr %1, ptr %b, align 8 
+Add load mu LoadStmt: [Var41 <-- Var18]	
+ValVar ID: 41
+   %4 = load ptr, ptr %t1, align 8 
+Add load mu LoadStmt: [Var42 <-- Var20]	
+ValVar ID: 42
+   %5 = load ptr, ptr %t2, align 8 
+Add load mu LoadStmt: [Var46 <-- Var14]	
+ValVar ID: 46
+   %6 = load ptr, ptr %a, align 8 
+Add load mu LoadStmt: [Var50 <-- Var14]	
+ValVar ID: 50
+   %7 = load ptr, ptr %a, align 8 
+Add load mu LoadStmt: [Var36 <-- Var14]	
+ValVar ID: 36
+   %3 = load ptr, ptr %a, align 8 
+Add store chi StoreStmt: [Var58 <-- Var56]	
+ValVar ID: 64
+   store ptr %p, ptr %p.addr, align 8 
+Add store chi StoreStmt: [Var60 <-- Var57]	
+ValVar ID: 65
+   store ptr %q, ptr %q.addr, align 8 
+Add load mu LoadStmt: [Var66 <-- Var58]	
+ValVar ID: 66
+   %0 = load ptr, ptr %p.addr, align 8 
+Add load mu LoadStmt: [Var67 <-- Var66]	
+ValVar ID: 67
+   %1 = load ptr, ptr %0, align 8 
+Add store chi StoreStmt: [Var62 <-- Var67]	
+ValVar ID: 68
+   store ptr %1, ptr %tmp, align 8 
+Add load mu LoadStmt: [Var69 <-- Var60]	
+ValVar ID: 69
+   %2 = load ptr, ptr %q.addr, align 8 
+Add load mu LoadStmt: [Var70 <-- Var69]	
+ValVar ID: 70
+   %3 = load ptr, ptr %2, align 8 
+Add load mu LoadStmt: [Var71 <-- Var58]	
+ValVar ID: 71
+   %4 = load ptr, ptr %p.addr, align 8 
+Add store chi StoreStmt: [Var71 <-- Var70]	
+ValVar ID: 72
+   store ptr %3, ptr %4, align 8 
+Add load mu LoadStmt: [Var73 <-- Var62]	
+ValVar ID: 73
+   %5 = load ptr, ptr %tmp, align 8 
+Add load mu LoadStmt: [Var74 <-- Var60]	
+ValVar ID: 74
+   %6 = load ptr, ptr %q.addr, align 8 
+Add store chi StoreStmt: [Var74 <-- Var73]	
+ValVar ID: 75
+   store ptr %5, ptr %6, align 8 
+
+*********Memory SSA Statistics***************
+################ (program : interSwap.ll)###############
+----------------Time and memory stats--------------------
+AverageRegSize      1
+GenMUCHITime        0.001
+GenRegionTime       0
+InsertPHITime       0
+SSARenameTime       0
+TotalMSSATime       0
+----------------Numbers stats----------------------------
+BBHasMSSAPhi        1
+CSChiNode           2
+CSHasChi            1
+CSHasMu             1
+CSMuNode            2
+FunEntryChi         9
+FunHasEntryChi      2
+FunHasRetMu         2
+FunRetMu            9
+LoadHasMu           12
+LoadMuNode          12
+MSSAPhi             2
+MaxRegSize          1
+MemRegions          7
+StoreChiNode        9
+StoreHasChi         9
+#######################################################
+Adding direct edge 0 13
+Adding direct edge 3 14
+Adding direct edge 4 15
+Adding direct edge 3 16
+Adding direct edge 5 17
+Adding direct edge 5 18
+Adding direct edge 5 19
+Adding direct edge 7 20
+Adding direct edge 8 21
+Adding direct edge 10 22
+Adding direct edge 10 23
+Adding direct edge 11 24
+Adding direct edge 11 25
+Adding direct edge 12 26
+Adding direct edge 22 27
+Adding direct edge 24 28
+Adding direct edge 5 29
+Adding direct edge 7 29
+Adding direct edge 6 30
+Adding direct edge 8 30
+Adding direct edge 14 31
+Adding direct edge 5 31
+Adding direct edge 15 32
+Adding direct edge 6 32
+Adding direct edge 40 33
+Adding direct edge 10 33
+Adding direct edge 41 34
+Adding direct edge 11 34
+Adding direct edge 27 35
+Adding direct edge 12 35
+Adding direct edge 28 36
+Adding direct edge 23 36
+Adding direct edge 26 37
+Adding direct edge 25 37
+Adding direct edge 20 38
+Adding direct edge 21 39
+setting def MRVERID: 59 MemRegion: pts{19 } MRVERSION: 2 MSSADef: 1, pts{19 } StoreVFGNode ID: 29 StoreStmt: [Var18 <-- Var14]	
+ValVar ID: 24
+   store ptr %a, ptr %t1, align 8 
+setting def MRVERID: 60 MemRegion: pts{21 } MRVERSION: 2 MSSADef: 1, pts{21 } StoreVFGNode ID: 30 StoreStmt: [Var20 <-- Var16]	
+ValVar ID: 25
+   store ptr %b, ptr %t2, align 8 
+setting def MRVERID: 61 MemRegion: pts{15 } MRVERSION: 2 MSSADef: 1, pts{15 } StoreVFGNode ID: 31 StoreStmt: [Var14 <-- Var26]	
+ValVar ID: 27
+   store ptr %0, ptr %a, align 8 
+setting def MRVERID: 62 MemRegion: pts{17 } MRVERSION: 2 MSSADef: 1, pts{17 } StoreVFGNode ID: 32 StoreStmt: [Var16 <-- Var28]	
+ValVar ID: 29
+   store ptr %1, ptr %b, align 8 
+setting def MRVERID: 77 MemRegion: pts{59 } MRVERSION: 2 MSSADef: 1, pts{59 } StoreVFGNode ID: 33 StoreStmt: [Var58 <-- Var56]	
+ValVar ID: 64
+   store ptr %p, ptr %p.addr, align 8 
+setting def MRVERID: 78 MemRegion: pts{61 } MRVERSION: 2 MSSADef: 1, pts{61 } StoreVFGNode ID: 34 StoreStmt: [Var60 <-- Var57]	
+ValVar ID: 65
+   store ptr %q, ptr %q.addr, align 8 
+setting def MRVERID: 79 MemRegion: pts{63 } MRVERSION: 2 MSSADef: 1, pts{63 } StoreVFGNode ID: 35 StoreStmt: [Var62 <-- Var67]	
+ValVar ID: 68
+   store ptr %1, ptr %tmp, align 8 
+setting def MRVERID: 80 MemRegion: pts{15 } MRVERSION: 2 MSSADef: 1, pts{15 } StoreVFGNode ID: 36 StoreStmt: [Var71 <-- Var70]	
+ValVar ID: 72
+   store ptr %3, ptr %4, align 8 
+setting def MRVERID: 81 MemRegion: pts{17 } MRVERSION: 2 MSSADef: 1, pts{17 } StoreVFGNode ID: 37 StoreStmt: [Var74 <-- Var73]	
+ValVar ID: 75
+   store ptr %5, ptr %6, align 8 
+Writing 'test.dot'...mu LoadStmt: [Var36 <-- Var14]	
+ValVar ID: 36
+   %3 = load ptr, ptr %a, align 8 
+add intra indirect edge from load 31 17
+mu LoadStmt: [Var46 <-- Var14]	
+ValVar ID: 46
+   %6 = load ptr, ptr %a, align 8 
+add intra indirect edge from load 65 18
+mu LoadStmt: [Var50 <-- Var14]	
+ValVar ID: 50
+   %7 = load ptr, ptr %a, align 8 
+add intra indirect edge from load 43 19
+mu LoadStmt: [Var41 <-- Var18]	
+ValVar ID: 41
+   %4 = load ptr, ptr %t1, align 8 
+add intra indirect edge from load 29 20
+mu LoadStmt: [Var42 <-- Var20]	
+ValVar ID: 42
+   %5 = load ptr, ptr %t2, align 8 
+add intra indirect edge from load 30 21
+mu LoadStmt: [Var66 <-- Var58]	
+ValVar ID: 66
+   %0 = load ptr, ptr %p.addr, align 8 
+add intra indirect edge from load 33 22
+mu LoadStmt: [Var71 <-- Var58]	
+ValVar ID: 71
+   %4 = load ptr, ptr %p.addr, align 8 
+add intra indirect edge from load 33 23
+mu LoadStmt: [Var69 <-- Var60]	
+ValVar ID: 69
+   %2 = load ptr, ptr %q.addr, align 8 
+add intra indirect edge from load 34 24
+mu LoadStmt: [Var74 <-- Var60]	
+ValVar ID: 74
+   %6 = load ptr, ptr %q.addr, align 8 
+add intra indirect edge from load 34 25
+mu LoadStmt: [Var73 <-- Var62]	
+ValVar ID: 73
+   %5 = load ptr, ptr %tmp, align 8 
+add intra indirect edge from load 35 26
+mu LoadStmt: [Var67 <-- Var66]	
+ValVar ID: 67
+   %1 = load ptr, ptr %0, align 8 
+add intra indirect edge from load 48 27
+mu LoadStmt: [Var70 <-- Var69]	
+ValVar ID: 70
+   %3 = load ptr, ptr %2, align 8 
+add intra indirect edge from load 47 28
+add intra indirect edge from store 51 29
+add intra indirect edge from store 50 30
+add intra indirect edge from store 52 31
+add intra indirect edge from store 49 32
+add intra indirect edge from store 45 33
+add intra indirect edge from store 46 34
+add intra indirect edge from store 44 35
+add intra indirect edge from store 48 36
+add intra indirect edge from store 47 37
+add intra indirect edge from phi 64 42
+add intra indirect edge from phi 32 42
+add intra indirect edge from phi 65 43
+add intra indirect edge from phi 31 43
+add call indirect edge from store 0x600003ce89a0 0x600003ce8dc0
+add call indirect edge from store 0x600003ce8a50 0x600003ce8d10
+add intra indirect edge from formal out 33 53
+add return indirect edge from store 0x600003ce8420 0x600003ce8b00
+add intra indirect edge from formal out 37 54
+add intra indirect edge from formal out 35 55
+add intra indirect edge from formal out 34 56
+add return indirect edge from store 0x600003ce8630 0x600003ce8bb0
+add intra indirect edge from formal out 36 57
+add intra indirect edge from formal out 42 58
+add intra indirect edge from formal out 30 59
+add intra indirect edge from formal out 29 60
+add intra indirect edge from formal out 43 61
+add intra indirect edge from actual in 32 62
+add intra indirect edge from actual in 31 63
+Writing 'test2.dot'...
+*********SVFG Statistics***************
+################ (program : interSwap.ll)###############
+----------------Time and memory stats--------------------
+ATNodeTime          0
+AvgWeight           1
+ConnDirEdgeTime     0
+ConnIndEdgeTime     0
+OptTime             0
+TLNodeTime          0
+TotalTime           0
+----------------Numbers stats----------------------------
+ActualIn            2
+ActualOut           2
+ActualParam         2
+ActualRet           0
+Addr                12
+AvgInDegree         1
+AvgIndInDeg         1
+AvgIndOutDeg        1
+AvgOutDegree        1
+Copy                3
+DirectCallEdge      2
+DirectEdge          38
+DirectRetEdge       0
+FormalIn            9
+FormalOut           9
+FormalParam         2
+FormalRet           0
+Gep                 1
+IndCallEdge         2
+IndRetEdge          2
+IndirectEdge        40
+IndirectEdgeLabels  40
+Load                12
+MSSAPhi             2
+MaxInDegree         3
+MaxIndInDeg         2
+MaxIndOutDeg        3
+MaxOutDegree        5
+PHI                 0
+Store               9
+TotalEdge           78
+TotalNode           66
+#######################################################
+Writing 'svfg-pl1.dot'...5555
+Current pointer level 1
+1111
+aaaa
+push svfg node 1 with pointer level 1
+push svfg node 2 with pointer level 1
+push svfg node 31 with pointer level 1
+push svfg node 14 with pointer level 1
+push svfg node 16 with pointer level 1
+push svfg node 3 with pointer level 1
+push svfg node 32 with pointer level 1
+push svfg node 15 with pointer level 1
+push svfg node 4 with pointer level 1
+push svfg node 17 with pointer level 1
+push svfg node 18 with pointer level 1
+push svfg node 19 with pointer level 1
+push svfg node 35 with pointer level 1
+push svfg node 27 with pointer level 1
+push svfg node 36 with pointer level 1
+Looking at child StoreVFGNode ID: 29 StoreStmt: [Var18 <-- Var14]	
+ValVar ID: 24
+   store ptr %a, ptr %t1, align 8 
+push svfg node 28 with pointer level 1
+push svfg node 37 with pointer level 1
+Looking at child StoreVFGNode ID: 30 StoreStmt: [Var20 <-- Var16]	
+ValVar ID: 25
+   store ptr %b, ptr %t2, align 8 
+Looking at child StoreVFGNode ID: 31 StoreStmt: [Var14 <-- Var26]	
+ValVar ID: 27
+   store ptr %0, ptr %a, align 8 
+push svfg node 52 with pointer level Looking at child StoreVFGNode ID: 31 StoreStmt: [Var14 <-- Var26]	
+ValVar ID: 27
+   store ptr %0, ptr %a, align 8 
+1
+push svfg node 9 with pointer level 1
+push svfg node 26 with pointer level 1
+Looking at child ActualOUTSVFGNode ID: 64 at callsite:    call void @swap(ptr %4, ptr %5) CallICFGNode:  {fun: main}64V_3 = CSCHI(MR_64V_3)
+pts{17 }
+CS[CallICFGNode: ]
+Looking at child FormalOUTSVFGNode ID: 58 {fun: main}RETMU(64V_4)
+pts{17 }
+
+Looking at child LoadVFGNode ID: 19 LoadStmt: [Var50 <-- Var14]	
+ValVar ID: 50
+   %7 = load ptr, ptr %a, align 8 
+push svfg node 43 with pointer level Looking at child LoadVFGNode ID: 19 LoadStmt: [Var50 <-- Var14]	
+ValVar ID: 50
+   %7 = load ptr, ptr %a, align 8 
+1
+Looking at child StoreVFGNode ID: 35 StoreStmt: [Var62 <-- Var67]	
+ValVar ID: 68
+   store ptr %1, ptr %tmp, align 8 
+push svfg node 44 with pointer level Looking at child StoreVFGNode ID: 35 StoreStmt: [Var62 <-- Var67]	
+ValVar ID: 68
+   store ptr %1, ptr %tmp, align 8 
+1
+Looking at child StoreVFGNode ID: 33 StoreStmt: [Var58 <-- Var56]	
+ValVar ID: 64
+   store ptr %p, ptr %p.addr, align 8 
+Looking at child StoreVFGNode ID: 34 StoreStmt: [Var60 <-- Var57]	
+ValVar ID: 65
+   store ptr %q, ptr %q.addr, align 8 
+Looking at child LoadVFGNode ID: 28 LoadStmt: [Var70 <-- Var69]	
+ValVar ID: 70
+   %3 = load ptr, ptr %2, align 8 
+push svfg node 47 with pointer level Looking at child LoadVFGNode ID: 28 LoadStmt: [Var70 <-- Var69]	
+ValVar ID: 70
+   %3 = load ptr, ptr %2, align 8 
+1
+Looking at child LoadVFGNode ID: 27 LoadStmt: [Var67 <-- Var66]	
+ValVar ID: 67
+   %1 = load ptr, ptr %0, align 8 
+push svfg node 48 with pointer level Looking at child LoadVFGNode ID: 27 LoadStmt: [Var67 <-- Var66]	
+ValVar ID: 67
+   %1 = load ptr, ptr %0, align 8 
+1
+Looking at child ActualOUTSVFGNode ID: 65 at callsite:    call void @swap(ptr %4, ptr %5) CallICFGNode:  {fun: main}62V_3 = CSCHI(MR_62V_3)
+pts{15 }
+CS[CallICFGNode: ]
+Looking at child StoreVFGNode ID: 32 StoreStmt: [Var16 <-- Var28]	
+ValVar ID: 29
+   store ptr %1, ptr %b, align 8 
+push svfg node 49 with pointer level Looking at child StoreVFGNode ID: 32 StoreStmt: [Var16 <-- Var28]	
+ValVar ID: 29
+   store ptr %1, ptr %b, align 8 
+1
+2222
+Processing node AddrVFGNode ID: 1 AddrStmt: [Var4 <-- Var5]	
+FunValVar ID: 4
+main
+Processed node AddrVFGNode ID: 1 AddrStmt: [Var4 <-- Var5]	
+FunValVar ID: 4
+main 1
+Start propagating.
+Processing node AddrVFGNode ID: 2 AddrStmt: [Var7 <-- Var8]	
+ValVar ID: 7
+   %retval = alloca i32, align 4 
+Processed node AddrVFGNode ID: 2 AddrStmt: [Var7 <-- Var8]	
+ValVar ID: 7
+   %retval = alloca i32, align 4  1
+Start propagating.
+Processing node StoreVFGNode ID: 31 StoreStmt: [Var14 <-- Var26]	
+ValVar ID: 27
+   store ptr %0, ptr %a, align 8 
+store dst id: 14
+Is strong update? 1 0
+Processed node StoreVFGNode ID: 31 StoreStmt: [Var14 <-- Var26]	
+ValVar ID: 27
+   store ptr %0, ptr %a, align 8  0
+Processing node CopyVFGNode ID: 14 CopyStmt: [Var26 <-- Var10]	
+ValVar ID: 26
+   %0 = bitcast ptr %A to ptr 
+Processed node CopyVFGNode ID: 14 CopyStmt: [Var26 <-- Var10]	
+ValVar ID: 26
+   %0 = bitcast ptr %A to ptr  0
+Processing node GepVFGNode ID: 16 GepStmt: [Var30 <-- Var10]	
+ValVar ID: 30
+   %arrayidx = getelementptr inbounds [1 x i8], ptr %A, i64 0, i64 0 
+Processed node GepVFGNode ID: 16 GepStmt: [Var30 <-- Var10]	
+ValVar ID: 30
+   %arrayidx = getelementptr inbounds [1 x i8], ptr %A, i64 0, i64 0  0
+Processing node AddrVFGNode ID: 3 AddrStmt: [Var10 <-- Var11]	
+ValVar ID: 10
+   %A = alloca [1 x i8], align 1 
+Processed node AddrVFGNode ID: 3 AddrStmt: [Var10 <-- Var11]	
+ValVar ID: 10
+   %A = alloca [1 x i8], align 1  1
+Start propagating.
+xxxxxxxx 14
+PROPAGATION: push svfg node 14 by 3
+xxxxxxxx 16
+PROPAGATION: push svfg node 16 by 3
+Processing node StoreVFGNode ID: 32 StoreStmt: [Var16 <-- Var28]	
+ValVar ID: 29
+   store ptr %1, ptr %b, align 8 
+store dst id: 16
+Is strong update? 1 0
+Processed node StoreVFGNode ID: 32 StoreStmt: [Var16 <-- Var28]	
+ValVar ID: 29
+   store ptr %1, ptr %b, align 8  0
+Processing node CopyVFGNode ID: 15 CopyStmt: [Var28 <-- Var12]	
+ValVar ID: 28
+   %1 = bitcast ptr %B to ptr 
+Processed node CopyVFGNode ID: 15 CopyStmt: [Var28 <-- Var12]	
+ValVar ID: 28
+   %1 = bitcast ptr %B to ptr  0
+Processing node AddrVFGNode ID: 4 AddrStmt: [Var12 <-- Var13]	
+ValVar ID: 12
+   %B = alloca [1 x i8], align 1 
+Processed node AddrVFGNode ID: 4 AddrStmt: [Var12 <-- Var13]	
+ValVar ID: 12
+   %B = alloca [1 x i8], align 1  1
+Start propagating.
+xxxxxxxx 15
+PROPAGATION: push svfg node 15 by 4
+Processing node LoadVFGNode ID: 17 LoadStmt: [Var36 <-- Var14]	
+ValVar ID: 36
+   %3 = load ptr, ptr %a, align 8 
+Processed node LoadVFGNode ID: 17 LoadStmt: [Var36 <-- Var14]	
+ValVar ID: 36
+   %3 = load ptr, ptr %a, align 8  0
+Processing node LoadVFGNode ID: 18 LoadStmt: [Var46 <-- Var14]	
+ValVar ID: 46
+   %6 = load ptr, ptr %a, align 8 
+Processed node LoadVFGNode ID: 18 LoadStmt: [Var46 <-- Var14]	
+ValVar ID: 46
+   %6 = load ptr, ptr %a, align 8  0
+Processing node LoadVFGNode ID: 19 LoadStmt: [Var50 <-- Var14]	
+ValVar ID: 50
+   %7 = load ptr, ptr %a, align 8 
+Processed node LoadVFGNode ID: 19 LoadStmt: [Var50 <-- Var14]	
+ValVar ID: 50
+   %7 = load ptr, ptr %a, align 8  0
+Processing node StoreVFGNode ID: 35 StoreStmt: [Var62 <-- Var67]	
+ValVar ID: 68
+   store ptr %1, ptr %tmp, align 8 
+store dst id: 62
+Is strong update? 1 0
+Processed node StoreVFGNode ID: 35 StoreStmt: [Var62 <-- Var67]	
+ValVar ID: 68
+   store ptr %1, ptr %tmp, align 8  0
+Processing node LoadVFGNode ID: 27 LoadStmt: [Var67 <-- Var66]	
+ValVar ID: 67
+   %1 = load ptr, ptr %0, align 8 
+Processed node LoadVFGNode ID: 27 LoadStmt: [Var67 <-- Var66]	
+ValVar ID: 67
+   %1 = load ptr, ptr %0, align 8  0
+Processing node StoreVFGNode ID: 36 StoreStmt: [Var71 <-- Var70]	
+ValVar ID: 72
+   store ptr %3, ptr %4, align 8 
+store dst id: 71
+Is strong update? 1 0
+Processed node StoreVFGNode ID: 36 StoreStmt: [Var71 <-- Var70]	
+ValVar ID: 72
+   store ptr %3, ptr %4, align 8  0
+Processing node LoadVFGNode ID: 28 LoadStmt: [Var70 <-- Var69]	
+ValVar ID: 70
+   %3 = load ptr, ptr %2, align 8 
+Processed node LoadVFGNode ID: 28 LoadStmt: [Var70 <-- Var69]	
+ValVar ID: 70
+   %3 = load ptr, ptr %2, align 8  0
+Processing node StoreVFGNode ID: 37 StoreStmt: [Var74 <-- Var73]	
+ValVar ID: 75
+   store ptr %5, ptr %6, align 8 
+store dst id: 74
+Is strong update? 1 0
+Processed node StoreVFGNode ID: 37 StoreStmt: [Var74 <-- Var73]	
+ValVar ID: 75
+   store ptr %5, ptr %6, align 8  0
+Processing node FormalINSVFGNode ID: 52 {fun: main}62V_1 = ENCHI(MR_62V_1)
+pts{15 }
+
+Processed node FormalINSVFGNode ID: 52 {fun: main}62V_1 = ENCHI(MR_62V_1)
+pts{15 }
+ 1
+Start propagating.
+xxxxxxxx 31
+Processing node AddrVFGNode ID: 9 AddrStmt: [Var44 <-- Var45]	
+FunValVar ID: 44
+swap
+Processed node AddrVFGNode ID: 9 AddrStmt: [Var44 <-- Var45]	
+FunValVar ID: 44
+swap 1
+Start propagating.
+Processing node LoadVFGNode ID: 26 LoadStmt: [Var73 <-- Var62]	
+ValVar ID: 73
+   %5 = load ptr, ptr %tmp, align 8 
+Processed node LoadVFGNode ID: 26 LoadStmt: [Var73 <-- Var62]	
+ValVar ID: 73
+   %5 = load ptr, ptr %tmp, align 8  0
+Processing node IntraMSSAPHISVFGNode ID: 43 {fun: main}MSSAPHISVFGNode ID: 43 {fun: main}MR_62V_4 = PHI(MR_62V_3, MR_62V_2, )
+pts{15 }
+Processed node IntraMSSAPHISVFGNode ID: 43 {fun: main}MSSAPHISVFGNode ID: 43 {fun: main}MR_62V_4 = PHI(MR_62V_3, MR_62V_2, )
+pts{15 } 1
+Start propagating.
+xxxxxxxx 19
+xxxxxxxx 61
+Processing node FormalINSVFGNode ID: 44 {fun: swap}70V_1 = ENCHI(MR_70V_1)
+pts{63 }
+
+Processed node FormalINSVFGNode ID: 44 {fun: swap}70V_1 = ENCHI(MR_70V_1)
+pts{63 }
+ 1
+Start propagating.
+xxxxxxxx 35
+Processing node FormalINSVFGNode ID: 47 {fun: swap}64V_1 = ENCHI(MR_64V_1)
+pts{17 }
+
+Processed node FormalINSVFGNode ID: 47 {fun: swap}64V_1 = ENCHI(MR_64V_1)
+pts{17 }
+ 1
+Start propagating.
+xxxxxxxx 28
+xxxxxxxx 37
+Processing node FormalINSVFGNode ID: 48 {fun: swap}62V_1 = ENCHI(MR_62V_1)
+pts{15 }
+
+Processed node FormalINSVFGNode ID: 48 {fun: swap}62V_1 = ENCHI(MR_62V_1)
+pts{15 }
+ 1
+Start propagating.
+xxxxxxxx 27
+xxxxxxxx 36
+Processing node FormalINSVFGNode ID: 49 {fun: main}64V_1 = ENCHI(MR_64V_1)
+pts{17 }
+
+Processed node FormalINSVFGNode ID: 49 {fun: main}64V_1 = ENCHI(MR_64V_1)
+pts{17 }
+ 1
+Start propagating.
+xxxxxxxx 32
+Processing node CopyVFGNode ID: 14 CopyStmt: [Var26 <-- Var10]	
+ValVar ID: 26
+   %0 = bitcast ptr %A to ptr 
+Processed node CopyVFGNode ID: 14 CopyStmt: [Var26 <-- Var10]	
+ValVar ID: 26
+   %0 = bitcast ptr %A to ptr  1
+Start propagating.
+xxxxxxxx 31
+PROPAGATION: push svfg node 31 by 14
+Processing node GepVFGNode ID: 16 GepStmt: [Var30 <-- Var10]	
+ValVar ID: 30
+   %arrayidx = getelementptr inbounds [1 x i8], ptr %A, i64 0, i64 0 
+Processed node GepVFGNode ID: 16 GepStmt: [Var30 <-- Var10]	
+ValVar ID: 30
+   %arrayidx = getelementptr inbounds [1 x i8], ptr %A, i64 0, i64 0  1
+Start propagating.
+Processing node CopyVFGNode ID: 15 CopyStmt: [Var28 <-- Var12]	
+ValVar ID: 28
+   %1 = bitcast ptr %B to ptr 
+Processed node CopyVFGNode ID: 15 CopyStmt: [Var28 <-- Var12]	
+ValVar ID: 28
+   %1 = bitcast ptr %B to ptr  1
+Start propagating.
+xxxxxxxx 32
+PROPAGATION: push svfg node 32 by 15
+Processing node StoreVFGNode ID: 31 StoreStmt: [Var14 <-- Var26]	
+ValVar ID: 27
+   store ptr %0, ptr %a, align 8 
+store dst id: 14
+Is strong update? 1 1
+Processed node StoreVFGNode ID: 31 StoreStmt: [Var14 <-- Var26]	
+ValVar ID: 27
+   store ptr %0, ptr %a, align 8  1
+Start propagating.
+xxxxxxxx 17
+PROPAGATION: push svfg node 17 by 31
+xxxxxxxx 43
+PROPAGATION: push svfg node 43 by 31
+xxxxxxxx 63
+PROPAGATION: push svfg node 63 by 31
+Processing node StoreVFGNode ID: 32 StoreStmt: [Var16 <-- Var28]	
+ValVar ID: 29
+   store ptr %1, ptr %b, align 8 
+store dst id: 16
+Is strong update? 1 1
+Processed node StoreVFGNode ID: 32 StoreStmt: [Var16 <-- Var28]	
+ValVar ID: 29
+   store ptr %1, ptr %b, align 8  1
+Start propagating.
+xxxxxxxx 42
+PROPAGATION: push svfg node 42 by 32
+xxxxxxxx 62
+PROPAGATION: push svfg node 62 by 32
+Processing node LoadVFGNode ID: 17 LoadStmt: [Var36 <-- Var14]	
+ValVar ID: 36
+   %3 = load ptr, ptr %a, align 8 
+Processed node LoadVFGNode ID: 17 LoadStmt: [Var36 <-- Var14]	
+ValVar ID: 36
+   %3 = load ptr, ptr %a, align 8  1
+Start propagating.
+Processing node IntraMSSAPHISVFGNode ID: 43 {fun: main}MSSAPHISVFGNode ID: 43 {fun: main}MR_62V_4 = PHI(MR_62V_3, MR_62V_2, )
+pts{15 }
+Processed node IntraMSSAPHISVFGNode ID: 43 {fun: main}MSSAPHISVFGNode ID: 43 {fun: main}MR_62V_4 = PHI(MR_62V_3, MR_62V_2, )
+pts{15 } 1
+Start propagating.
+xxxxxxxx 19
+PROPAGATION: push svfg node 19 by 43
+xxxxxxxx 61
+PROPAGATION: push svfg node 61 by 43
+Processing node ActualINSVFGNode ID: 63 at callsite:    call void @swap(ptr %4, ptr %5) CallICFGNode:  {fun: main}CSMU(62V_2)
+pts{15 }
+CS[CallICFGNode: ]
+Processed node ActualINSVFGNode ID: 63 at callsite:    call void @swap(ptr %4, ptr %5) CallICFGNode:  {fun: main}CSMU(62V_2)
+pts{15 }
+CS[CallICFGNode: ] 1
+Start propagating.
+xxxxxxxx 48
+PROPAGATION: push svfg node 48 by 63
+Processing node IntraMSSAPHISVFGNode ID: 42 {fun: main}MSSAPHISVFGNode ID: 42 {fun: main}MR_64V_4 = PHI(MR_64V_3, MR_64V_2, )
+pts{17 }
+Processed node IntraMSSAPHISVFGNode ID: 42 {fun: main}MSSAPHISVFGNode ID: 42 {fun: main}MR_64V_4 = PHI(MR_64V_3, MR_64V_2, )
+pts{17 } 1
+Start propagating.
+xxxxxxxx 58
+PROPAGATION: push svfg node 58 by 42
+Processing node ActualINSVFGNode ID: 62 at callsite:    call void @swap(ptr %4, ptr %5) CallICFGNode:  {fun: main}CSMU(64V_2)
+pts{17 }
+CS[CallICFGNode: ]
+Processed node ActualINSVFGNode ID: 62 at callsite:    call void @swap(ptr %4, ptr %5) CallICFGNode:  {fun: main}CSMU(64V_2)
+pts{17 }
+CS[CallICFGNode: ] 1
+Start propagating.
+xxxxxxxx 47
+PROPAGATION: push svfg node 47 by 62
+Processing node LoadVFGNode ID: 19 LoadStmt: [Var50 <-- Var14]	
+ValVar ID: 50
+   %7 = load ptr, ptr %a, align 8 
+Processed node LoadVFGNode ID: 19 LoadStmt: [Var50 <-- Var14]	
+ValVar ID: 50
+   %7 = load ptr, ptr %a, align 8  1
+Start propagating.
+Processing node FormalOUTSVFGNode ID: 61 {fun: main}RETMU(62V_4)
+pts{15 }
+
+Processed node FormalOUTSVFGNode ID: 61 {fun: main}RETMU(62V_4)
+pts{15 }
+ 1
+Start propagating.
+Processing node FormalINSVFGNode ID: 48 {fun: swap}62V_1 = ENCHI(MR_62V_1)
+pts{15 }
+
+Processed node FormalINSVFGNode ID: 48 {fun: swap}62V_1 = ENCHI(MR_62V_1)
+pts{15 }
+ 1
+Start propagating.
+xxxxxxxx 27
+PROPAGATION: push svfg node 27 by 48
+xxxxxxxx 36
+PROPAGATION: push svfg node 36 by 48
+Processing node FormalOUTSVFGNode ID: 58 {fun: main}RETMU(64V_4)
+pts{17 }
+
+Processed node FormalOUTSVFGNode ID: 58 {fun: main}RETMU(64V_4)
+pts{17 }
+ 1
+Start propagating.
+Processing node FormalINSVFGNode ID: 47 {fun: swap}64V_1 = ENCHI(MR_64V_1)
+pts{17 }
+
+Processed node FormalINSVFGNode ID: 47 {fun: swap}64V_1 = ENCHI(MR_64V_1)
+pts{17 }
+ 1
+Start propagating.
+xxxxxxxx 28
+PROPAGATION: push svfg node 28 by 47
+xxxxxxxx 37
+PROPAGATION: push svfg node 37 by 47
+Processing node LoadVFGNode ID: 27 LoadStmt: [Var67 <-- Var66]	
+ValVar ID: 67
+   %1 = load ptr, ptr %0, align 8 
+Processed node LoadVFGNode ID: 27 LoadStmt: [Var67 <-- Var66]	
+ValVar ID: 67
+   %1 = load ptr, ptr %0, align 8  1
+Start propagating.
+xxxxxxxx 35
+PROPAGATION: push svfg node 35 by 27
+Processing node StoreVFGNode ID: 36 StoreStmt: [Var71 <-- Var70]	
+ValVar ID: 72
+   store ptr %3, ptr %4, align 8 
+store dst id: 71
+Is strong update? 1 0
+Processed node StoreVFGNode ID: 36 StoreStmt: [Var71 <-- Var70]	
+ValVar ID: 72
+   store ptr %3, ptr %4, align 8  0
+Processing node LoadVFGNode ID: 28 LoadStmt: [Var70 <-- Var69]	
+ValVar ID: 70
+   %3 = load ptr, ptr %2, align 8 
+Processed node LoadVFGNode ID: 28 LoadStmt: [Var70 <-- Var69]	
+ValVar ID: 70
+   %3 = load ptr, ptr %2, align 8  1
+Start propagating.
+xxxxxxxx 36
+PROPAGATION: push svfg node 36 by 28
+Processing node StoreVFGNode ID: 37 StoreStmt: [Var74 <-- Var73]	
+ValVar ID: 75
+   store ptr %5, ptr %6, align 8 
+store dst id: 74
+Is strong update? 1 0
+Processed node StoreVFGNode ID: 37 StoreStmt: [Var74 <-- Var73]	
+ValVar ID: 75
+   store ptr %5, ptr %6, align 8  0
+Processing node StoreVFGNode ID: 35 StoreStmt: [Var62 <-- Var67]	
+ValVar ID: 68
+   store ptr %1, ptr %tmp, align 8 
+store dst id: 62
+Is strong update? 1 1
+Processed node StoreVFGNode ID: 35 StoreStmt: [Var62 <-- Var67]	
+ValVar ID: 68
+   store ptr %1, ptr %tmp, align 8  1
+Start propagating.
+xxxxxxxx 26
+PROPAGATION: push svfg node 26 by 35
+xxxxxxxx 55
+PROPAGATION: push svfg node 55 by 35
+Processing node StoreVFGNode ID: 36 StoreStmt: [Var71 <-- Var70]	
+ValVar ID: 72
+   store ptr %3, ptr %4, align 8 
+store dst id: 71
+Is strong update? 1 1
+Processed node StoreVFGNode ID: 36 StoreStmt: [Var71 <-- Var70]	
+ValVar ID: 72
+   store ptr %3, ptr %4, align 8  1
+Start propagating.
+xxxxxxxx 57
+PROPAGATION: push svfg node 57 by 36
+Processing node LoadVFGNode ID: 26 LoadStmt: [Var73 <-- Var62]	
+ValVar ID: 73
+   %5 = load ptr, ptr %tmp, align 8 
+Processed node LoadVFGNode ID: 26 LoadStmt: [Var73 <-- Var62]	
+ValVar ID: 73
+   %5 = load ptr, ptr %tmp, align 8  1
+Start propagating.
+xxxxxxxx 37
+PROPAGATION: push svfg node 37 by 26
+Processing node FormalOUTSVFGNode ID: 55 {fun: swap}RETMU(70V_2)
+pts{63 }
+
+Processed node FormalOUTSVFGNode ID: 55 {fun: swap}RETMU(70V_2)
+pts{63 }
+ 1
+Start propagating.
+Processing node FormalOUTSVFGNode ID: 57 {fun: swap}RETMU(62V_2)
+pts{15 }
+
+Processed node FormalOUTSVFGNode ID: 57 {fun: swap}RETMU(62V_2)
+pts{15 }
+ 1
+Start propagating.
+xxxxxxxx 65
+PROPAGATION: push svfg node 65 by 57
+Processing node StoreVFGNode ID: 37 StoreStmt: [Var74 <-- Var73]	
+ValVar ID: 75
+   store ptr %5, ptr %6, align 8 
+store dst id: 74
+Is strong update? 1 1
+Processed node StoreVFGNode ID: 37 StoreStmt: [Var74 <-- Var73]	
+ValVar ID: 75
+   store ptr %5, ptr %6, align 8  1
+Start propagating.
+xxxxxxxx 54
+PROPAGATION: push svfg node 54 by 37
+Processing node ActualOUTSVFGNode ID: 65 at callsite:    call void @swap(ptr %4, ptr %5) CallICFGNode:  {fun: main}62V_3 = CSCHI(MR_62V_3)
+pts{15 }
+CS[CallICFGNode: ]
+Processed node ActualOUTSVFGNode ID: 65 at callsite:    call void @swap(ptr %4, ptr %5) CallICFGNode:  {fun: main}62V_3 = CSCHI(MR_62V_3)
+pts{15 }
+CS[CallICFGNode: ] 1
+Start propagating.
+xxxxxxxx 18
+PROPAGATION: push svfg node 18 by 65
+xxxxxxxx 43
+PROPAGATION: push svfg node 43 by 65
+Processing node FormalOUTSVFGNode ID: 54 {fun: swap}RETMU(64V_2)
+pts{17 }
+
+Processed node FormalOUTSVFGNode ID: 54 {fun: swap}RETMU(64V_2)
+pts{17 }
+ 1
+Start propagating.
+xxxxxxxx 64
+PROPAGATION: push svfg node 64 by 54
+Processing node LoadVFGNode ID: 18 LoadStmt: [Var46 <-- Var14]	
+ValVar ID: 46
+   %6 = load ptr, ptr %a, align 8 
+Processed node LoadVFGNode ID: 18 LoadStmt: [Var46 <-- Var14]	
+ValVar ID: 46
+   %6 = load ptr, ptr %a, align 8  1
+Start propagating.
+Processing node IntraMSSAPHISVFGNode ID: 43 {fun: main}MSSAPHISVFGNode ID: 43 {fun: main}MR_62V_4 = PHI(MR_62V_3, MR_62V_2, )
+pts{15 }
+Processed node IntraMSSAPHISVFGNode ID: 43 {fun: main}MSSAPHISVFGNode ID: 43 {fun: main}MR_62V_4 = PHI(MR_62V_3, MR_62V_2, )
+pts{15 } 1
+Start propagating.
+xxxxxxxx 19
+PROPAGATION: push svfg node 19 by 43
+xxxxxxxx 61
+PROPAGATION: push svfg node 61 by 43
+Processing node ActualOUTSVFGNode ID: 64 at callsite:    call void @swap(ptr %4, ptr %5) CallICFGNode:  {fun: main}64V_3 = CSCHI(MR_64V_3)
+pts{17 }
+CS[CallICFGNode: ]
+Processed node ActualOUTSVFGNode ID: 64 at callsite:    call void @swap(ptr %4, ptr %5) CallICFGNode:  {fun: main}64V_3 = CSCHI(MR_64V_3)
+pts{17 }
+CS[CallICFGNode: ] 1
+Start propagating.
+xxxxxxxx 42
+PROPAGATION: push svfg node 42 by 64
+Processing node LoadVFGNode ID: 19 LoadStmt: [Var50 <-- Var14]	
+ValVar ID: 50
+   %7 = load ptr, ptr %a, align 8 
+Processed node LoadVFGNode ID: 19 LoadStmt: [Var50 <-- Var14]	
+ValVar ID: 50
+   %7 = load ptr, ptr %a, align 8  1
+Start propagating.
+Processing node FormalOUTSVFGNode ID: 61 {fun: main}RETMU(62V_4)
+pts{15 }
+
+Processed node FormalOUTSVFGNode ID: 61 {fun: main}RETMU(62V_4)
+pts{15 }
+ 1
+Start propagating.
+Processing node IntraMSSAPHISVFGNode ID: 42 {fun: main}MSSAPHISVFGNode ID: 42 {fun: main}MR_64V_4 = PHI(MR_64V_3, MR_64V_2, )
+pts{17 }
+Processed node IntraMSSAPHISVFGNode ID: 42 {fun: main}MSSAPHISVFGNode ID: 42 {fun: main}MR_64V_4 = PHI(MR_64V_3, MR_64V_2, )
+pts{17 } 1
+Start propagating.
+xxxxxxxx 58
+PROPAGATION: push svfg node 58 by 42
+Processing node FormalOUTSVFGNode ID: 58 {fun: main}RETMU(64V_4)
+pts{17 }
+
+Processed node FormalOUTSVFGNode ID: 58 {fun: main}RETMU(64V_4)
+pts{17 }
+ 1
+Start propagating.
+3333
+----------------------------------------------
+##<> Source Loc: { constant data }
+Ptr 0 		PointsTo: {empty}
+
+----------------------------------------------
+
+Ptr 1 		PointsTo: {empty}
+
+----------------------------------------------
+##<Dummy Obj > id:2
+Ptr 2 		PointsTo: {empty}
+
+----------------------------------------------
+##<Dummy Obj > id:3
+Ptr 3 		PointsTo: {empty}
+
+----------------------------------------------
+##<main> Source Loc: 
+Ptr 4 		PointsTo: { 5 }
+
+!!Target NodeID 5	 [<main> Source Loc: ] 
+----------------------------------------------
+##<main> Source Loc: 
+Ptr 5 		PointsTo: {empty}
+
+----------------------------------------------
+##<main> Source Loc: 
+Ptr 6 		PointsTo: {empty}
+
+----------------------------------------------
+##<retval> Source Loc: 
+Ptr 7 		PointsTo: { 8 }
+
+!!Target NodeID 8	 [<retval> Source Loc: ] 
+----------------------------------------------
+##<retval> Source Loc: 
+Ptr 8 		PointsTo: {empty}
+
+----------------------------------------------
+##<> Source Loc: { constant data }
+Ptr 9 		PointsTo: {empty}
+
+----------------------------------------------
+##<A> Source Loc: 
+Ptr 10 		PointsTo: { 11 }
+
+!!Target NodeID 11	 [<A> Source Loc: ] 
+----------------------------------------------
+##<A> Source Loc: 
+Ptr 11 		PointsTo: {empty}
+
+----------------------------------------------
+##<B> Source Loc: 
+Ptr 12 		PointsTo: { 13 }
+
+!!Target NodeID 13	 [<B> Source Loc: ] 
+----------------------------------------------
+##<B> Source Loc: 
+Ptr 13 		PointsTo: {empty}
+
+----------------------------------------------
+##<a> Source Loc: 
+Ptr 14 		PointsTo: { 15 }
+
+!!Target NodeID 15	 [<a> Source Loc: ] 
+----------------------------------------------
+##<a> Source Loc: 
+Ptr 15 		PointsTo: {empty}
+
+----------------------------------------------
+##<b> Source Loc: 
+Ptr 16 		PointsTo: { 17 }
+
+!!Target NodeID 17	 [<b> Source Loc: ] 
+----------------------------------------------
+##<b> Source Loc: 
+Ptr 17 		PointsTo: {empty}
+
+----------------------------------------------
+##<t1> Source Loc: 
+Ptr 18 		PointsTo: { 19 }
+
+!!Target NodeID 19	 [<t1> Source Loc: ] 
+----------------------------------------------
+##<t1> Source Loc: 
+Ptr 19 		PointsTo: {empty}
+
+----------------------------------------------
+##<t2> Source Loc: 
+Ptr 20 		PointsTo: { 21 }
+
+!!Target NodeID 21	 [<t2> Source Loc: ] 
+----------------------------------------------
+##<t2> Source Loc: 
+Ptr 21 		PointsTo: {empty}
+
+----------------------------------------------
+##<> Source Loc: 
+Ptr 22 		PointsTo: {empty}
+
+----------------------------------------------
+##<> Source Loc: { constant data }
+Ptr 23 		PointsTo: {empty}
+
+----------------------------------------------
+##<> Source Loc: 
+Ptr 24 		PointsTo: {empty}
+
+----------------------------------------------
+##<> Source Loc: 
+Ptr 25 		PointsTo: {empty}
+
+----------------------------------------------
+##<> Source Loc: 
+Ptr 26 		PointsTo: { 11 }
+
+!!Target NodeID 11	 [<A> Source Loc: ] 
+----------------------------------------------
+##<> Source Loc: 
+Ptr 27 		PointsTo: {empty}
+
+----------------------------------------------
+##<> Source Loc: 
+Ptr 28 		PointsTo: { 13 }
+
+!!Target NodeID 13	 [<B> Source Loc: ] 
+----------------------------------------------
+##<> Source Loc: 
+Ptr 29 		PointsTo: {empty}
+
+----------------------------------------------
+##<arrayidx> Source Loc: 
+Ptr 30 		PointsTo: { 77 }
+
+!!Target NodeID 77	 [<> Source Loc: ] 
+----------------------------------------------
+##<> Source Loc: { constant data }
+Ptr 31 		PointsTo: {empty}
+
+----------------------------------------------
+##<> Source Loc: 
+Ptr 32 		PointsTo: {empty}
+
+----------------------------------------------
+##<tobool> Source Loc: 
+Ptr 33 		PointsTo: {empty}
+
+----------------------------------------------
+##<> Source Loc: { constant data }
+Ptr 34 		PointsTo: {empty}
+
+----------------------------------------------
+##<> Source Loc: 
+Ptr 35 		PointsTo: {empty}
+
+----------------------------------------------
+##<> Source Loc: 
+Ptr 36 		PointsTo: { 11 }
+
+!!Target NodeID 11	 [<A> Source Loc: ] 
+----------------------------------------------
+##<> Source Loc: 
+Ptr 37 		PointsTo: {empty}
+
+----------------------------------------------
+##<> Source Loc: { constant data }
+Ptr 38 		PointsTo: {empty}
+
+----------------------------------------------
+##<> Source Loc: 
+Ptr 39 		PointsTo: {empty}
+
+----------------------------------------------
+##<if.end> Source Loc: { "basic block": if.end, "location":  }
+Ptr 40 		PointsTo: {empty}
+
+----------------------------------------------
+##<> Source Loc: 
+Ptr 41 		PointsTo: { 15 }
+
+!!Target NodeID 15	 [<a> Source Loc: ] 
+----------------------------------------------
+##<> Source Loc: 
+Ptr 42 		PointsTo: { 17 }
+
+!!Target NodeID 17	 [<b> Source Loc: ] 
+----------------------------------------------
+##<> Source Loc: 
+Ptr 43 		PointsTo: {empty}
+
+----------------------------------------------
+##<swap> Source Loc: 
+Ptr 44 		PointsTo: { 45 }
+
+!!Target NodeID 45	 [<swap> Source Loc: ] 
+----------------------------------------------
+##<swap> Source Loc: 
+Ptr 45 		PointsTo: {empty}
+
+----------------------------------------------
+##<> Source Loc: 
+Ptr 46 		PointsTo: { 13 }
+
+!!Target NodeID 13	 [<B> Source Loc: ] 
+----------------------------------------------
+##<> Source Loc: 
+Ptr 47 		PointsTo: {empty}
+
+----------------------------------------------
+##<> Source Loc: { constant data }
+Ptr 48 		PointsTo: {empty}
+
+----------------------------------------------
+##<> Source Loc: 
+Ptr 49 		PointsTo: {empty}
+
+----------------------------------------------
+##<> Source Loc: 
+Ptr 50 		PointsTo: { 11 13 }
+
+!!Target NodeID 11	 [<A> Source Loc: ] 
+!!Target NodeID 13	 [<B> Source Loc: ] 
+----------------------------------------------
+##<> Source Loc: 
+Ptr 51 		PointsTo: {empty}
+
+----------------------------------------------
+##<> Source Loc: { constant data }
+Ptr 52 		PointsTo: {empty}
+
+----------------------------------------------
+##<> Source Loc: 
+Ptr 53 		PointsTo: {empty}
+
+----------------------------------------------
+##<> Source Loc: 
+Ptr 54 		PointsTo: {empty}
+
+----------------------------------------------
+##<swap> Source Loc: 
+Ptr 55 		PointsTo: {empty}
+
+----------------------------------------------
+##<p> Source Loc: { 0th arg swap  }
+Ptr 56 		PointsTo: { 15 }
+
+!!Target NodeID 15	 [<a> Source Loc: ] 
+----------------------------------------------
+##<q> Source Loc: { 1st arg swap  }
+Ptr 57 		PointsTo: { 17 }
+
+!!Target NodeID 17	 [<b> Source Loc: ] 
+----------------------------------------------
+##<p.addr> Source Loc: 
+Ptr 58 		PointsTo: { 59 }
+
+!!Target NodeID 59	 [<p.addr> Source Loc: ] 
+----------------------------------------------
+##<p.addr> Source Loc: 
+Ptr 59 		PointsTo: {empty}
+
+----------------------------------------------
+##<q.addr> Source Loc: 
+Ptr 60 		PointsTo: { 61 }
+
+!!Target NodeID 61	 [<q.addr> Source Loc: ] 
+----------------------------------------------
+##<q.addr> Source Loc: 
+Ptr 61 		PointsTo: {empty}
+
+----------------------------------------------
+##<tmp> Source Loc: 
+Ptr 62 		PointsTo: { 63 }
+
+!!Target NodeID 63	 [<tmp> Source Loc: ] 
+----------------------------------------------
+##<tmp> Source Loc: 
+Ptr 63 		PointsTo: {empty}
+
+----------------------------------------------
+##<> Source Loc: 
+Ptr 64 		PointsTo: {empty}
+
+----------------------------------------------
+##<> Source Loc: 
+Ptr 65 		PointsTo: {empty}
+
+----------------------------------------------
+##<> Source Loc: 
+Ptr 66 		PointsTo: { 15 }
+
+!!Target NodeID 15	 [<a> Source Loc: ] 
+----------------------------------------------
+##<> Source Loc: 
+Ptr 67 		PointsTo: { 11 }
+
+!!Target NodeID 11	 [<A> Source Loc: ] 
+----------------------------------------------
+##<> Source Loc: 
+Ptr 68 		PointsTo: {empty}
+
+----------------------------------------------
+##<> Source Loc: 
+Ptr 69 		PointsTo: { 17 }
+
+!!Target NodeID 17	 [<b> Source Loc: ] 
+----------------------------------------------
+##<> Source Loc: 
+Ptr 70 		PointsTo: { 13 }
+
+!!Target NodeID 13	 [<B> Source Loc: ] 
+----------------------------------------------
+##<> Source Loc: 
+Ptr 71 		PointsTo: { 15 }
+
+!!Target NodeID 15	 [<a> Source Loc: ] 
+----------------------------------------------
+##<> Source Loc: 
+Ptr 72 		PointsTo: {empty}
+
+----------------------------------------------
+##<> Source Loc: 
+Ptr 73 		PointsTo: { 11 }
+
+!!Target NodeID 11	 [<A> Source Loc: ] 
+----------------------------------------------
+##<> Source Loc: 
+Ptr 74 		PointsTo: { 17 }
+
+!!Target NodeID 17	 [<b> Source Loc: ] 
+----------------------------------------------
+##<> Source Loc: 
+Ptr 75 		PointsTo: {empty}
+
+----------------------------------------------
+##<> Source Loc: 
+Ptr 76 		PointsTo: {empty}
+
+----------------------------------------------
+##<> Source Loc: 
+Ptr 77 		PointsTo: {empty}
+
+----------------------------------------------
+4444
+Add store chi StoreStmt: [Var18 <-- Var14]	
+ValVar ID: 24
+   store ptr %a, ptr %t1, align 8 
+Add store chi StoreStmt: [Var20 <-- Var16]	
+ValVar ID: 25
+   store ptr %b, ptr %t2, align 8 
+Add store chi StoreStmt: [Var14 <-- Var26]	
+ValVar ID: 27
+   store ptr %0, ptr %a, align 8 
+Add store chi StoreStmt: [Var16 <-- Var28]	
+ValVar ID: 29
+   store ptr %1, ptr %b, align 8 
+Add load mu LoadStmt: [Var41 <-- Var18]	
+ValVar ID: 41
+   %4 = load ptr, ptr %t1, align 8 
+Add load mu LoadStmt: [Var42 <-- Var20]	
+ValVar ID: 42
+   %5 = load ptr, ptr %t2, align 8 
+Add load mu LoadStmt: [Var46 <-- Var14]	
+ValVar ID: 46
+   %6 = load ptr, ptr %a, align 8 
+Add load mu LoadStmt: [Var50 <-- Var14]	
+ValVar ID: 50
+   %7 = load ptr, ptr %a, align 8 
+Add load mu LoadStmt: [Var36 <-- Var14]	
+ValVar ID: 36
+   %3 = load ptr, ptr %a, align 8 
+Add store chi StoreStmt: [Var58 <-- Var56]	
+ValVar ID: 64
+   store ptr %p, ptr %p.addr, align 8 
+Add store chi StoreStmt: [Var60 <-- Var57]	
+ValVar ID: 65
+   store ptr %q, ptr %q.addr, align 8 
+Add load mu LoadStmt: [Var66 <-- Var58]	
+ValVar ID: 66
+   %0 = load ptr, ptr %p.addr, align 8 
+Add load mu LoadStmt: [Var67 <-- Var66]	
+ValVar ID: 67
+   %1 = load ptr, ptr %0, align 8 
+Add store chi StoreStmt: [Var62 <-- Var67]	
+ValVar ID: 68
+   store ptr %1, ptr %tmp, align 8 
+Add load mu LoadStmt: [Var69 <-- Var60]	
+ValVar ID: 69
+   %2 = load ptr, ptr %q.addr, align 8 
+Add load mu LoadStmt: [Var70 <-- Var69]	
+ValVar ID: 70
+   %3 = load ptr, ptr %2, align 8 
+Add load mu LoadStmt: [Var71 <-- Var58]	
+ValVar ID: 71
+   %4 = load ptr, ptr %p.addr, align 8 
+Add store chi StoreStmt: [Var71 <-- Var70]	
+ValVar ID: 72
+   store ptr %3, ptr %4, align 8 
+Add load mu LoadStmt: [Var73 <-- Var62]	
+ValVar ID: 73
+   %5 = load ptr, ptr %tmp, align 8 
+Add load mu LoadStmt: [Var74 <-- Var60]	
+ValVar ID: 74
+   %6 = load ptr, ptr %q.addr, align 8 
+Add store chi StoreStmt: [Var74 <-- Var73]	
+ValVar ID: 75
+   store ptr %5, ptr %6, align 8 
+
+*********Memory SSA Statistics***************
+################ (program : interSwap.ll)###############
+----------------Time and memory stats--------------------
+AverageRegSize      1
+GenMUCHITime        0.001
+GenRegionTime       0
+InsertPHITime       0
+SSARenameTime       0
+TotalMSSATime       0
+----------------Numbers stats----------------------------
+BBHasMSSAPhi        1
+CSChiNode           2
+CSHasChi            1
+CSHasMu             1
+CSMuNode            2
+FunEntryChi         9
+FunHasEntryChi      2
+FunHasRetMu         2
+FunRetMu            9
+LoadHasMu           12
+LoadMuNode          12
+MSSAPhi             2
+MaxRegSize          1
+MemRegions          7
+StoreChiNode        9
+StoreHasChi         9
+#######################################################
+Adding direct edge 0 13
+Adding direct edge 3 14
+Adding direct edge 4 15
+Adding direct edge 3 16
+Adding direct edge 5 17
+Adding direct edge 5 18
+Adding direct edge 5 19
+Adding direct edge 7 20
+Adding direct edge 8 21
+Adding direct edge 10 22
+Adding direct edge 10 23
+Adding direct edge 11 24
+Adding direct edge 11 25
+Adding direct edge 12 26
+Adding direct edge 22 27
+Adding direct edge 24 28
+Adding direct edge 5 29
+Adding direct edge 7 29
+Adding direct edge 6 30
+Adding direct edge 8 30
+Adding direct edge 14 31
+Adding direct edge 5 31
+Adding direct edge 15 32
+Adding direct edge 6 32
+Adding direct edge 40 33
+Adding direct edge 10 33
+Adding direct edge 41 34
+Adding direct edge 11 34
+Adding direct edge 27 35
+Adding direct edge 12 35
+Adding direct edge 28 36
+Adding direct edge 23 36
+Adding direct edge 26 37
+Adding direct edge 25 37
+Adding direct edge 20 38
+Adding direct edge 21 39
+setting def MRVERID: 90 MemRegion: pts{19 } MRVERSION: 2 MSSADef: 1, pts{19 } StoreVFGNode ID: 29 StoreStmt: [Var18 <-- Var14]	
+ValVar ID: 24
+   store ptr %a, ptr %t1, align 8 
+setting def MRVERID: 91 MemRegion: pts{21 } MRVERSION: 2 MSSADef: 1, pts{21 } StoreVFGNode ID: 30 StoreStmt: [Var20 <-- Var16]	
+ValVar ID: 25
+   store ptr %b, ptr %t2, align 8 
+setting def MRVERID: 92 MemRegion: pts{15 } MRVERSION: 2 MSSADef: 1, pts{15 } StoreVFGNode ID: 31 StoreStmt: [Var14 <-- Var26]	
+ValVar ID: 27
+   store ptr %0, ptr %a, align 8 
+setting def MRVERID: 93 MemRegion: pts{17 } MRVERSION: 2 MSSADef: 1, pts{17 } StoreVFGNode ID: 32 StoreStmt: [Var16 <-- Var28]	
+ValVar ID: 29
+   store ptr %1, ptr %b, align 8 
+setting def MRVERID: 108 MemRegion: pts{59 } MRVERSION: 2 MSSADef: 1, pts{59 } StoreVFGNode ID: 33 StoreStmt: [Var58 <-- Var56]	
+ValVar ID: 64
+   store ptr %p, ptr %p.addr, align 8 
+setting def MRVERID: 109 MemRegion: pts{61 } MRVERSION: 2 MSSADef: 1, pts{61 } StoreVFGNode ID: 34 StoreStmt: [Var60 <-- Var57]	
+ValVar ID: 65
+   store ptr %q, ptr %q.addr, align 8 
+setting def MRVERID: 110 MemRegion: pts{63 } MRVERSION: 2 MSSADef: 1, pts{63 } StoreVFGNode ID: 35 StoreStmt: [Var62 <-- Var67]	
+ValVar ID: 68
+   store ptr %1, ptr %tmp, align 8 
+setting def MRVERID: 111 MemRegion: pts{15 } MRVERSION: 2 MSSADef: 1, pts{15 } StoreVFGNode ID: 36 StoreStmt: [Var71 <-- Var70]	
+ValVar ID: 72
+   store ptr %3, ptr %4, align 8 
+setting def MRVERID: 112 MemRegion: pts{17 } MRVERSION: 2 MSSADef: 1, pts{17 } StoreVFGNode ID: 37 StoreStmt: [Var74 <-- Var73]	
+ValVar ID: 75
+   store ptr %5, ptr %6, align 8 
+Writing 'test.dot'...mu LoadStmt: [Var36 <-- Var14]	
+ValVar ID: 36
+   %3 = load ptr, ptr %a, align 8 
+add intra indirect edge from load 31 17
+mu LoadStmt: [Var46 <-- Var14]	
+ValVar ID: 46
+   %6 = load ptr, ptr %a, align 8 
+add intra indirect edge from load 65 18
+mu LoadStmt: [Var50 <-- Var14]	
+ValVar ID: 50
+   %7 = load ptr, ptr %a, align 8 
+add intra indirect edge from load 43 19
+mu LoadStmt: [Var41 <-- Var18]	
+ValVar ID: 41
+   %4 = load ptr, ptr %t1, align 8 
+add intra indirect edge from load 29 20
+mu LoadStmt: [Var42 <-- Var20]	
+ValVar ID: 42
+   %5 = load ptr, ptr %t2, align 8 
+add intra indirect edge from load 30 21
+mu LoadStmt: [Var66 <-- Var58]	
+ValVar ID: 66
+   %0 = load ptr, ptr %p.addr, align 8 
+add intra indirect edge from load 33 22
+mu LoadStmt: [Var71 <-- Var58]	
+ValVar ID: 71
+   %4 = load ptr, ptr %p.addr, align 8 
+add intra indirect edge from load 33 23
+mu LoadStmt: [Var69 <-- Var60]	
+ValVar ID: 69
+   %2 = load ptr, ptr %q.addr, align 8 
+add intra indirect edge from load 34 24
+mu LoadStmt: [Var74 <-- Var60]	
+ValVar ID: 74
+   %6 = load ptr, ptr %q.addr, align 8 
+add intra indirect edge from load 34 25
+mu LoadStmt: [Var73 <-- Var62]	
+ValVar ID: 73
+   %5 = load ptr, ptr %tmp, align 8 
+add intra indirect edge from load 35 26
+mu LoadStmt: [Var67 <-- Var66]	
+ValVar ID: 67
+   %1 = load ptr, ptr %0, align 8 
+add intra indirect edge from load 48 27
+mu LoadStmt: [Var70 <-- Var69]	
+ValVar ID: 70
+   %3 = load ptr, ptr %2, align 8 
+add intra indirect edge from load 47 28
+add intra indirect edge from store 49 29
+add intra indirect edge from store 50 30
+add intra indirect edge from store 52 31
+add intra indirect edge from store 51 32
+add intra indirect edge from store 46 33
+add intra indirect edge from store 45 34
+add intra indirect edge from store 44 35
+add intra indirect edge from store 48 36
+add intra indirect edge from store 47 37
+add intra indirect edge from phi 64 42
+add intra indirect edge from phi 32 42
+add intra indirect edge from phi 65 43
+add intra indirect edge from phi 31 43
+add call indirect edge from store 0x600003ce8dc0 0x600003ce89a0
+add call indirect edge from store 0x600003ce8e70 0x600003ce88f0
+add intra indirect edge from formal out 35 53
+add intra indirect edge from formal out 33 54
+add intra indirect edge from formal out 34 55
+add return indirect edge from store 0x600003ce8370 0x600003ce8f20
+add intra indirect edge from formal out 37 56
+add return indirect edge from store 0x600003ce82c0 0x600003ce8fd0
+add intra indirect edge from formal out 36 57
+add intra indirect edge from formal out 30 58
+add intra indirect edge from formal out 29 59
+add intra indirect edge from formal out 42 60
+add intra indirect edge from formal out 43 61
+add intra indirect edge from actual in 32 62
+add intra indirect edge from actual in 31 63
+Writing 'test2.dot'...
+*********SVFG Statistics***************
+################ (program : interSwap.ll)###############
+----------------Time and memory stats--------------------
+ATNodeTime          0.001
+AvgWeight           1
+ConnDirEdgeTime     0
+ConnIndEdgeTime     0
+OptTime             0
+TLNodeTime          0
+TotalTime           0.001
+----------------Numbers stats----------------------------
+ActualIn            2
+ActualOut           2
+ActualParam         2
+ActualRet           0
+Addr                12
+AvgInDegree         1
+AvgIndInDeg         1
+AvgIndOutDeg        1
+AvgOutDegree        1
+Copy                3
+DirectCallEdge      2
+DirectEdge          38
+DirectRetEdge       0
+FormalIn            9
+FormalOut           9
+FormalParam         2
+FormalRet           0
+Gep                 1
+IndCallEdge         2
+IndRetEdge          2
+IndirectEdge        40
+IndirectEdgeLabels  40
+Load                12
+MSSAPhi             2
+MaxInDegree         3
+MaxIndInDeg         2
+MaxIndOutDeg        3
+MaxOutDegree        5
+PHI                 0
+Store               9
+TotalEdge           78
+TotalNode           66
+#######################################################
+Writing 'svfg-pl0.dot'...5555
+6666
+Writing 'pag.dot'...7777
+8888
+9999
+1010101010
+
+NodeID 0 		PointsTo: {empty}
+
+
+NodeID 4 		PointsTo: { 5 }
+
+
+NodeID 7 		PointsTo: { 8 }
+
+
+NodeID 10 		PointsTo: { 11 }
+
+
+NodeID 12 		PointsTo: { 13 }
+
+
+NodeID 14 		PointsTo: { 15 }
+
+
+NodeID 16 		PointsTo: { 17 }
+
+
+NodeID 18 		PointsTo: { 19 }
+
+
+NodeID 20 		PointsTo: { 21 }
+
+
+NodeID 26 		PointsTo: { 11 }
+
+
+NodeID 28 		PointsTo: { 13 }
+
+
+NodeID 30 		PointsTo: { 77 }
+
+
+NodeID 36 		PointsTo: { 11 }
+
+
+NodeID 41 		PointsTo: { 15 }
+
+
+NodeID 42 		PointsTo: { 17 }
+
+
+NodeID 44 		PointsTo: { 45 }
+
+
+NodeID 46 		PointsTo: { 13 }
+
+
+NodeID 50 		PointsTo: { 11 13 }
+
+
+NodeID 56 		PointsTo: { 15 }
+
+
+NodeID 57 		PointsTo: { 17 }
+
+
+NodeID 58 		PointsTo: { 59 }
+
+
+NodeID 60 		PointsTo: { 61 }
+
+
+NodeID 62 		PointsTo: { 63 }
+
+
+NodeID 66 		PointsTo: { 15 }
+
+
+NodeID 67 		PointsTo: { 11 }
+
+
+NodeID 69 		PointsTo: { 17 }
+
+
+NodeID 70 		PointsTo: { 13 }
+
+
+NodeID 71 		PointsTo: { 15 }
+
+
+NodeID 73 		PointsTo: { 11 }
+
+
+NodeID 74 		PointsTo: { 17 }
+
+
+****Persistent Points-To Cache Statistics: flow-sensitive analysis bitvector****
+################ (program : interSwap.ll)###############
+UniquePointsToSets       15
+TotalUnions              82
+PropertyUnions           74
+UniqueUnions             1
+LookupUnions             5
+PreemptiveUnions         2
+TotalComplements         0
+PropertyComplements      0
+UniqueComplements        0
+LookupComplements        0
+PreemptiveComplements    0
+TotalIntersections       0
+PropertyIntersections    0
+UniqueIntersections      0
+LookupIntersections      0
+PreemptiveIntersections  0
+#######################################################

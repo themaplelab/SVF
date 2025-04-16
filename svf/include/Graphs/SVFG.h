@@ -114,6 +114,7 @@ protected:
 
     /// Start building SVFG
     virtual void buildSVFG();
+    virtual void buildSVFGForPointerLevel(size_t pl, std::map<NodeID, size_t>& plMap);
 
 public:
     /// Destructor
@@ -392,6 +393,13 @@ protected:
     void connectIndirectSVFGEdges();
     /// Connect indirect SVFG edges from global initializers (store) to main function entry
     void connectFromGlobalToProgEntry();
+
+
+
+    void addSVFGNodesForAddrTakenVarsForPointerLevel(size_t pl, std::map<NodeID, size_t>& plMap);
+    void connectIndirectSVFGEdgesForPointerLevel(size_t pl, std::map<NodeID, size_t>& plMap);
+
+
 
     /// Add SVFG node
     virtual inline void addSVFGNode(SVFGNode* node, ICFGNode* icfgNode)

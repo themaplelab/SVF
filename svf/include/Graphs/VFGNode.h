@@ -861,6 +861,11 @@ public:
         return param->isPointer();
     }
 
+    inline const PAGNode* getParam() const
+    {
+        return param;
+    }
+
     /// Methods for support type inquiry through isa, cast, and dyn_cast:
     //@{
     static inline bool classof(const ArgumentVFGNode *)

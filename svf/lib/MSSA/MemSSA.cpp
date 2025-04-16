@@ -109,6 +109,290 @@ void MemSSA::buildMemSSA(const FunObjVar& fun)
 
 }
 
+void MemSSA::buildMemSsaForPointerLevel(const FunObjVar& fun, size_t pl, std::map<NodeID, size_t>& plMap)
+{
+
+    assert(!isExtCall(&fun) && "we do not build memory ssa for external functions");
+
+    DBOUT(DMSSA, outs() << "Building Memory SSA for function " << fun.getName()
+          << " \n");
+
+    // nor sure if we need to remove below two lines for pointer level.
+    usedRegs.clear();
+    reg2BBMap.clear();
+
+    /// Create mus/chis for loads/stores/calls for memory regions
+    double muchiStart = stat->getClk(true);
+    createMUCHIForPointerLevel(fun, pl, plMap);
+    double muchiEnd = stat->getClk(true);
+    timeOfCreateMUCHI += (muchiEnd - muchiStart)/TIMEINTERVAL;
+
+    /// Insert PHI for memory regions
+    double phiStart = stat->getClk(true);
+    insertPHIForPointerLevel(fun, pl, plMap);
+    double phiEnd = stat->getClk(true);
+    timeOfInsertingPHI += (phiEnd - phiStart)/TIMEINTERVAL;
+
+    /// SSA rename for memory regions
+    double renameStart = stat->getClk(true);
+    SSARenameForPointerLevel(fun, pl, plMap);
+    double renameEnd = stat->getClk(true);
+    timeOfSSARenaming += (renameEnd - renameStart)/TIMEINTERVAL;
+
+}
+
+
+/*!
+ * Create mu/chi according to memory regions
+ * collect used mrs in usedRegs and construction map from region to BB for prune SSA phi insertion
+ */
+void MemSSA::createMUCHIForPointerLevel(const FunObjVar& fun, size_t pl, std::map<NodeID, size_t>& plMap){
+
+
+    DBOUT(DMSSA,
+          outs() << "\t creating mu chi for function " << fun.getName()
+          << "\n");
+    // 1. create mu/chi
+    //	insert a set of mus for memory regions at each load
+    //  inset a set of chis for memory regions at each store
+
+    // 2. find global names (region name before renaming) of each memory region,
+    // collect used mrs in usedRegs, and collect its def basic block in reg2BBMap
+    // in the form of mu(r) and r = chi (r)
+    // a) mu(r):
+    // 		if(r \not\in varKills) global = global \cup r
+    // b) r = chi(r):
+    // 		if(r \not\in varKills) global = global \cup r
+    //		varKills = varKills \cup r
+    //		block(r) = block(r) \cup bb_{chi}
+
+    /// get all reachable basic blocks from function entry
+    /// ignore dead basic blocks
+    BBList reachableBBs = fun.getReachableBBs();
+
+    for (BBList::const_iterator iter = reachableBBs.begin(), eiter = reachableBBs.end();
+            iter != eiter; ++iter)
+    {
+        const SVFBasicBlock* bb = *iter;
+        varKills.clear();
+        for (const auto& inst: bb->getICFGNodeList())
+        {
+
+            // JH todo: find a way to check if inst has pointer level pl.
+            // i.e. find inst from nodeid
+            if(mrGen->hasSVFStmtList(inst))
+            {
+                SVFStmtList& pagEdgeList = mrGen->getPAGEdgesFromInst(inst);
+                for (SVFStmtList::const_iterator bit = pagEdgeList.begin(),
+                        ebit = pagEdgeList.end(); bit != ebit; ++bit)
+                {
+                    const PAGEdge* inst = *bit;
+                    if(const LoadStmt* load = SVFUtil::dyn_cast<LoadStmt>(inst)){
+                        if(plMap.at(inst->getSrcID()) >= pl){
+                            outs() << "Add load mu " << *load << "\n";
+                            AddLoadMU(bb, load, mrGen->getLoadMRSet(load));
+                        }
+                    }
+                        
+                    else if (const StoreStmt* store = SVFUtil::dyn_cast<StoreStmt>(inst)){
+                        if(plMap.at(inst->getDstID()) >= pl){
+                            outs() << "Add store chi " << *store << "\n";
+
+                            AddStoreCHI(bb, store, mrGen->getStoreMRSet(store));
+                        }
+                    }
+                }
+            }
+
+            // JH todo: need to check if the inst satisfy pointer level requirement.
+            if (isNonInstricCallSite(inst))
+            {
+                // if(plMap.at(inst->getSrcId())
+                const CallICFGNode* cs = cast<CallICFGNode>(inst);
+                if(mrGen->hasRefMRSet(cs))
+                    AddCallSiteMU(cs,mrGen->getCallSiteRefMRSet(cs));
+
+                if(mrGen->hasModMRSet(cs))
+                    AddCallSiteCHI(cs,mrGen->getCallSiteModMRSet(cs));
+            }
+        }
+    }
+
+    // create entry chi for this function including all memory regions
+    // initialize them with version 0 and 1 r_1 = chi (r_0)
+    for (MRSet::iterator iter = usedRegs.begin(), eiter = usedRegs.end();
+            iter != eiter; ++iter)
+    {
+        const MemRegion* mr = *iter;
+        // initialize mem region version and stack for renaming phase
+        mr2CounterMap[mr] = 0;
+        mr2VerStackMap[mr].clear();
+        ENTRYCHI* chi = new ENTRYCHI(&fun, mr);
+        chi->setOpVer(newSSAName(mr,chi));
+        chi->setResVer(newSSAName(mr,chi));
+        funToEntryChiSetMap[&fun].insert(chi);
+
+        /// if the function does not have a reachable return instruction from function entry
+        /// then we won't create return mu for it
+        if(fun.hasReturn())
+        {
+            RETMU* mu = new RETMU(&fun, mr);
+            funToReturnMuSetMap[&fun].insert(mu);
+        }
+
+    }
+
+}
+
+// JH todo: update to pointer level
+void MemSSA::insertPHIForPointerLevel(const FunObjVar& fun, size_t pl, std::map<NodeID, size_t>& plMap)
+{
+
+    DBOUT(DMSSA,
+          outs() << "\t insert phi for function " << fun.getName() << "\n");
+
+    const Map<const SVFBasicBlock*,Set<const SVFBasicBlock*>>& df = fun.getDomFrontierMap();
+    // record whether a phi of mr has already been inserted into the bb.
+    BBToMRSetMap bb2MRSetMap;
+
+    // start inserting phi node
+    for (MRSet::iterator iter = usedRegs.begin(), eiter = usedRegs.end();
+            iter != eiter; ++iter)
+    {
+        const MemRegion* mr = *iter;
+
+        BBList bbs = reg2BBMap[mr];
+        while (!bbs.empty())
+        {
+            const SVFBasicBlock* bb = bbs.back();
+            bbs.pop_back();
+            Map<const SVFBasicBlock*,Set<const SVFBasicBlock*>>::const_iterator it = df.find(bb);
+            if(it == df.end())
+            {
+                writeWrnMsg("bb not in the dominance frontier map??");
+                continue;
+            }
+            const Set<const SVFBasicBlock*>& domSet = it->second;
+            for (const SVFBasicBlock* pbb : domSet)
+            {
+                // if we never insert this phi node before
+                if (0 == bb2MRSetMap[pbb].count(mr))
+                {
+                    bb2MRSetMap[pbb].insert(mr);
+                    // insert phi node
+                    AddMSSAPHI(pbb,mr);
+                    // continue to insert phi in its iterative dominate frontiers
+                    bbs.push_back(pbb);
+                }
+            }
+        }
+    }
+
+}
+
+// JH todo: update to pointer level
+
+void MemSSA::SSARenameForPointerLevel(const FunObjVar& fun, size_t pl, std::map<NodeID, size_t>& plMap)
+{
+
+    DBOUT(DMSSA,
+          outs() << "\t ssa rename for function " << fun.getName() << "\n");
+
+    SSARenameBBForPointerLevel(*fun.getEntryBlock(), pl, plMap);
+}
+
+// JH todo: update to pointer level
+void MemSSA::SSARenameBBForPointerLevel(const SVFBasicBlock& bb, size_t pl, std::map<NodeID, size_t>& plMap)
+{
+
+    // record which mem region needs to pop stack
+    MRVector memRegs;
+
+    // rename phi result op
+    // for each r = phi (...)
+    // 		rewrite r as new name
+    if (hasPHISet(&bb))
+        RenamePhiRes(getPHISet(&bb),memRegs);
+
+
+    // process mu and chi
+    // for each mu(r)
+    // 		rewrite r with top mrver of stack(r)
+    // for each r = chi(r')
+    // 		rewrite r' with top mrver of stack(r)
+    // 		rewrite r with new name
+
+    for (const auto& pNode: bb.getICFGNodeList())
+    {
+        if(mrGen->hasSVFStmtList(pNode))
+        {
+            SVFStmtList& pagEdgeList = mrGen->getPAGEdgesFromInst(pNode);
+            for(SVFStmtList::const_iterator bit = pagEdgeList.begin(), ebit= pagEdgeList.end();
+                    bit!=ebit; ++bit)
+            {
+                const PAGEdge* inst = *bit;
+                if (const LoadStmt* load = SVFUtil::dyn_cast<LoadStmt>(inst))
+                    RenameMuSet(getMUSet(load));
+
+                else if (const StoreStmt* store = SVFUtil::dyn_cast<StoreStmt>(inst))
+                    RenameChiSet(getCHISet(store),memRegs);
+
+            }
+        }
+        if (isNonInstricCallSite(pNode))
+        {
+            const CallICFGNode* cs = cast<CallICFGNode>(pNode);
+            if(mrGen->hasRefMRSet(cs))
+                RenameMuSet(getMUSet(cs));
+
+            if(mrGen->hasModMRSet(cs))
+                RenameChiSet(getCHISet(cs),memRegs);
+        }
+        else if(isRetInstNode(pNode))
+        {
+            const FunObjVar* fun = bb.getParent();
+            RenameMuSet(getReturnMuSet(fun));
+        }
+    }
+
+
+    // fill phi operands of succ basic blocks
+    for (const SVFBasicBlock* succ : bb.getSuccessors())
+    {
+        u32_t pos = bb.getBBPredecessorPos(succ);
+        if (hasPHISet(succ))
+            RenamePhiOps(getPHISet(succ),pos,memRegs);
+    }
+
+    // for succ basic block in dominator tree
+    const FunObjVar* fun = bb.getParent();
+    const Map<const SVFBasicBlock*,Set<const SVFBasicBlock*>>& dtBBsMap = fun->getDomTreeMap();
+    Map<const SVFBasicBlock*,Set<const SVFBasicBlock*>>::const_iterator mapIter = dtBBsMap.find(&bb);
+    if (mapIter != dtBBsMap.end())
+    {
+        const Set<const SVFBasicBlock*>& dtBBs = mapIter->second;
+        for (const SVFBasicBlock* dtbb : dtBBs)
+        {
+            SSARenameBB(*dtbb);
+        }
+    }
+    // for each r = chi(..), and r = phi(..)
+    // 		pop ver stack(r)
+    while (!memRegs.empty())
+    {
+        const MemRegion* mr = memRegs.back();
+        memRegs.pop_back();
+        mr2VerStackMap[mr].pop_back();
+    }
+
+}
+
+
+
+
+
+
+
 /*!
  * Create mu/chi according to memory regions
  * collect used mrs in usedRegs and construction map from region to BB for prune SSA phi insertion

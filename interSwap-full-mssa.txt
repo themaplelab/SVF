@@ -1,0 +1,261 @@
+==========FUNCTION: main==========
+16V_1 = ENCHI(MR_16V_0) 	pts{21 }
+4V_1 = ENCHI(MR_4V_0) 	pts{17 }
+14V_1 = ENCHI(MR_14V_0) 	pts{19 }
+2V_1 = ENCHI(MR_2V_0) 	pts{15 }
+entry
+IntraICFGNode5 {fun: main}
+AddrStmt: [Var7 <-- Var8]
+ValVar ID: 7
+   %retval = alloca i32, align 4
+IntraICFGNode6 {fun: main}
+AddrStmt: [Var10 <-- Var11]
+ValVar ID: 10
+   %A = alloca [1 x i8], align 1
+IntraICFGNode7 {fun: main}
+AddrStmt: [Var12 <-- Var13]
+ValVar ID: 12
+   %B = alloca [1 x i8], align 1
+IntraICFGNode8 {fun: main}
+AddrStmt: [Var14 <-- Var15]
+ValVar ID: 14
+   %a = alloca ptr, align 8
+IntraICFGNode9 {fun: main}
+AddrStmt: [Var16 <-- Var17]
+ValVar ID: 16
+   %b = alloca ptr, align 8
+IntraICFGNode10 {fun: main}
+AddrStmt: [Var18 <-- Var19]
+ValVar ID: 18
+   %t1 = alloca ptr, align 8
+IntraICFGNode11 {fun: main}
+AddrStmt: [Var20 <-- Var21]
+ValVar ID: 20
+   %t2 = alloca ptr, align 8
+IntraICFGNode12 {fun: main}
+StoreStmt: [Var7 <-- Var23]
+ValVar ID: 22
+   store i32 0, ptr %retval, align 4
+IntraICFGNode13 {fun: main}
+StoreStmt: [Var18 <-- Var14]
+ValVar ID: 24
+   store ptr %a, ptr %t1, align 8
+14V_2 = STCHI(MR_14V_1) 	pts{19 }
+
+IntraICFGNode14 {fun: main}
+StoreStmt: [Var20 <-- Var16]
+ValVar ID: 25
+   store ptr %b, ptr %t2, align 8
+16V_2 = STCHI(MR_16V_1) 	pts{21 }
+
+IntraICFGNode15 {fun: main}
+CopyStmt: [Var26 <-- Var10]
+ValVar ID: 26
+   %0 = bitcast ptr %A to ptr
+IntraICFGNode16 {fun: main}
+StoreStmt: [Var14 <-- Var26]
+ValVar ID: 27
+   store ptr %0, ptr %a, align 8
+2V_2 = STCHI(MR_2V_1) 	pts{15 }
+
+IntraICFGNode17 {fun: main}
+CopyStmt: [Var28 <-- Var12]
+ValVar ID: 28
+   %1 = bitcast ptr %B to ptr
+IntraICFGNode18 {fun: main}
+StoreStmt: [Var16 <-- Var28]
+ValVar ID: 29
+   store ptr %1, ptr %b, align 8
+4V_2 = STCHI(MR_4V_1) 	pts{17 }
+
+IntraICFGNode19 {fun: main}
+GepStmt: [Var30 <-- Var10]
+ValVar ID: 30
+   %arrayidx = getelementptr inbounds [1 x i8], ptr %A, i64 0, i64 0
+IntraICFGNode20 {fun: main}
+LoadStmt: [Var32 <-- Var30]
+ValVar ID: 32
+   %2 = load i8, ptr %arrayidx, align 1
+IntraICFGNode21 {fun: main}
+CmpStmt: [Var33 <-- (Var32 predicate33 Var34)]
+ValVar ID: 33
+   %tobool = icmp ne i8 %2, 0
+IntraICFGNode22 {fun: main}
+BranchStmt: [Condition Var33]
+Successor 0 ICFGNode23   Successor 1 ICFGNode24
+ValVar ID: 35
+   br i1 %tobool, label %if.then, label %if.else
+if.then
+
+LDMU(MR_2V_2) 	pts{15 }
+IntraICFGNode23 {fun: main}
+LoadStmt: [Var36 <-- Var14]
+ValVar ID: 36
+   %3 = load ptr, ptr %a, align 8
+IntraICFGNode25 {fun: main}
+StoreStmt: [Var36 <-- Var38]
+ValVar ID: 37
+   store i8 65, ptr %3, align 1
+IntraICFGNode27 {fun: main}
+BranchStmt: [ Unconditional branch]
+Successor 0 ICFGNode30
+ValVar ID: 39
+   br label %if.end
+if.else
+
+LDMU(MR_14V_2) 	pts{19 }
+IntraICFGNode24 {fun: main}
+LoadStmt: [Var41 <-- Var18]
+ValVar ID: 41
+   %4 = load ptr, ptr %t1, align 8
+
+LDMU(MR_16V_2) 	pts{21 }
+IntraICFGNode26 {fun: main}
+LoadStmt: [Var42 <-- Var20]
+ValVar ID: 42
+   %5 = load ptr, ptr %t2, align 8
+
+CALMU(MR_4V_2) 	pts{17 }
+CALMU(MR_2V_2) 	pts{15 }
+CallICFGNode28 {fun: main}
+CallPE: [Var56 <-- Var41]
+ValVar ID: 43
+   call void @swap(ptr %4, ptr %5)
+CallPE: [Var57 <-- Var42]
+ValVar ID: 43
+   call void @swap(ptr %4, ptr %5)
+4V_3 = CALCHI(MR_4V_2) 	pts{17 }
+2V_3 = CALCHI(MR_2V_2) 	pts{15 }
+
+LDMU(MR_2V_3) 	pts{15 }
+IntraICFGNode31 {fun: main}
+LoadStmt: [Var46 <-- Var14]
+ValVar ID: 46
+   %6 = load ptr, ptr %a, align 8
+IntraICFGNode33 {fun: main}
+StoreStmt: [Var46 <-- Var48]
+ValVar ID: 47
+   store i8 66, ptr %6, align 1
+IntraICFGNode35 {fun: main}
+BranchStmt: [ Unconditional branch]
+Successor 0 ICFGNode30
+ValVar ID: 49
+   br label %if.end
+if.end
+4V_4 = PHI(MR_4V_2, MR_4V_3, )
+2V_4 = PHI(MR_2V_2, MR_2V_3, )
+
+LDMU(MR_2V_4) 	pts{15 }
+IntraICFGNode30 {fun: main}
+LoadStmt: [Var50 <-- Var14]
+ValVar ID: 50
+   %7 = load ptr, ptr %a, align 8
+IntraICFGNode32 {fun: main}
+StoreStmt: [Var50 <-- Var52]
+ValVar ID: 51
+   store i8 63, ptr %7, align 1
+IntraICFGNode34 {fun: main}
+LoadStmt: [Var53 <-- Var7]
+ValVar ID: 53
+   %8 = load i32, ptr %retval, align 4
+IntraICFGNode36 {fun: main}
+   ret i32 %8
+RETMU(MR_16V_2) 	pts{21 }
+RETMU(MR_4V_4) 	pts{17 }
+RETMU(MR_14V_2) 	pts{19 }
+RETMU(MR_2V_4) 	pts{15 }
+==========FUNCTION: swap==========
+8V_1 = ENCHI(MR_8V_0) 	pts{61 }
+10V_1 = ENCHI(MR_10V_0) 	pts{63 }
+6V_1 = ENCHI(MR_6V_0) 	pts{59 }
+4V_1 = ENCHI(MR_4V_0) 	pts{17 }
+2V_1 = ENCHI(MR_2V_0) 	pts{15 }
+entry
+IntraICFGNode37 {fun: swap}
+AddrStmt: [Var58 <-- Var59]
+ValVar ID: 58
+   %p.addr = alloca ptr, align 8
+IntraICFGNode38 {fun: swap}
+AddrStmt: [Var60 <-- Var61]
+ValVar ID: 60
+   %q.addr = alloca ptr, align 8
+IntraICFGNode39 {fun: swap}
+AddrStmt: [Var62 <-- Var63]
+ValVar ID: 62
+   %tmp = alloca ptr, align 8
+IntraICFGNode40 {fun: swap}
+StoreStmt: [Var58 <-- Var56]
+ValVar ID: 64
+   store ptr %p, ptr %p.addr, align 8
+6V_2 = STCHI(MR_6V_1) 	pts{59 }
+
+IntraICFGNode41 {fun: swap}
+StoreStmt: [Var60 <-- Var57]
+ValVar ID: 65
+   store ptr %q, ptr %q.addr, align 8
+8V_2 = STCHI(MR_8V_1) 	pts{61 }
+
+LDMU(MR_6V_2) 	pts{59 }
+IntraICFGNode42 {fun: swap}
+LoadStmt: [Var66 <-- Var58]
+ValVar ID: 66
+   %0 = load ptr, ptr %p.addr, align 8
+
+LDMU(MR_2V_1) 	pts{15 }
+IntraICFGNode43 {fun: swap}
+LoadStmt: [Var67 <-- Var66]
+ValVar ID: 67
+   %1 = load ptr, ptr %0, align 8
+IntraICFGNode44 {fun: swap}
+StoreStmt: [Var62 <-- Var67]
+ValVar ID: 68
+   store ptr %1, ptr %tmp, align 8
+10V_2 = STCHI(MR_10V_1) 	pts{63 }
+
+LDMU(MR_8V_2) 	pts{61 }
+IntraICFGNode45 {fun: swap}
+LoadStmt: [Var69 <-- Var60]
+ValVar ID: 69
+   %2 = load ptr, ptr %q.addr, align 8
+
+LDMU(MR_4V_1) 	pts{17 }
+IntraICFGNode46 {fun: swap}
+LoadStmt: [Var70 <-- Var69]
+ValVar ID: 70
+   %3 = load ptr, ptr %2, align 8
+
+LDMU(MR_6V_2) 	pts{59 }
+IntraICFGNode47 {fun: swap}
+LoadStmt: [Var71 <-- Var58]
+ValVar ID: 71
+   %4 = load ptr, ptr %p.addr, align 8
+IntraICFGNode48 {fun: swap}
+StoreStmt: [Var71 <-- Var70]
+ValVar ID: 72
+   store ptr %3, ptr %4, align 8
+2V_2 = STCHI(MR_2V_1) 	pts{15 }
+
+LDMU(MR_10V_2) 	pts{63 }
+IntraICFGNode49 {fun: swap}
+LoadStmt: [Var73 <-- Var62]
+ValVar ID: 73
+   %5 = load ptr, ptr %tmp, align 8
+
+LDMU(MR_8V_2) 	pts{61 }
+IntraICFGNode50 {fun: swap}
+LoadStmt: [Var74 <-- Var60]
+ValVar ID: 74
+   %6 = load ptr, ptr %q.addr, align 8
+IntraICFGNode51 {fun: swap}
+StoreStmt: [Var74 <-- Var73]
+ValVar ID: 75
+   store ptr %5, ptr %6, align 8
+4V_2 = STCHI(MR_4V_1) 	pts{17 }
+
+IntraICFGNode52 {fun: swap}
+   ret void
+RETMU(MR_6V_2) 	pts{59 }
+RETMU(MR_8V_2) 	pts{61 }
+RETMU(MR_4V_2) 	pts{17 }
+RETMU(MR_10V_2) 	pts{63 }
+RETMU(MR_2V_2) 	pts{15 }
