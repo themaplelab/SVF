@@ -86,10 +86,7 @@ protected:
     /// SCC detection
     virtual inline NodeStack& SCCDetect()
     {
-        std::cout << "aaaa\n";
-
         getSCCDetector()->find();
-        std::cout << "bbbb\n";
 
         return getSCCDetector()->topoNodeStack();
     }
@@ -106,7 +103,6 @@ protected:
         {
             NodeID nodeId = nodeStack.top();
             nodeStack.pop();
-            std::cout << "push svfg node " << nodeId << "\n";
             pushIntoWorklist(nodeId);
         }
     }
@@ -132,14 +128,11 @@ protected:
     /// Propagation for the solving, to be implemented in the child class
     virtual void propagate(GNODE* v)
     {
-        std::cout << "Start propagating.\n";
         child_iterator EI = GTraits::direct_child_begin(*v);
         child_iterator EE = GTraits::direct_child_end(*v);
         for (; EI != EE; ++EI)
         {
-            std::cout << "xxxxxxxx " << Node_Index(*EI) << "\n";
             if (propFromSrcToDst(*(EI.getCurrent()))){
-                std::cout << "PROPAGATION: push svfg node " << Node_Index(*EI) << " by " << (*v)->getId() << "\n";
                 pushIntoWorklist(Node_Index(*EI));
             }
                 

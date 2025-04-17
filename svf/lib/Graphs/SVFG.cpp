@@ -263,12 +263,10 @@ void SVFG::buildSVFGForPointerLevel(size_t pl, std::map<NodeID, size_t>& plMap)
         DBOUT(DGENERAL, outs() << pasMsg("\tCreate SVFG Addr-taken Node\n"));
         stat->ATVFNodeStart();
         addSVFGNodesForAddrTakenVarsForPointerLevel(pl, plMap);
-        dump("test", true);
         stat->ATVFNodeEnd();
         DBOUT(DGENERAL, outs() << pasMsg("\tCreate SVFG Indirect Edge\n"));
         stat->indVFEdgeStart();
         connectIndirectSVFGEdgesForPointerLevel(pl, plMap);
-        dump("test2", true);
         stat->indVFEdgeEnd();
         if (!Options::WriteSVFG().empty())
             writeToFile(Options::WriteSVFG());
@@ -287,12 +285,10 @@ void SVFG::addSVFGNodesForAddrTakenVarsForPointerLevel(size_t pl, std::map<NodeI
         StoreStmt* store = SVFUtil::cast<StoreStmt>(*iter);
         auto inst = SVFUtil::cast<SVFStmt>(*iter);
         if(plMap.at(inst->getDstID()) < pl){
-            outs() << "skipping " << *inst << "\n";
             continue;
         }
         const StmtSVFGNode* sNode = getStmtVFGNode(store);
         for(CHISet::iterator pi = mssa->getCHISet(store).begin(), epi = mssa->getCHISet(store).end(); pi!=epi; ++pi){
-            outs() << "setting def " << *((*pi)->getResVer()) << " " << *sNode << "\n";
             setDef((*pi)->getResVer(),sNode);
         }
             
@@ -307,7 +303,6 @@ void SVFG::addSVFGNodesForAddrTakenVarsForPointerLevel(size_t pl, std::map<NodeI
         for(PHISet::iterator pi = it->second.begin(), epi = it->second.end(); pi!=epi; ++pi)
         {
             MemSSA::PHI* phi =  *pi;
-            // outs() << "Phi node!!!! " << *(phi->getResVer()) << "\n";
             const ICFGNode* inst = phi->getBasicBlock()->front();
             // JH todo: how to find the pointer level of a phi?
             addIntraMSSAPHISVFGNode(const_cast<ICFGNode*>(inst), phi->opVerBegin(), phi->opVerEnd(),phi->getResVer(), totalVFGNode++);
@@ -372,9 +367,7 @@ void SVFG::connectIndirectSVFGEdgesForPointerLevel(size_t pl, std::map<NodeID, s
             {
                 if(LOADMU* mu = SVFUtil::dyn_cast<LOADMU>(*it))
                 {
-                    outs() << "mu " << *(mu->getLoadStmt()) << "\n";
                     NodeID def = getDef(mu->getMRVer());
-                    outs() << "add intra indirect edge from load " << def << " " << nodeId << "\n";
                     addIntraIndirectVFEdge(def,nodeId, mu->getMRVer()->getMR()->getPointsTo());
                 }
             }
@@ -387,7 +380,6 @@ void SVFG::connectIndirectSVFGEdgesForPointerLevel(size_t pl, std::map<NodeID, s
                 if(STORECHI* chi = SVFUtil::dyn_cast<STORECHI>(*it))
                 {
                     NodeID def = getDef(chi->getOpVer());
-                    outs() << "add intra indirect edge from store " << def << " " << nodeId << "\n";
                     addIntraIndirectVFEdge(def,nodeId, chi->getOpVer()->getMR()->getPointsTo());
                 }
             }
@@ -427,16 +419,12 @@ void SVFG::connectIndirectSVFGEdgesForPointerLevel(size_t pl, std::map<NodeID, s
                 }
             }
             NodeID def = getDef(formalOut->getMRVer());
-            outs() << "add intra indirect edge from formal out " << def << " " << nodeId << "\n";
-
             addIntraIndirectVFEdge(def,nodeId, formalOut->getMRVer()->getMR()->getPointsTo());
         }
         else if(const ActualINSVFGNode* actualIn = SVFUtil::dyn_cast<ActualINSVFGNode>(node))
         {
             const MRVer* ver = actualIn->getMRVer();
             NodeID def = getDef(ver);
-            outs() << "add intra indirect edge from actual in " << def << " " << nodeId << "\n";
-
             addIntraIndirectVFEdge(def,nodeId, ver->getMR()->getPointsTo());
         }
         else if(SVFUtil::isa<ActualOUTSVFGNode>(node))
@@ -450,8 +438,6 @@ void SVFG::connectIndirectSVFGEdgesForPointerLevel(size_t pl, std::map<NodeID, s
             {
                 const MRVer* op = it->second;
                 NodeID def = getDef(op);
-                outs() << "add intra indirect edge from phi " << def << " " << nodeId << "\n";
-
                 addIntraIndirectVFEdge(def,nodeId, op->getMR()->getPointsTo());
             }
         }
@@ -768,7 +754,6 @@ SVFGEdge* SVFG::addInterIndirectVFCallEdge(const ActualINSVFGNode* src, const Fo
     if(cpts1.intersects(cpts2))
     {
         cpts1 &= cpts2;
-        outs() << "add call indirect edge from store " << src << " " << dst << "\n";
         return addCallIndirectVFEdge(src->getId(),dst->getId(),cpts1,csId);
     }
     return nullptr;
@@ -785,8 +770,6 @@ SVFGEdge* SVFG::addInterIndirectVFRetEdge(const FormalOUTSVFGNode* src, const Ac
     if(cpts1.intersects(cpts2))
     {
         cpts1 &= cpts2;
-        outs() << "add return indirect edge from store " << src << " " << dst << "\n";
-
         return addRetIndirectVFEdge(src->getId(),dst->getId(),cpts1,csId);
     }
     return nullptr;

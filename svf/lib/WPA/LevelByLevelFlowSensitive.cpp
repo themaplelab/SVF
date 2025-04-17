@@ -11,35 +11,41 @@ using namespace SVF;
 using namespace SVFUtil;
 
 
-size_t LevelByLevelFlowSensitive::computePointerLevels(std::map<NodeID, std::set<NodeID>> &dag){
+size_t LevelByLevelFlowSensitive::computeMaxPointerLevel(std::map<NodeID, std::set<NodeID>> &dag){
+
     size_t maxPl = 0;
-    for(auto it = dag.begin(); it != dag.end(); ++it){
-        auto pl = getPointerLevel(it->first, dag);
+    auto preAnalysis = getPreAnalysis();
+    for(auto it = preAnalysis->getAllValidPtrs().begin(); it != preAnalysis->getAllValidPtrs().end(); ++it){
+        SVF::NodeID nid = *it;
+        auto pl = computePointerLevel(nid, dag);
         maxPl = std::max(maxPl, pl);
-        pointerLevelToNodeIDsMap[pl].insert(it->first);
+        pointerLevelToNodeIDsMap[pl].insert(nid);
     }
 
     return maxPl;
 }
 
 
-size_t LevelByLevelFlowSensitive::getPointerLevel(NodeID id, std::map<NodeID, std::set<NodeID>> &dag){
+size_t LevelByLevelFlowSensitive::computePointerLevel(NodeID id, std::map<NodeID, std::set<NodeID>> &dag){
+
+    auto repNode = ptgScc->repNode(id);
     
-    if(!dag.count(id)){
+    if(!dag.count(repNode)){
         return 0;
     }
     
-    if(pointerLevelMap.count(id)){
-        return pointerLevelMap.at(id);
+    if(pointerLevelMap.count(repNode)){
+        return pointerLevelMap.at(repNode);
     }
     
     size_t pl = 0;
-    for(auto to : dag.at(id)){
-        pl = std::max(pl, getPointerLevel(to, dag));
+    for(auto to : dag.at(repNode)){
+        pl = std::max(pl, computePointerLevel(to, dag));
     }
 
-    pointerLevelMap[id] = pl+1;
-    return pointerLevelMap[id];
+    // pointerLevelMap[id] = pl+1;
+    pointerLevelMap[repNode] = pl+1;
+    return pointerLevelMap[repNode];
 
 }
 
@@ -52,22 +58,16 @@ void LevelByLevelFlowSensitive::initialize(){
     // create stats
     stat = new LevelByLevelFlowSensitiveStat(this);
 
+    // JH todo: steen seems like does not support inter-procedural analysis for now.
     steen = Steensgaard::createSteensgaard(getPAG());
     ander = AndersenWaveDiff::createAndersenWaveDiff(getPAG());
-
-    
-
-
     // ptg = new PointsToGraph(steen);
     ptg = new PointsToGraph(ander);
 
 
-
     pointsToGraphSCCDetection();
-
     // turn the SCC into DAG
     std::map<NodeID, std::set<NodeID>> dag;
-
     for(auto it = ander->getAllValidPtrs().begin(); it != ander->getAllValidPtrs().end(); ++it){
         SVF::NodeID nid = *it;
         for(auto pointeeId : ander->getPts(nid)){
@@ -76,64 +76,27 @@ void LevelByLevelFlowSensitive::initialize(){
             }
         }
     }
+    currentPointerLevel = computeMaxPointerLevel(dag);
 
-
-    // JH todo: use all pointers instead of only dag
-    size_t highestPointerLevel = computePointerLevels(dag);
-
-
-    currentPointerLevel = highestPointerLevel;
     svfg = memSSA.buildPTROnlySvfgForPointerLevel(ander, currentPointerLevel, pointerLevelMap);
     setGraph(svfg);
-
-    svfg->dump("maxpl", true);
-
-    dumpTopLevelPtsTo();
-
-    outs() << "End of initialization\n";
 }
 
 
 
 void LevelByLevelFlowSensitive::analyze(){
 
-    outs() << "Levpa analyze.\n";
-
     initialize();
-
     solveConstraints();
     finalize();
 
     std::terminate();
-
-
-
-    // if(Options::WriteAnder().empty()){
-    //     // initialize - split pointers into groups
-
-    //     // while not final layer
-    //     // build mssa and svfg for current layer
-
-    //     // solve fixed point for current layer
-
-    //     // cleanup
-
-
-    // }
 }
 
 
-void LevelByLevelFlowSensitive::solveConstraints()
-{
-    // bool limitTimerSet = SVFUtil::startAnalysisLimitTimer(Options::FsTimeLimit());
-
-    // double start = stat->getClk(true);
-    // /// Start solving constraints
-    // DBOUT(DGENERAL, outs() << SVFUtil::pasMsg("Start Solving Constraints\n"));
-
+void LevelByLevelFlowSensitive::solveConstraints(){
 
     while(currentPointerLevel){
-        outs() << "Current pointer level " << currentPointerLevel << "\n";
         do
         {
             numOfIteration++;
@@ -142,44 +105,20 @@ void LevelByLevelFlowSensitive::solveConstraints()
                 dumpStat();
 
             callGraphSCC->find();
-            outs() << "1111\n";
             initWorklist();
-            outs() << "2222\n";
             solveWorklist();
-            outs() << "3333\n";
-
         }
         while (updateCallGraph(getIndirectCallsites()));
         
-        dumpAllPts();
-
         --currentPointerLevel;
-        outs() << "4444\n";
-        // this should be updating svfg instead of creating new svfg
-        
+        // JH todo: this should be updating svfg instead of creating new svfg
         svfg = memSSA.buildPTROnlySvfgForPointerLevel(ander, currentPointerLevel, pointerLevelMap);
         setGraph(svfg);
-
-        
-        svfg->dump("svfg-pl" + std::to_string(currentPointerLevel), true);
-        outs() << "5555\n";
-
-
     }
-
-    
-
-    // DBOUT(DGENERAL, outs() << SVFUtil::pasMsg("Finish Solving Constraints\n"));
-
-    // // Reset the time-up alarm; analysis is done.
-    // SVFUtil::stopAnalysisLimitTimer(limitTimerSet);
-
-    // double end = stat->getClk(true);
-    // solveTime += (end - start) / TIMEINTERVAL;
-
 }
 
 bool LevelByLevelFlowSensitive::updateCallGraph(const CallSiteToFunPtrMap& callsites){
+    // JH todo: update according to fspta
     return false;
 }
 
@@ -187,69 +126,18 @@ bool LevelByLevelFlowSensitive::updateCallGraph(const CallSiteToFunPtrMap& calls
 /*!
  * Finalize analysis
  */
-void LevelByLevelFlowSensitive::finalize()
-{
+void LevelByLevelFlowSensitive::finalize(){
 
-    outs() << "6666\n";
-
-    getPAG()->dump("pag");
     if(Options::DumpVFG())
         svfg->dump("fs_solved", true);
-
-    outs() << "7777\n";
-    
-    // JH todo: this cause bug. skip for now.
-    // NodeStack& nodeStack = WPASolver<SVFG*>::SCCDetect();
-
-    outs() << "8888\n";
-
-    // while (nodeStack.empty() == false)
-    // {
-    //     // NodeID rep = nodeStack.top();
-    //     nodeStack.pop();
-    //     // const NodeBS& subNodes = getSCCDetector()->subNodes(rep);
-    //     // if (subNodes.count() > maxSCCSize)
-    //     //     maxSCCSize = subNodes.count();
-    //     // if (subNodes.count() > 1)
-    //     // {
-    //     //     numOfNodesInSCC += subNodes.count();
-    //     //     numOfSCC++;
-    //     // }
-    // }
-    outs() << "9999\n";
-
-    // TODO: check -stat too.
-    if (Options::ClusterFs())
-    {
-        Map<std::string, std::string> stats;
-        const PTDataTy *ptd = getPTDataTy();
-        // TODO: should we use liveOnly?
-        Map<PointsTo, unsigned> allPts = ptd->getAllPts(true);
-        // TODO: parameterise final arg.
-        NodeIDAllocator::Clusterer::evaluate(*PointsTo::getCurrentBestNodeMapping(), allPts, stats, true);
-        NodeIDAllocator::Clusterer::printStats("post-main: best", stats);
-
-        // Do the same for the candidates. TODO: probably temporary for eval. purposes.
-        // for (std::pair<hclust_fast_methods, std::vector<NodeID>> &candidate : candidateMappings)
-        // {
-        //     // Can reuse stats, since we're always filling it with `evaluate`, it will always be overwritten.
-        //     NodeIDAllocator::Clusterer::evaluate(candidate.second, allPts, stats, true);
-        //     NodeIDAllocator::Clusterer::printStats("post-main: candidate " + SVFUtil::hclustMethodToString(candidate.first), stats);
-        // }
-    }
-    outs() << "1010101010\n";
 
     BVDataPTAImpl::finalize();
 }
 
 
-void LevelByLevelFlowSensitive::processNode(NodeID nodeId)
-{
-    // outs() << "process node: " << nodeId << "\n";
+void LevelByLevelFlowSensitive::processNode(NodeID nodeId){
+
     SVFGNode* node = svfg->getSVFGNode(nodeId);
-    
-    // outs() << *node << "\n";
-    // outs() << "2.2\n";
 
     if (processSVFGNode(node))
         propagate(&node);
@@ -257,9 +145,7 @@ void LevelByLevelFlowSensitive::processNode(NodeID nodeId)
     clearAllDFOutVarFlag(node);
 }
 
-bool LevelByLevelFlowSensitive::processSVFGNode(SVFGNode* node)
-{
-    outs() << "Processing node " << *node << "\n";
+bool LevelByLevelFlowSensitive::processSVFGNode(SVFGNode* node){
     double start = stat->getClk();
     bool changed = false;
     if (AddrSVFGNode* addr = SVFUtil::dyn_cast<AddrSVFGNode>(node))
@@ -322,8 +208,6 @@ bool LevelByLevelFlowSensitive::processSVFGNode(SVFGNode* node)
 
     double end = stat->getClk();
     processTime += (end - start) / TIMEINTERVAL;
-
-    outs() << "Processed node " << *node << " " << changed << "\n";
 
     return changed;
 }
@@ -460,8 +344,6 @@ bool LevelByLevelFlowSensitive::processStore(const StoreSVFGNode* store)
 
     const PointsTo & dstPts = getPts(store->getPAGDstNodeID());
 
-    outs() << "store dst id: " << store->getPAGDstNodeID() << "\n";
-
     /// STORE statement can only be processed if the pointer on the LHS
     /// points to something. If we handle STORE with an empty points-to
     /// set, the OUT set will be updated from IN set. Then if LHS pointer
@@ -512,9 +394,6 @@ bool LevelByLevelFlowSensitive::processStore(const StoreSVFGNode* store)
     double updateEnd = stat->getClk();
     updateTime += (updateEnd - updateStart) / TIMEINTERVAL;
 
-
-    outs() << "Is strong update? " << isSU << " " << changed << "\n";
-
     return changed;
 }
 
@@ -544,7 +423,6 @@ bool LevelByLevelFlowSensitive::isStrongUpdate(const SVFGNode* node, NodeID& sin
     }
     return isSU;
 }
-
 
 bool LevelByLevelFlowSensitive::hasCurrentPointerLevel(NodeID nId){
     auto svfgNode = svfg->getSVFGNode(nId);
@@ -709,7 +587,6 @@ size_t LevelByLevelFlowSensitive::getPointerLevel(SVFGNode *node){
         child_iterator EI = GTraits::direct_child_begin(mr);
         child_iterator EE = GTraits::direct_child_end(mr);
         for (; EI != EE; ++EI){
-            outs() << "Looking at child " << *(svfg->getSVFGNode(Node_Index(*EI))) << "\n";
             if(SVFUtil::isa<MRSVFGNode>(svfg->getSVFGNode(Node_Index(*EI)))){
                 continue;
             }
@@ -727,24 +604,19 @@ size_t LevelByLevelFlowSensitive::getPointerLevel(SVFGNode *node){
         return 0;
     }
 
-    outs() << *node << "\n";
     assert(false && "Unknown node type.");
     return -1;
 }
-
-            
-
-
 
 size_t LevelByLevelFlowSensitive::getPointerLevel(NodeID nId){
     auto node = svfg->getSVFGNode(nId);
     return getPointerLevel(node);
 }
 
-
 size_t LevelByLevelFlowSensitive::getPointerLevelFromPagNodeId(NodeID nId){
-    if(pointerLevelMap.count(nId)){
-        return pointerLevelMap.at(nId);
+    auto repNode = ptgScc->repNode(nId);
+    if(pointerLevelMap.count(repNode)){
+        return pointerLevelMap.at(repNode);
     }
     return 0;
 }

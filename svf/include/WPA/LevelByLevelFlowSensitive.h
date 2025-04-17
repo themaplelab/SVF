@@ -9,6 +9,7 @@
 #include "Graphs/PointsToGraph.h"
 #include "MSSA/SVFGBuilder.h"
 #include <iostream>
+// #include "WPA/Andersen.h"
 
 
 
@@ -21,6 +22,7 @@ namespace SVF{
 
     class Steensgaard;
     class AndersenWaveDiff;
+    // class AndersenBase;
 
 
     typedef WPAFSSolver<SVFG*> WPASVFGFSSolver;
@@ -54,30 +56,15 @@ namespace SVF{
                 ptgScc->find();            
             }
 
-            size_t computePointerLevels(std::map<NodeID, std::set<NodeID>>&);
-            size_t getPointerLevel(NodeID id, std::map<NodeID, std::set<NodeID>>&);
+            
 
         protected:
-            // virtual inline void initWorklist() override
-            // {
-            //     NodeStack& nodeStack = SCCDetect();
-            //     while (!nodeStack.empty())
-            //     {
-            //         NodeID nodeId = nodeStack.top();
-            //         nodeStack.pop();
-            //         std::cout << "push svfg node " << nodeId << "\n";
-            //         pushIntoWorklist(nodeId);
-            //     }
-            // }
 
             bool updateCallGraph(const CallSiteToFunPtrMap& callsites) override;
 
             virtual inline void initWorklist() override{
-                std::cout << "aaaa" << "\n";
-
                 if(allNodes.empty()){
                     NodeStack &nodeStack = SCCDetect();
-                    std::cout << nodeStack.size() << "\n";
                     while (!nodeStack.empty())
                     {
                         NodeID nodeId = nodeStack.top();
@@ -88,8 +75,6 @@ namespace SVF{
                 }
                 for(auto nId : allNodes){
                     if(getPointerLevel(nId) == currentPointerLevel){
-                        std::cout << "push svfg node " << nId << " with pointer level " << getPointerLevel(nId) << "\n";
-
                         pushIntoWorklist(nId);
                     }
                 }
@@ -200,6 +185,14 @@ namespace SVF{
 
 
             AndersenWaveDiff *ander;
+
+            size_t computeMaxPointerLevel(std::map<NodeID, std::set<NodeID>>&);
+            size_t computePointerLevel(NodeID id, std::map<NodeID, std::set<NodeID>>&);
+            inline AndersenWaveDiff* getPreAnalysis(){
+                //JH todo: update to steen
+                return ander;
+            }
+
 
 
 
