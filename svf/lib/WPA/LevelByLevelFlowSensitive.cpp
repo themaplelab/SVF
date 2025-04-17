@@ -78,7 +78,7 @@ void LevelByLevelFlowSensitive::initialize(){
     }
     currentPointerLevel = computeMaxPointerLevel(dag);
 
-    svfg = memSSA.buildPTROnlySvfgForPointerLevel(ander, currentPointerLevel, pointerLevelMap);
+    svfg = memSSA.buildPTROnlySvfgForPointerLevel(this, currentPointerLevel, pointerLevelMap);
     setGraph(svfg);
 
     svfg->dump("svfg-pl" + std::to_string(currentPointerLevel), true);
@@ -117,7 +117,7 @@ void LevelByLevelFlowSensitive::solveConstraints(){
         // JH todo: this should be updating svfg instead of creating new svfg
         // JH todo: should use pts of this instead of ander.
         // memSSA.updatePTROnlySvfgForPointerLevel(ander, currentPointerLevel, pointerLevelMap);
-        svfg = memSSA.buildPTROnlySvfgForPointerLevel(ander, currentPointerLevel, pointerLevelMap);
+        svfg = memSSA.buildPTROnlySvfgForPointerLevel(this, currentPointerLevel, pointerLevelMap);
         setGraph(svfg);
         svfg->dump("svfg-pl" + std::to_string(currentPointerLevel), true);
 

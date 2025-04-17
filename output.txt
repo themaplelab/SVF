@@ -31,9 +31,9 @@ TotalSVFStmts       57
 VarArrayObj         2
 VarStructObj        0
 ----------------Time and memory stats--------------------
-LLVMIRTime          0.006
+LLVMIRTime          0.003
 SVFIRTime           0
-SymbolTableTime     0
+SymbolTableTime     0.001
 #######################################################
 
 *********PTACallGraph Stats (Andersen analysis)***************
@@ -578,27 +578,27 @@ IntraICFGNode52 {fun: swap}
 *********Memory SSA Statistics***************
 ################ (program : interSwap.ll)###############
 ----------------Time and memory stats--------------------
-AverageRegSize      1
+AverageRegSize      0
 GenMUCHITime        0
 GenRegionTime       0
 InsertPHITime       0
 SSARenameTime       0
-TotalMSSATime       0.001
+TotalMSSATime       0
 ----------------Numbers stats----------------------------
 BBHasMSSAPhi        5
-CSChiNode           2
-CSHasChi            1
-CSHasMu             1
-CSMuNode            2
-FunEntryChi         2
-FunHasEntryChi      1
+CSChiNode           0
+CSHasChi            0
+CSHasMu             0
+CSMuNode            0
+FunEntryChi         0
+FunHasEntryChi      0
 FunHasRetMu         2
-FunRetMu            2
+FunRetMu            0
 LoadHasMu           12
 LoadMuNode          0
-MSSAPhi             2
-MaxRegSize          1
-MemRegions          7
+MSSAPhi             0
+MaxRegSize          0
+MemRegions          0
 StoreChiNode        0
 StoreHasChi         9
 #######################################################
@@ -607,45 +607,45 @@ StoreHasChi         9
 ################ (program : interSwap.ll)###############
 ----------------Time and memory stats--------------------
 ATNodeTime          0
-AvgWeight           1
+AvgWeight           0
 ConnDirEdgeTime     0
 ConnIndEdgeTime     0
 OptTime             0
 TLNodeTime          0
 TotalTime           0
 ----------------Numbers stats----------------------------
-ActualIn            2
-ActualOut           2
+ActualIn            0
+ActualOut           0
 ActualParam         2
 ActualRet           0
 Addr                12
 AvgInDegree         0
-AvgIndInDeg         1
-AvgIndOutDeg        1
+AvgIndInDeg         0
+AvgIndOutDeg        0
 AvgOutDegree        0
 Copy                3
 DirectCallEdge      2
 DirectEdge          38
 DirectRetEdge       0
-FormalIn            2
-FormalOut           2
+FormalIn            0
+FormalOut           0
 FormalParam         2
 FormalRet           0
 Gep                 1
 IndCallEdge         0
 IndRetEdge          0
-IndirectEdge        8
-IndirectEdgeLabels  8
+IndirectEdge        0
+IndirectEdgeLabels  0
 Load                12
-MSSAPhi             2
+MSSAPhi             0
 MaxInDegree         2
-MaxIndInDeg         2
-MaxIndOutDeg        2
+MaxIndInDeg         0
+MaxIndOutDeg        0
 MaxOutDegree        5
 PHI                 0
 Store               9
-TotalEdge           46
-TotalNode           52
+TotalEdge           38
+TotalNode           42
 #######################################################
 Writing 'svfg_final.dot'...Writing 'svfg-pl3.dot'...0
 ==========FUNCTION: main==========
@@ -857,19 +857,19 @@ SSARenameTime       0
 TotalMSSATime       0
 ----------------Numbers stats----------------------------
 BBHasMSSAPhi        5
-CSChiNode           2
-CSHasChi            1
-CSHasMu             1
-CSMuNode            2
-FunEntryChi         6
+CSChiNode           0
+CSHasChi            0
+CSHasMu             0
+CSMuNode            0
+FunEntryChi         4
 FunHasEntryChi      2
 FunHasRetMu         2
-FunRetMu            6
+FunRetMu            4
 LoadHasMu           12
 LoadMuNode          6
-MSSAPhi             2
+MSSAPhi             0
 MaxRegSize          1
-MemRegions          7
+MemRegions          4
 StoreChiNode        4
 StoreHasChi         9
 #######################################################
@@ -885,8 +885,8 @@ OptTime             0
 TLNodeTime          0
 TotalTime           0
 ----------------Numbers stats----------------------------
-ActualIn            2
-ActualOut           2
+ActualIn            0
+ActualOut           0
 ActualParam         2
 ActualRet           0
 Addr                12
@@ -898,25 +898,25 @@ Copy                3
 DirectCallEdge      2
 DirectEdge          38
 DirectRetEdge       0
-FormalIn            6
-FormalOut           6
+FormalIn            4
+FormalOut           4
 FormalParam         2
 FormalRet           0
 Gep                 1
 IndCallEdge         0
 IndRetEdge          0
-IndirectEdge        22
-IndirectEdgeLabels  22
+IndirectEdge        14
+IndirectEdgeLabels  14
 Load                12
-MSSAPhi             2
+MSSAPhi             0
 MaxInDegree         3
-MaxIndInDeg         2
+MaxIndInDeg         1
 MaxIndOutDeg        3
 MaxOutDegree        5
 PHI                 0
 Store               9
-TotalEdge           60
-TotalNode           60
+TotalEdge           52
+TotalNode           50
 #######################################################
 Writing 'svfg_final.dot'...Writing 'svfg-pl2.dot'...==========FUNCTION: main==========
 entry
