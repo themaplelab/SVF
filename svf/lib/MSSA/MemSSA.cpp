@@ -188,13 +188,17 @@ void MemSSA::createMUCHIForPointerLevel(const FunObjVar& fun, size_t pl, std::ma
                 {
                     const PAGEdge* inst = *bit;
                     if(const LoadStmt* load = SVFUtil::dyn_cast<LoadStmt>(inst)){
-                        if(plMap.at(inst->getSrcID()) >= pl){
+                        // outs() << "Stmt " << *load << "\n";
+                        // outs() << " has pointer level " << plMap.at(inst->getDstID()) << " while processing pl " << pl << "\n";
+                        if(plMap.at(inst->getDstID()) >= pl){
                             AddLoadMU(bb, load, mrGen->getLoadMRSet(load));
                         }
                     }
                         
                     else if (const StoreStmt* store = SVFUtil::dyn_cast<StoreStmt>(inst)){
-                        if(plMap.at(inst->getDstID()) >= pl){
+                        // outs() << "Stmt " << *store << "\n";
+                        // outs() << " has pointer level " << plMap.at(inst->getSrcID()) << " while processing pl " << pl << "\n";
+                        if(plMap.at(inst->getSrcID()) >= pl){
                             AddStoreCHI(bb, store, mrGen->getStoreMRSet(store));
                         }
                     }

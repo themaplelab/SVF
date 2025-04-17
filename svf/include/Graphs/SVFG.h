@@ -115,6 +115,7 @@ protected:
     /// Start building SVFG
     virtual void buildSVFG();
     virtual void buildSVFGForPointerLevel(size_t pl, std::map<NodeID, size_t>& plMap);
+    virtual void updateSVFGForPointerLevel(size_t pl, std::map<NodeID, size_t>& plMap);
 
 public:
     /// Destructor

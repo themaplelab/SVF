@@ -31,8 +31,8 @@ TotalSVFStmts       57
 VarArrayObj         2
 VarStructObj        0
 ----------------Time and memory stats--------------------
-LLVMIRTime          0.004
-SVFIRTime           0.001
+LLVMIRTime          0.006
+SVFIRTime           0
 SymbolTableTime     0
 #######################################################
 
@@ -377,6 +377,203 @@ UniqueIntersections      0
 LookupIntersections      0
 PreemptiveIntersections  2
 #######################################################
+==========FUNCTION: main==========
+entry
+IntraICFGNode5 {fun: main}
+AddrStmt: [Var7 <-- Var8]	
+ValVar ID: 7
+   %retval = alloca i32, align 4 
+IntraICFGNode6 {fun: main}
+AddrStmt: [Var10 <-- Var11]	
+ValVar ID: 10
+   %A = alloca [1 x i8], align 1 
+IntraICFGNode7 {fun: main}
+AddrStmt: [Var12 <-- Var13]	
+ValVar ID: 12
+   %B = alloca [1 x i8], align 1 
+IntraICFGNode8 {fun: main}
+AddrStmt: [Var14 <-- Var15]	
+ValVar ID: 14
+   %a = alloca ptr, align 8 
+IntraICFGNode9 {fun: main}
+AddrStmt: [Var16 <-- Var17]	
+ValVar ID: 16
+   %b = alloca ptr, align 8 
+IntraICFGNode10 {fun: main}
+AddrStmt: [Var18 <-- Var19]	
+ValVar ID: 18
+   %t1 = alloca ptr, align 8 
+IntraICFGNode11 {fun: main}
+AddrStmt: [Var20 <-- Var21]	
+ValVar ID: 20
+   %t2 = alloca ptr, align 8 
+IntraICFGNode12 {fun: main}
+StoreStmt: [Var7 <-- Var23]	
+ValVar ID: 22
+   store i32 0, ptr %retval, align 4 
+IntraICFGNode13 {fun: main}
+StoreStmt: [Var18 <-- Var14]	
+ValVar ID: 24
+   store ptr %a, ptr %t1, align 8 
+IntraICFGNode14 {fun: main}
+StoreStmt: [Var20 <-- Var16]	
+ValVar ID: 25
+   store ptr %b, ptr %t2, align 8 
+IntraICFGNode15 {fun: main}
+CopyStmt: [Var26 <-- Var10]	
+ValVar ID: 26
+   %0 = bitcast ptr %A to ptr 
+IntraICFGNode16 {fun: main}
+StoreStmt: [Var14 <-- Var26]	
+ValVar ID: 27
+   store ptr %0, ptr %a, align 8 
+IntraICFGNode17 {fun: main}
+CopyStmt: [Var28 <-- Var12]	
+ValVar ID: 28
+   %1 = bitcast ptr %B to ptr 
+IntraICFGNode18 {fun: main}
+StoreStmt: [Var16 <-- Var28]	
+ValVar ID: 29
+   store ptr %1, ptr %b, align 8 
+IntraICFGNode19 {fun: main}
+GepStmt: [Var30 <-- Var10]	
+ValVar ID: 30
+   %arrayidx = getelementptr inbounds [1 x i8], ptr %A, i64 0, i64 0 
+IntraICFGNode20 {fun: main}
+LoadStmt: [Var32 <-- Var30]	
+ValVar ID: 32
+   %2 = load i8, ptr %arrayidx, align 1 
+IntraICFGNode21 {fun: main}
+CmpStmt: [Var33 <-- (Var32 predicate33 Var34)]	
+ValVar ID: 33
+   %tobool = icmp ne i8 %2, 0 
+IntraICFGNode22 {fun: main}
+BranchStmt: [Condition Var33]
+Successor 0 ICFGNode23   Successor 1 ICFGNode24   
+ValVar ID: 35
+   br i1 %tobool, label %if.then, label %if.else 
+if.then
+IntraICFGNode23 {fun: main}
+LoadStmt: [Var36 <-- Var14]	
+ValVar ID: 36
+   %3 = load ptr, ptr %a, align 8 
+IntraICFGNode25 {fun: main}
+StoreStmt: [Var36 <-- Var38]	
+ValVar ID: 37
+   store i8 65, ptr %3, align 1 
+IntraICFGNode27 {fun: main}
+BranchStmt: [ Unconditional branch]
+Successor 0 ICFGNode30   
+ValVar ID: 39
+   br label %if.end 
+if.else
+IntraICFGNode24 {fun: main}
+LoadStmt: [Var41 <-- Var18]	
+ValVar ID: 41
+   %4 = load ptr, ptr %t1, align 8 
+IntraICFGNode26 {fun: main}
+LoadStmt: [Var42 <-- Var20]	
+ValVar ID: 42
+   %5 = load ptr, ptr %t2, align 8 
+CallICFGNode28 {fun: main}
+CallPE: [Var56 <-- Var41]	
+ValVar ID: 43
+   call void @swap(ptr %4, ptr %5) 
+CallPE: [Var57 <-- Var42]	
+ValVar ID: 43
+   call void @swap(ptr %4, ptr %5) 
+IntraICFGNode31 {fun: main}
+LoadStmt: [Var46 <-- Var14]	
+ValVar ID: 46
+   %6 = load ptr, ptr %a, align 8 
+IntraICFGNode33 {fun: main}
+StoreStmt: [Var46 <-- Var48]	
+ValVar ID: 47
+   store i8 66, ptr %6, align 1 
+IntraICFGNode35 {fun: main}
+BranchStmt: [ Unconditional branch]
+Successor 0 ICFGNode30   
+ValVar ID: 49
+   br label %if.end 
+if.end
+IntraICFGNode30 {fun: main}
+LoadStmt: [Var50 <-- Var14]	
+ValVar ID: 50
+   %7 = load ptr, ptr %a, align 8 
+IntraICFGNode32 {fun: main}
+StoreStmt: [Var50 <-- Var52]	
+ValVar ID: 51
+   store i8 63, ptr %7, align 1 
+IntraICFGNode34 {fun: main}
+LoadStmt: [Var53 <-- Var7]	
+ValVar ID: 53
+   %8 = load i32, ptr %retval, align 4 
+IntraICFGNode36 {fun: main}
+   ret i32 %8 
+==========FUNCTION: swap==========
+entry
+IntraICFGNode37 {fun: swap}
+AddrStmt: [Var58 <-- Var59]	
+ValVar ID: 58
+   %p.addr = alloca ptr, align 8 
+IntraICFGNode38 {fun: swap}
+AddrStmt: [Var60 <-- Var61]	
+ValVar ID: 60
+   %q.addr = alloca ptr, align 8 
+IntraICFGNode39 {fun: swap}
+AddrStmt: [Var62 <-- Var63]	
+ValVar ID: 62
+   %tmp = alloca ptr, align 8 
+IntraICFGNode40 {fun: swap}
+StoreStmt: [Var58 <-- Var56]	
+ValVar ID: 64
+   store ptr %p, ptr %p.addr, align 8 
+IntraICFGNode41 {fun: swap}
+StoreStmt: [Var60 <-- Var57]	
+ValVar ID: 65
+   store ptr %q, ptr %q.addr, align 8 
+IntraICFGNode42 {fun: swap}
+LoadStmt: [Var66 <-- Var58]	
+ValVar ID: 66
+   %0 = load ptr, ptr %p.addr, align 8 
+IntraICFGNode43 {fun: swap}
+LoadStmt: [Var67 <-- Var66]	
+ValVar ID: 67
+   %1 = load ptr, ptr %0, align 8 
+IntraICFGNode44 {fun: swap}
+StoreStmt: [Var62 <-- Var67]	
+ValVar ID: 68
+   store ptr %1, ptr %tmp, align 8 
+IntraICFGNode45 {fun: swap}
+LoadStmt: [Var69 <-- Var60]	
+ValVar ID: 69
+   %2 = load ptr, ptr %q.addr, align 8 
+IntraICFGNode46 {fun: swap}
+LoadStmt: [Var70 <-- Var69]	
+ValVar ID: 70
+   %3 = load ptr, ptr %2, align 8 
+IntraICFGNode47 {fun: swap}
+LoadStmt: [Var71 <-- Var58]	
+ValVar ID: 71
+   %4 = load ptr, ptr %p.addr, align 8 
+IntraICFGNode48 {fun: swap}
+StoreStmt: [Var71 <-- Var70]	
+ValVar ID: 72
+   store ptr %3, ptr %4, align 8 
+IntraICFGNode49 {fun: swap}
+LoadStmt: [Var73 <-- Var62]	
+ValVar ID: 73
+   %5 = load ptr, ptr %tmp, align 8 
+IntraICFGNode50 {fun: swap}
+LoadStmt: [Var74 <-- Var60]	
+ValVar ID: 74
+   %6 = load ptr, ptr %q.addr, align 8 
+IntraICFGNode51 {fun: swap}
+StoreStmt: [Var74 <-- Var73]	
+ValVar ID: 75
+   store ptr %5, ptr %6, align 8 
+IntraICFGNode52 {fun: swap}
+   ret void 
 
 *********Memory SSA Statistics***************
 ################ (program : interSwap.ll)###############
@@ -388,7 +585,278 @@ InsertPHITime       0
 SSARenameTime       0
 TotalMSSATime       0.001
 ----------------Numbers stats----------------------------
-BBHasMSSAPhi        1
+BBHasMSSAPhi        5
+CSChiNode           2
+CSHasChi            1
+CSHasMu             1
+CSMuNode            2
+FunEntryChi         2
+FunHasEntryChi      1
+FunHasRetMu         2
+FunRetMu            2
+LoadHasMu           12
+LoadMuNode          0
+MSSAPhi             2
+MaxRegSize          1
+MemRegions          7
+StoreChiNode        0
+StoreHasChi         9
+#######################################################
+
+*********SVFG Statistics***************
+################ (program : interSwap.ll)###############
+----------------Time and memory stats--------------------
+ATNodeTime          0
+AvgWeight           1
+ConnDirEdgeTime     0
+ConnIndEdgeTime     0
+OptTime             0
+TLNodeTime          0
+TotalTime           0
+----------------Numbers stats----------------------------
+ActualIn            2
+ActualOut           2
+ActualParam         2
+ActualRet           0
+Addr                12
+AvgInDegree         0
+AvgIndInDeg         1
+AvgIndOutDeg        1
+AvgOutDegree        0
+Copy                3
+DirectCallEdge      2
+DirectEdge          38
+DirectRetEdge       0
+FormalIn            2
+FormalOut           2
+FormalParam         2
+FormalRet           0
+Gep                 1
+IndCallEdge         0
+IndRetEdge          0
+IndirectEdge        8
+IndirectEdgeLabels  8
+Load                12
+MSSAPhi             2
+MaxInDegree         2
+MaxIndInDeg         2
+MaxIndOutDeg        2
+MaxOutDegree        5
+PHI                 0
+Store               9
+TotalEdge           46
+TotalNode           52
+#######################################################
+Writing 'svfg_final.dot'...Writing 'svfg-pl3.dot'...0
+==========FUNCTION: main==========
+entry
+IntraICFGNode5 {fun: main}
+AddrStmt: [Var7 <-- Var8]	
+ValVar ID: 7
+   %retval = alloca i32, align 4 
+IntraICFGNode6 {fun: main}
+AddrStmt: [Var10 <-- Var11]	
+ValVar ID: 10
+   %A = alloca [1 x i8], align 1 
+IntraICFGNode7 {fun: main}
+AddrStmt: [Var12 <-- Var13]	
+ValVar ID: 12
+   %B = alloca [1 x i8], align 1 
+IntraICFGNode8 {fun: main}
+AddrStmt: [Var14 <-- Var15]	
+ValVar ID: 14
+   %a = alloca ptr, align 8 
+IntraICFGNode9 {fun: main}
+AddrStmt: [Var16 <-- Var17]	
+ValVar ID: 16
+   %b = alloca ptr, align 8 
+IntraICFGNode10 {fun: main}
+AddrStmt: [Var18 <-- Var19]	
+ValVar ID: 18
+   %t1 = alloca ptr, align 8 
+IntraICFGNode11 {fun: main}
+AddrStmt: [Var20 <-- Var21]	
+ValVar ID: 20
+   %t2 = alloca ptr, align 8 
+IntraICFGNode12 {fun: main}
+StoreStmt: [Var7 <-- Var23]	
+ValVar ID: 22
+   store i32 0, ptr %retval, align 4 
+IntraICFGNode13 {fun: main}
+StoreStmt: [Var18 <-- Var14]	
+ValVar ID: 24
+   store ptr %a, ptr %t1, align 8 
+IntraICFGNode14 {fun: main}
+StoreStmt: [Var20 <-- Var16]	
+ValVar ID: 25
+   store ptr %b, ptr %t2, align 8 
+IntraICFGNode15 {fun: main}
+CopyStmt: [Var26 <-- Var10]	
+ValVar ID: 26
+   %0 = bitcast ptr %A to ptr 
+IntraICFGNode16 {fun: main}
+StoreStmt: [Var14 <-- Var26]	
+ValVar ID: 27
+   store ptr %0, ptr %a, align 8 
+IntraICFGNode17 {fun: main}
+CopyStmt: [Var28 <-- Var12]	
+ValVar ID: 28
+   %1 = bitcast ptr %B to ptr 
+IntraICFGNode18 {fun: main}
+StoreStmt: [Var16 <-- Var28]	
+ValVar ID: 29
+   store ptr %1, ptr %b, align 8 
+IntraICFGNode19 {fun: main}
+GepStmt: [Var30 <-- Var10]	
+ValVar ID: 30
+   %arrayidx = getelementptr inbounds [1 x i8], ptr %A, i64 0, i64 0 
+IntraICFGNode20 {fun: main}
+LoadStmt: [Var32 <-- Var30]	
+ValVar ID: 32
+   %2 = load i8, ptr %arrayidx, align 1 
+IntraICFGNode21 {fun: main}
+CmpStmt: [Var33 <-- (Var32 predicate33 Var34)]	
+ValVar ID: 33
+   %tobool = icmp ne i8 %2, 0 
+IntraICFGNode22 {fun: main}
+BranchStmt: [Condition Var33]
+Successor 0 ICFGNode23   Successor 1 ICFGNode24   
+ValVar ID: 35
+   br i1 %tobool, label %if.then, label %if.else 
+if.then
+IntraICFGNode23 {fun: main}
+LoadStmt: [Var36 <-- Var14]	
+ValVar ID: 36
+   %3 = load ptr, ptr %a, align 8 
+IntraICFGNode25 {fun: main}
+StoreStmt: [Var36 <-- Var38]	
+ValVar ID: 37
+   store i8 65, ptr %3, align 1 
+IntraICFGNode27 {fun: main}
+BranchStmt: [ Unconditional branch]
+Successor 0 ICFGNode30   
+ValVar ID: 39
+   br label %if.end 
+if.else
+IntraICFGNode24 {fun: main}
+LoadStmt: [Var41 <-- Var18]	
+ValVar ID: 41
+   %4 = load ptr, ptr %t1, align 8 
+IntraICFGNode26 {fun: main}
+LoadStmt: [Var42 <-- Var20]	
+ValVar ID: 42
+   %5 = load ptr, ptr %t2, align 8 
+CallICFGNode28 {fun: main}
+CallPE: [Var56 <-- Var41]	
+ValVar ID: 43
+   call void @swap(ptr %4, ptr %5) 
+CallPE: [Var57 <-- Var42]	
+ValVar ID: 43
+   call void @swap(ptr %4, ptr %5) 
+IntraICFGNode31 {fun: main}
+LoadStmt: [Var46 <-- Var14]	
+ValVar ID: 46
+   %6 = load ptr, ptr %a, align 8 
+IntraICFGNode33 {fun: main}
+StoreStmt: [Var46 <-- Var48]	
+ValVar ID: 47
+   store i8 66, ptr %6, align 1 
+IntraICFGNode35 {fun: main}
+BranchStmt: [ Unconditional branch]
+Successor 0 ICFGNode30   
+ValVar ID: 49
+   br label %if.end 
+if.end
+IntraICFGNode30 {fun: main}
+LoadStmt: [Var50 <-- Var14]	
+ValVar ID: 50
+   %7 = load ptr, ptr %a, align 8 
+IntraICFGNode32 {fun: main}
+StoreStmt: [Var50 <-- Var52]	
+ValVar ID: 51
+   store i8 63, ptr %7, align 1 
+IntraICFGNode34 {fun: main}
+LoadStmt: [Var53 <-- Var7]	
+ValVar ID: 53
+   %8 = load i32, ptr %retval, align 4 
+IntraICFGNode36 {fun: main}
+   ret i32 %8 
+==========FUNCTION: swap==========
+entry
+IntraICFGNode37 {fun: swap}
+AddrStmt: [Var58 <-- Var59]	
+ValVar ID: 58
+   %p.addr = alloca ptr, align 8 
+IntraICFGNode38 {fun: swap}
+AddrStmt: [Var60 <-- Var61]	
+ValVar ID: 60
+   %q.addr = alloca ptr, align 8 
+IntraICFGNode39 {fun: swap}
+AddrStmt: [Var62 <-- Var63]	
+ValVar ID: 62
+   %tmp = alloca ptr, align 8 
+IntraICFGNode40 {fun: swap}
+StoreStmt: [Var58 <-- Var56]	
+ValVar ID: 64
+   store ptr %p, ptr %p.addr, align 8 
+IntraICFGNode41 {fun: swap}
+StoreStmt: [Var60 <-- Var57]	
+ValVar ID: 65
+   store ptr %q, ptr %q.addr, align 8 
+IntraICFGNode42 {fun: swap}
+LoadStmt: [Var66 <-- Var58]	
+ValVar ID: 66
+   %0 = load ptr, ptr %p.addr, align 8 
+IntraICFGNode43 {fun: swap}
+LoadStmt: [Var67 <-- Var66]	
+ValVar ID: 67
+   %1 = load ptr, ptr %0, align 8 
+IntraICFGNode44 {fun: swap}
+StoreStmt: [Var62 <-- Var67]	
+ValVar ID: 68
+   store ptr %1, ptr %tmp, align 8 
+IntraICFGNode45 {fun: swap}
+LoadStmt: [Var69 <-- Var60]	
+ValVar ID: 69
+   %2 = load ptr, ptr %q.addr, align 8 
+IntraICFGNode46 {fun: swap}
+LoadStmt: [Var70 <-- Var69]	
+ValVar ID: 70
+   %3 = load ptr, ptr %2, align 8 
+IntraICFGNode47 {fun: swap}
+LoadStmt: [Var71 <-- Var58]	
+ValVar ID: 71
+   %4 = load ptr, ptr %p.addr, align 8 
+IntraICFGNode48 {fun: swap}
+StoreStmt: [Var71 <-- Var70]	
+ValVar ID: 72
+   store ptr %3, ptr %4, align 8 
+IntraICFGNode49 {fun: swap}
+LoadStmt: [Var73 <-- Var62]	
+ValVar ID: 73
+   %5 = load ptr, ptr %tmp, align 8 
+IntraICFGNode50 {fun: swap}
+LoadStmt: [Var74 <-- Var60]	
+ValVar ID: 74
+   %6 = load ptr, ptr %q.addr, align 8 
+IntraICFGNode51 {fun: swap}
+StoreStmt: [Var74 <-- Var73]	
+ValVar ID: 75
+   store ptr %5, ptr %6, align 8 
+IntraICFGNode52 {fun: swap}
+   ret void 
+
+*********Memory SSA Statistics***************
+################ (program : interSwap.ll)###############
+----------------Time and memory stats--------------------
+AverageRegSize      1
+GenMUCHITime        0
+GenRegionTime       0
+InsertPHITime       0
+SSARenameTime       0
+TotalMSSATime       0
+----------------Numbers stats----------------------------
+BBHasMSSAPhi        5
 CSChiNode           2
 CSHasChi            1
 CSHasMu             1
@@ -450,7 +918,203 @@ Store               9
 TotalEdge           60
 TotalNode           60
 #######################################################
-0
+Writing 'svfg_final.dot'...Writing 'svfg-pl2.dot'...==========FUNCTION: main==========
+entry
+IntraICFGNode5 {fun: main}
+AddrStmt: [Var7 <-- Var8]	
+ValVar ID: 7
+   %retval = alloca i32, align 4 
+IntraICFGNode6 {fun: main}
+AddrStmt: [Var10 <-- Var11]	
+ValVar ID: 10
+   %A = alloca [1 x i8], align 1 
+IntraICFGNode7 {fun: main}
+AddrStmt: [Var12 <-- Var13]	
+ValVar ID: 12
+   %B = alloca [1 x i8], align 1 
+IntraICFGNode8 {fun: main}
+AddrStmt: [Var14 <-- Var15]	
+ValVar ID: 14
+   %a = alloca ptr, align 8 
+IntraICFGNode9 {fun: main}
+AddrStmt: [Var16 <-- Var17]	
+ValVar ID: 16
+   %b = alloca ptr, align 8 
+IntraICFGNode10 {fun: main}
+AddrStmt: [Var18 <-- Var19]	
+ValVar ID: 18
+   %t1 = alloca ptr, align 8 
+IntraICFGNode11 {fun: main}
+AddrStmt: [Var20 <-- Var21]	
+ValVar ID: 20
+   %t2 = alloca ptr, align 8 
+IntraICFGNode12 {fun: main}
+StoreStmt: [Var7 <-- Var23]	
+ValVar ID: 22
+   store i32 0, ptr %retval, align 4 
+IntraICFGNode13 {fun: main}
+StoreStmt: [Var18 <-- Var14]	
+ValVar ID: 24
+   store ptr %a, ptr %t1, align 8 
+IntraICFGNode14 {fun: main}
+StoreStmt: [Var20 <-- Var16]	
+ValVar ID: 25
+   store ptr %b, ptr %t2, align 8 
+IntraICFGNode15 {fun: main}
+CopyStmt: [Var26 <-- Var10]	
+ValVar ID: 26
+   %0 = bitcast ptr %A to ptr 
+IntraICFGNode16 {fun: main}
+StoreStmt: [Var14 <-- Var26]	
+ValVar ID: 27
+   store ptr %0, ptr %a, align 8 
+IntraICFGNode17 {fun: main}
+CopyStmt: [Var28 <-- Var12]	
+ValVar ID: 28
+   %1 = bitcast ptr %B to ptr 
+IntraICFGNode18 {fun: main}
+StoreStmt: [Var16 <-- Var28]	
+ValVar ID: 29
+   store ptr %1, ptr %b, align 8 
+IntraICFGNode19 {fun: main}
+GepStmt: [Var30 <-- Var10]	
+ValVar ID: 30
+   %arrayidx = getelementptr inbounds [1 x i8], ptr %A, i64 0, i64 0 
+IntraICFGNode20 {fun: main}
+LoadStmt: [Var32 <-- Var30]	
+ValVar ID: 32
+   %2 = load i8, ptr %arrayidx, align 1 
+IntraICFGNode21 {fun: main}
+CmpStmt: [Var33 <-- (Var32 predicate33 Var34)]	
+ValVar ID: 33
+   %tobool = icmp ne i8 %2, 0 
+IntraICFGNode22 {fun: main}
+BranchStmt: [Condition Var33]
+Successor 0 ICFGNode23   Successor 1 ICFGNode24   
+ValVar ID: 35
+   br i1 %tobool, label %if.then, label %if.else 
+if.then
+IntraICFGNode23 {fun: main}
+LoadStmt: [Var36 <-- Var14]	
+ValVar ID: 36
+   %3 = load ptr, ptr %a, align 8 
+IntraICFGNode25 {fun: main}
+StoreStmt: [Var36 <-- Var38]	
+ValVar ID: 37
+   store i8 65, ptr %3, align 1 
+IntraICFGNode27 {fun: main}
+BranchStmt: [ Unconditional branch]
+Successor 0 ICFGNode30   
+ValVar ID: 39
+   br label %if.end 
+if.else
+IntraICFGNode24 {fun: main}
+LoadStmt: [Var41 <-- Var18]	
+ValVar ID: 41
+   %4 = load ptr, ptr %t1, align 8 
+IntraICFGNode26 {fun: main}
+LoadStmt: [Var42 <-- Var20]	
+ValVar ID: 42
+   %5 = load ptr, ptr %t2, align 8 
+CallICFGNode28 {fun: main}
+CallPE: [Var56 <-- Var41]	
+ValVar ID: 43
+   call void @swap(ptr %4, ptr %5) 
+CallPE: [Var57 <-- Var42]	
+ValVar ID: 43
+   call void @swap(ptr %4, ptr %5) 
+IntraICFGNode31 {fun: main}
+LoadStmt: [Var46 <-- Var14]	
+ValVar ID: 46
+   %6 = load ptr, ptr %a, align 8 
+IntraICFGNode33 {fun: main}
+StoreStmt: [Var46 <-- Var48]	
+ValVar ID: 47
+   store i8 66, ptr %6, align 1 
+IntraICFGNode35 {fun: main}
+BranchStmt: [ Unconditional branch]
+Successor 0 ICFGNode30   
+ValVar ID: 49
+   br label %if.end 
+if.end
+IntraICFGNode30 {fun: main}
+LoadStmt: [Var50 <-- Var14]	
+ValVar ID: 50
+   %7 = load ptr, ptr %a, align 8 
+IntraICFGNode32 {fun: main}
+StoreStmt: [Var50 <-- Var52]	
+ValVar ID: 51
+   store i8 63, ptr %7, align 1 
+IntraICFGNode34 {fun: main}
+LoadStmt: [Var53 <-- Var7]	
+ValVar ID: 53
+   %8 = load i32, ptr %retval, align 4 
+IntraICFGNode36 {fun: main}
+   ret i32 %8 
+==========FUNCTION: swap==========
+entry
+IntraICFGNode37 {fun: swap}
+AddrStmt: [Var58 <-- Var59]	
+ValVar ID: 58
+   %p.addr = alloca ptr, align 8 
+IntraICFGNode38 {fun: swap}
+AddrStmt: [Var60 <-- Var61]	
+ValVar ID: 60
+   %q.addr = alloca ptr, align 8 
+IntraICFGNode39 {fun: swap}
+AddrStmt: [Var62 <-- Var63]	
+ValVar ID: 62
+   %tmp = alloca ptr, align 8 
+IntraICFGNode40 {fun: swap}
+StoreStmt: [Var58 <-- Var56]	
+ValVar ID: 64
+   store ptr %p, ptr %p.addr, align 8 
+IntraICFGNode41 {fun: swap}
+StoreStmt: [Var60 <-- Var57]	
+ValVar ID: 65
+   store ptr %q, ptr %q.addr, align 8 
+IntraICFGNode42 {fun: swap}
+LoadStmt: [Var66 <-- Var58]	
+ValVar ID: 66
+   %0 = load ptr, ptr %p.addr, align 8 
+IntraICFGNode43 {fun: swap}
+LoadStmt: [Var67 <-- Var66]	
+ValVar ID: 67
+   %1 = load ptr, ptr %0, align 8 
+IntraICFGNode44 {fun: swap}
+StoreStmt: [Var62 <-- Var67]	
+ValVar ID: 68
+   store ptr %1, ptr %tmp, align 8 
+IntraICFGNode45 {fun: swap}
+LoadStmt: [Var69 <-- Var60]	
+ValVar ID: 69
+   %2 = load ptr, ptr %q.addr, align 8 
+IntraICFGNode46 {fun: swap}
+LoadStmt: [Var70 <-- Var69]	
+ValVar ID: 70
+   %3 = load ptr, ptr %2, align 8 
+IntraICFGNode47 {fun: swap}
+LoadStmt: [Var71 <-- Var58]	
+ValVar ID: 71
+   %4 = load ptr, ptr %p.addr, align 8 
+IntraICFGNode48 {fun: swap}
+StoreStmt: [Var71 <-- Var70]	
+ValVar ID: 72
+   store ptr %3, ptr %4, align 8 
+IntraICFGNode49 {fun: swap}
+LoadStmt: [Var73 <-- Var62]	
+ValVar ID: 73
+   %5 = load ptr, ptr %tmp, align 8 
+IntraICFGNode50 {fun: swap}
+LoadStmt: [Var74 <-- Var60]	
+ValVar ID: 74
+   %6 = load ptr, ptr %q.addr, align 8 
+IntraICFGNode51 {fun: swap}
+StoreStmt: [Var74 <-- Var73]	
+ValVar ID: 75
+   store ptr %5, ptr %6, align 8 
+IntraICFGNode52 {fun: swap}
+   ret void 
 
 *********Memory SSA Statistics***************
 ################ (program : interSwap.ll)###############
@@ -462,7 +1126,7 @@ InsertPHITime       0
 SSARenameTime       0
 TotalMSSATime       0
 ----------------Numbers stats----------------------------
-BBHasMSSAPhi        1
+BBHasMSSAPhi        5
 CSChiNode           2
 CSHasChi            1
 CSHasMu             1
@@ -524,6 +1188,203 @@ Store               9
 TotalEdge           78
 TotalNode           66
 #######################################################
+Writing 'svfg_final.dot'...Writing 'svfg-pl1.dot'...==========FUNCTION: main==========
+entry
+IntraICFGNode5 {fun: main}
+AddrStmt: [Var7 <-- Var8]	
+ValVar ID: 7
+   %retval = alloca i32, align 4 
+IntraICFGNode6 {fun: main}
+AddrStmt: [Var10 <-- Var11]	
+ValVar ID: 10
+   %A = alloca [1 x i8], align 1 
+IntraICFGNode7 {fun: main}
+AddrStmt: [Var12 <-- Var13]	
+ValVar ID: 12
+   %B = alloca [1 x i8], align 1 
+IntraICFGNode8 {fun: main}
+AddrStmt: [Var14 <-- Var15]	
+ValVar ID: 14
+   %a = alloca ptr, align 8 
+IntraICFGNode9 {fun: main}
+AddrStmt: [Var16 <-- Var17]	
+ValVar ID: 16
+   %b = alloca ptr, align 8 
+IntraICFGNode10 {fun: main}
+AddrStmt: [Var18 <-- Var19]	
+ValVar ID: 18
+   %t1 = alloca ptr, align 8 
+IntraICFGNode11 {fun: main}
+AddrStmt: [Var20 <-- Var21]	
+ValVar ID: 20
+   %t2 = alloca ptr, align 8 
+IntraICFGNode12 {fun: main}
+StoreStmt: [Var7 <-- Var23]	
+ValVar ID: 22
+   store i32 0, ptr %retval, align 4 
+IntraICFGNode13 {fun: main}
+StoreStmt: [Var18 <-- Var14]	
+ValVar ID: 24
+   store ptr %a, ptr %t1, align 8 
+IntraICFGNode14 {fun: main}
+StoreStmt: [Var20 <-- Var16]	
+ValVar ID: 25
+   store ptr %b, ptr %t2, align 8 
+IntraICFGNode15 {fun: main}
+CopyStmt: [Var26 <-- Var10]	
+ValVar ID: 26
+   %0 = bitcast ptr %A to ptr 
+IntraICFGNode16 {fun: main}
+StoreStmt: [Var14 <-- Var26]	
+ValVar ID: 27
+   store ptr %0, ptr %a, align 8 
+IntraICFGNode17 {fun: main}
+CopyStmt: [Var28 <-- Var12]	
+ValVar ID: 28
+   %1 = bitcast ptr %B to ptr 
+IntraICFGNode18 {fun: main}
+StoreStmt: [Var16 <-- Var28]	
+ValVar ID: 29
+   store ptr %1, ptr %b, align 8 
+IntraICFGNode19 {fun: main}
+GepStmt: [Var30 <-- Var10]	
+ValVar ID: 30
+   %arrayidx = getelementptr inbounds [1 x i8], ptr %A, i64 0, i64 0 
+IntraICFGNode20 {fun: main}
+LoadStmt: [Var32 <-- Var30]	
+ValVar ID: 32
+   %2 = load i8, ptr %arrayidx, align 1 
+IntraICFGNode21 {fun: main}
+CmpStmt: [Var33 <-- (Var32 predicate33 Var34)]	
+ValVar ID: 33
+   %tobool = icmp ne i8 %2, 0 
+IntraICFGNode22 {fun: main}
+BranchStmt: [Condition Var33]
+Successor 0 ICFGNode23   Successor 1 ICFGNode24   
+ValVar ID: 35
+   br i1 %tobool, label %if.then, label %if.else 
+if.then
+IntraICFGNode23 {fun: main}
+LoadStmt: [Var36 <-- Var14]	
+ValVar ID: 36
+   %3 = load ptr, ptr %a, align 8 
+IntraICFGNode25 {fun: main}
+StoreStmt: [Var36 <-- Var38]	
+ValVar ID: 37
+   store i8 65, ptr %3, align 1 
+IntraICFGNode27 {fun: main}
+BranchStmt: [ Unconditional branch]
+Successor 0 ICFGNode30   
+ValVar ID: 39
+   br label %if.end 
+if.else
+IntraICFGNode24 {fun: main}
+LoadStmt: [Var41 <-- Var18]	
+ValVar ID: 41
+   %4 = load ptr, ptr %t1, align 8 
+IntraICFGNode26 {fun: main}
+LoadStmt: [Var42 <-- Var20]	
+ValVar ID: 42
+   %5 = load ptr, ptr %t2, align 8 
+CallICFGNode28 {fun: main}
+CallPE: [Var56 <-- Var41]	
+ValVar ID: 43
+   call void @swap(ptr %4, ptr %5) 
+CallPE: [Var57 <-- Var42]	
+ValVar ID: 43
+   call void @swap(ptr %4, ptr %5) 
+IntraICFGNode31 {fun: main}
+LoadStmt: [Var46 <-- Var14]	
+ValVar ID: 46
+   %6 = load ptr, ptr %a, align 8 
+IntraICFGNode33 {fun: main}
+StoreStmt: [Var46 <-- Var48]	
+ValVar ID: 47
+   store i8 66, ptr %6, align 1 
+IntraICFGNode35 {fun: main}
+BranchStmt: [ Unconditional branch]
+Successor 0 ICFGNode30   
+ValVar ID: 49
+   br label %if.end 
+if.end
+IntraICFGNode30 {fun: main}
+LoadStmt: [Var50 <-- Var14]	
+ValVar ID: 50
+   %7 = load ptr, ptr %a, align 8 
+IntraICFGNode32 {fun: main}
+StoreStmt: [Var50 <-- Var52]	
+ValVar ID: 51
+   store i8 63, ptr %7, align 1 
+IntraICFGNode34 {fun: main}
+LoadStmt: [Var53 <-- Var7]	
+ValVar ID: 53
+   %8 = load i32, ptr %retval, align 4 
+IntraICFGNode36 {fun: main}
+   ret i32 %8 
+==========FUNCTION: swap==========
+entry
+IntraICFGNode37 {fun: swap}
+AddrStmt: [Var58 <-- Var59]	
+ValVar ID: 58
+   %p.addr = alloca ptr, align 8 
+IntraICFGNode38 {fun: swap}
+AddrStmt: [Var60 <-- Var61]	
+ValVar ID: 60
+   %q.addr = alloca ptr, align 8 
+IntraICFGNode39 {fun: swap}
+AddrStmt: [Var62 <-- Var63]	
+ValVar ID: 62
+   %tmp = alloca ptr, align 8 
+IntraICFGNode40 {fun: swap}
+StoreStmt: [Var58 <-- Var56]	
+ValVar ID: 64
+   store ptr %p, ptr %p.addr, align 8 
+IntraICFGNode41 {fun: swap}
+StoreStmt: [Var60 <-- Var57]	
+ValVar ID: 65
+   store ptr %q, ptr %q.addr, align 8 
+IntraICFGNode42 {fun: swap}
+LoadStmt: [Var66 <-- Var58]	
+ValVar ID: 66
+   %0 = load ptr, ptr %p.addr, align 8 
+IntraICFGNode43 {fun: swap}
+LoadStmt: [Var67 <-- Var66]	
+ValVar ID: 67
+   %1 = load ptr, ptr %0, align 8 
+IntraICFGNode44 {fun: swap}
+StoreStmt: [Var62 <-- Var67]	
+ValVar ID: 68
+   store ptr %1, ptr %tmp, align 8 
+IntraICFGNode45 {fun: swap}
+LoadStmt: [Var69 <-- Var60]	
+ValVar ID: 69
+   %2 = load ptr, ptr %q.addr, align 8 
+IntraICFGNode46 {fun: swap}
+LoadStmt: [Var70 <-- Var69]	
+ValVar ID: 70
+   %3 = load ptr, ptr %2, align 8 
+IntraICFGNode47 {fun: swap}
+LoadStmt: [Var71 <-- Var58]	
+ValVar ID: 71
+   %4 = load ptr, ptr %p.addr, align 8 
+IntraICFGNode48 {fun: swap}
+StoreStmt: [Var71 <-- Var70]	
+ValVar ID: 72
+   store ptr %3, ptr %4, align 8 
+IntraICFGNode49 {fun: swap}
+LoadStmt: [Var73 <-- Var62]	
+ValVar ID: 73
+   %5 = load ptr, ptr %tmp, align 8 
+IntraICFGNode50 {fun: swap}
+LoadStmt: [Var74 <-- Var60]	
+ValVar ID: 74
+   %6 = load ptr, ptr %q.addr, align 8 
+IntraICFGNode51 {fun: swap}
+StoreStmt: [Var74 <-- Var73]	
+ValVar ID: 75
+   store ptr %5, ptr %6, align 8 
+IntraICFGNode52 {fun: swap}
+   ret void 
 
 *********Memory SSA Statistics***************
 ################ (program : interSwap.ll)###############
@@ -535,7 +1396,7 @@ InsertPHITime       0
 SSARenameTime       0
 TotalMSSATime       0
 ----------------Numbers stats----------------------------
-BBHasMSSAPhi        1
+BBHasMSSAPhi        5
 CSChiNode           2
 CSHasChi            1
 CSHasMu             1
@@ -597,80 +1458,7 @@ Store               9
 TotalEdge           78
 TotalNode           66
 #######################################################
-
-*********Memory SSA Statistics***************
-################ (program : interSwap.ll)###############
-----------------Time and memory stats--------------------
-AverageRegSize      1
-GenMUCHITime        0
-GenRegionTime       0
-InsertPHITime       0
-SSARenameTime       0
-TotalMSSATime       0
-----------------Numbers stats----------------------------
-BBHasMSSAPhi        1
-CSChiNode           2
-CSHasChi            1
-CSHasMu             1
-CSMuNode            2
-FunEntryChi         9
-FunHasEntryChi      2
-FunHasRetMu         2
-FunRetMu            9
-LoadHasMu           12
-LoadMuNode          12
-MSSAPhi             2
-MaxRegSize          1
-MemRegions          7
-StoreChiNode        9
-StoreHasChi         9
-#######################################################
-
-*********SVFG Statistics***************
-################ (program : interSwap.ll)###############
-----------------Time and memory stats--------------------
-ATNodeTime          0
-AvgWeight           1
-ConnDirEdgeTime     0
-ConnIndEdgeTime     0
-OptTime             0
-TLNodeTime          0
-TotalTime           0
-----------------Numbers stats----------------------------
-ActualIn            2
-ActualOut           2
-ActualParam         2
-ActualRet           0
-Addr                12
-AvgInDegree         1
-AvgIndInDeg         1
-AvgIndOutDeg        1
-AvgOutDegree        1
-Copy                3
-DirectCallEdge      2
-DirectEdge          38
-DirectRetEdge       0
-FormalIn            9
-FormalOut           9
-FormalParam         2
-FormalRet           0
-Gep                 1
-IndCallEdge         2
-IndRetEdge          2
-IndirectEdge        40
-IndirectEdgeLabels  40
-Load                12
-MSSAPhi             2
-MaxInDegree         3
-MaxIndInDeg         2
-MaxIndOutDeg        3
-MaxOutDegree        5
-PHI                 0
-Store               9
-TotalEdge           78
-TotalNode           66
-#######################################################
-
+Writing 'svfg_final.dot'...Writing 'svfg-pl0.dot'...Writing 'fs_solved.dot'...
 NodeID 0 		PointsTo: {empty}
 
 

@@ -36,6 +36,8 @@
 namespace SVF
 {
 
+// class MemSSA;
+
 /*!
  * SVFG Builder
  */
@@ -81,6 +83,12 @@ public:
     /// Build Memory SSA
     virtual std::unique_ptr<MemSSA> buildMSSA(BVDataPTAImpl* pta, bool ptrOnlyMSSA);
     std::unique_ptr<MemSSA> buildMssaForPointerLevel(BVDataPTAImpl* pta, bool ptrOnlyMSSA, size_t pl, std::map<NodeID, size_t>& plMap);
+    void updatePTROnlySvfgForPointerLevel(BVDataPTAImpl* pta, size_t pl, std::map<NodeID, size_t>& plMap);
+    void updateMssaForSvfg(std::unique_ptr<SVF::MemSSA> &mssa);
+    void updateSVFGForPointerLevel(size_t pl, std::map<NodeID, size_t>& plMap);
+
+
+
 
 
 protected:

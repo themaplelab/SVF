@@ -249,6 +249,13 @@ void SVFG::buildSVFG()
     }
 }
 
+void SVFG::updateSVFGForPointerLevel(size_t pl, std::map<NodeID, size_t>& plMap){
+
+}
+
+
+
+
 void SVFG::buildSVFGForPointerLevel(size_t pl, std::map<NodeID, size_t>& plMap)
 {
     DBOUT(DGENERAL, outs() << pasMsg("Build Sparse Value-Flow Graph \n"));
