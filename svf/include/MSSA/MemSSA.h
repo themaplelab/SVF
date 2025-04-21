@@ -308,6 +308,9 @@ public:
     /// Constructor
     MemSSA(BVDataPTAImpl* p, bool ptrOnlyMSSA);
 
+    void updateDetail(BVDataPTAImpl* p, bool ptrOnlyMSSA);
+
+
     /// Destructor
     virtual ~MemSSA()
     {

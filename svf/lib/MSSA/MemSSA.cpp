@@ -70,6 +70,30 @@ MemSSA::MemSSA(BVDataPTAImpl* p, bool ptrOnlyMSSA)
     timeOfGeneratingMemRegions = (mrEnd - mrStart)/TIMEINTERVAL;
 }
 
+void MemSSA::updateDetail(BVDataPTAImpl* p, bool ptrOnlyMSSA){
+    pta = p;
+    assert((pta->getAnalysisTy()!=PointerAnalysis::Default_PTA)
+           && "please specify a pointer analysis");
+
+    if (Options::MemPar() == MemPartition::Distinct)
+        mrGen = new DistinctMRG(pta, ptrOnlyMSSA);
+    else if (Options::MemPar() == MemPartition::IntraDisjoint)
+        mrGen = new IntraDisjointMRG(pta, ptrOnlyMSSA);
+    else if (Options::MemPar() == MemPartition::InterDisjoint)
+        mrGen = new InterDisjointMRG(pta, ptrOnlyMSSA);
+    else
+        assert(false && "unrecognised memory partition strategy");
+
+
+    /// Generate whole program memory regions
+    double mrStart = stat->getClk(true);
+    mrGen->generateMRs();
+    double mrEnd = stat->getClk(true);
+    timeOfGeneratingMemRegions = (mrEnd - mrStart)/TIMEINTERVAL;
+}
+
+
+
 SVFIR* MemSSA::getPAG()
 {
     return pta->getPAG();
@@ -187,6 +211,7 @@ void MemSSA::createMUCHIForPointerLevel(const FunObjVar& fun, size_t pl, std::ma
                         ebit = pagEdgeList.end(); bit != ebit; ++bit)
                 {
                     const PAGEdge* inst = *bit;
+                    outs() << *inst << "\n";
                     if(const LoadStmt* load = SVFUtil::dyn_cast<LoadStmt>(inst)){
                         // outs() << "Stmt " << *load << "\n";
                         // outs() << " has pointer level " << plMap.at(inst->getDstID()) << " while processing pl " << pl << "\n";
@@ -196,9 +221,8 @@ void MemSSA::createMUCHIForPointerLevel(const FunObjVar& fun, size_t pl, std::ma
                     }
                         
                     else if (const StoreStmt* store = SVFUtil::dyn_cast<StoreStmt>(inst)){
-                        // outs() << "Stmt " << *store << "\n";
-                        // outs() << " has pointer level " << plMap.at(inst->getSrcID()) << " while processing pl " << pl << "\n";
-                        if(plMap.at(inst->getSrcID()) >= pl){
+                        
+                        if(plMap.at(inst->getDstID())-1 >= pl){
                             AddStoreCHI(bb, store, mrGen->getStoreMRSet(store));
                         }
                     }

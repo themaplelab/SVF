@@ -38,6 +38,10 @@
 using namespace SVF;
 using namespace SVFUtil;
 
+
+
+
+
 // JH todo: place holder, to be updated.
 void SVFGBuilder::updateMssaForSvfg(std::unique_ptr<SVF::MemSSA> &mssa){
     svfg = std::unique_ptr<SVFG>(new SVFG(std::move(mssa), VFG::PTRONLYSVFG));
@@ -49,13 +53,44 @@ void SVFGBuilder::updateSVFGForPointerLevel(size_t pl, std::map<NodeID, size_t>&
 
 }
 
+void SVFGBuilder::updateMssaForPointerLevel(BVDataPTAImpl* pta, bool ptrOnlyMSSA, size_t pl, std::map<NodeID, size_t>& plMap, MemSSA *mssa){
+
+    DBOUT(DGENERAL, outs() << pasMsg("Update Memory SSA \n"));
+
+    mssa->updateDetail(pta, ptrOnlyMSSA);
+
+    CallGraph* svfirCallGraph = PAG::getPAG()->getCallGraph();
+    for (const auto& item: *svfirCallGraph)
+    {
+
+        const FunObjVar *fun = item.second->getFunction();
+        if (isExtCall(fun))
+            continue;
+
+        mssa->buildMemSsaForPointerLevel(*fun, pl, plMap);
+    }
+    // outs() << "MSSA for pointer level " << pl << "\n";
+    // mssa->dumpMSSA();
+
+
+    mssa->performStat();
+    if (Options::DumpMSSA())
+    {
+        mssa->dumpMSSA();
+    }
+
+    return;
+}
+
+
 
 void SVFGBuilder::updatePTROnlySvfgForPointerLevel(BVDataPTAImpl* pta, size_t pl, std::map<NodeID, size_t>& plMap){
 
     // JH todo: should also update rather than give new.
-    auto mssa = buildMssaForPointerLevel(pta, true, pl, plMap);
+    updateMssaForPointerLevel(pta, true, pl, plMap, svfg->getMSSA());
+    // svfg->getMSSA();
 
-    updateMssaForSvfg(mssa);
+    // updateMssaForSvfg(mssa);
 
     // updateSVFGForPointerLevel(pl, plMap);
     buildSVFGForPointerLevel(pl, plMap);
@@ -77,6 +112,10 @@ SVFG* SVFGBuilder::buildPTROnlySvfgForPointerLevel(BVDataPTAImpl* pta, size_t pl
 }
 
 SVFG* SVFGBuilder::buildPointerLevel(BVDataPTAImpl* pta, VFG::VFGK kind, size_t pl, std::map<NodeID, size_t>& plMap){
+
+    outs() << "2.1\n";
+    
+
     // JH todo: build mssa for each layer.
     auto mssa = buildMssaForPointerLevel(pta, (VFG::PTRONLYSVFG==kind || VFG::PTRONLYSVFG_OPT==kind), pl, plMap);
     // mssa->dumpMSSA();
@@ -86,7 +125,13 @@ SVFG* SVFGBuilder::buildPointerLevel(BVDataPTAImpl* pta, VFG::VFGK kind, size_t 
         svfg = std::make_unique<SVFGOPT>(std::move(mssa), kind);
     else
         svfg = std::unique_ptr<SVFG>(new SVFG(std::move(mssa),kind));
+
+    outs() << "2.2\n";
+    
     buildSVFGForPointerLevel(pl, plMap);
+
+    outs() << "2.3\n";
+
 
     /// Update call graph using pre-analysis results
     if(Options::SVFGWithIndirectCall() || SVFGWithIndCall)
@@ -109,7 +154,6 @@ std::unique_ptr<MemSSA> SVFGBuilder::buildMssaForPointerLevel(BVDataPTAImpl* pta
     // Do not need to update, it is just preparation.
     auto mssa = std::make_unique<MemSSA>(pta, ptrOnlyMSSA);
 
-    mssa->dumpMSSA();
 
 
     CallGraph* svfirCallGraph = PAG::getPAG()->getCallGraph();
@@ -122,6 +166,8 @@ std::unique_ptr<MemSSA> SVFGBuilder::buildMssaForPointerLevel(BVDataPTAImpl* pta
 
         mssa->buildMemSsaForPointerLevel(*fun, pl, plMap);
     }
+    mssa->dumpMSSA();
+
 
     mssa->performStat();
     if (Options::DumpMSSA())

@@ -194,6 +194,7 @@ void MRGenerator::collectModRefForLoadStore()
                 {
                     const PAGEdge* inst = *bit;
                     pagEdgeToFunMap[inst] = &fun;
+                    //JH todo: check pointer level for each inst
                     if (const StoreStmt *st = SVFUtil::dyn_cast<StoreStmt>(inst))
                     {
                         NodeBS cpts(pta->getPts(st->getLHSVarID()).toNodeBS());

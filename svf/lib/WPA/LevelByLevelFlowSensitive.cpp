@@ -18,6 +18,7 @@ size_t LevelByLevelFlowSensitive::computeMaxPointerLevel(std::map<NodeID, std::s
     for(auto it = preAnalysis->getAllValidPtrs().begin(); it != preAnalysis->getAllValidPtrs().end(); ++it){
         SVF::NodeID nid = *it;
         auto pl = computePointerLevel(nid, dag);
+        // outs() << nid << " " << pl << "\n";
         maxPl = std::max(maxPl, pl);
         pointerLevelToNodeIDsMap[pl].insert(nid);
     }
@@ -31,10 +32,12 @@ size_t LevelByLevelFlowSensitive::computePointerLevel(NodeID id, std::map<NodeID
     auto repNode = ptgScc->repNode(id);
     
     if(!dag.count(repNode)){
+        pointerLevelMap[id] = 0;
         return 0;
     }
     
     if(pointerLevelMap.count(repNode)){
+        pointerLevelMap[id] = pointerLevelMap.at(repNode);
         return pointerLevelMap.at(repNode);
     }
     
@@ -45,6 +48,7 @@ size_t LevelByLevelFlowSensitive::computePointerLevel(NodeID id, std::map<NodeID
 
     // pointerLevelMap[id] = pl+1;
     pointerLevelMap[repNode] = pl+1;
+    pointerLevelMap[id] = pointerLevelMap.at(repNode);
     return pointerLevelMap[repNode];
 
 }
@@ -76,13 +80,24 @@ void LevelByLevelFlowSensitive::initialize(){
             }
         }
     }
+    outs() << "1\n";
     currentPointerLevel = computeMaxPointerLevel(dag);
+    outs() << "2\n";
+
+    // for(auto p : pointerLevelMap){
+    //     outs() << p.first << " " << p.second << "\n";
+    // }
+
 
     svfg = memSSA.buildPTROnlySvfgForPointerLevel(this, currentPointerLevel, pointerLevelMap);
     setGraph(svfg);
+    outs() << "3\n";
+
 
     svfg->dump("svfg-pl" + std::to_string(currentPointerLevel), true);
     // std::terminate();
+
+    outs() << "End of initialization\n";
 }
 
 
@@ -100,6 +115,7 @@ void LevelByLevelFlowSensitive::analyze(){
 void LevelByLevelFlowSensitive::solveConstraints(){
 
     while(currentPointerLevel){
+        outs() << "Solving pointer level " << currentPointerLevel << "\n";
         do
         {
             numOfIteration++;
@@ -116,7 +132,7 @@ void LevelByLevelFlowSensitive::solveConstraints(){
         --currentPointerLevel;
         // JH todo: this should be updating svfg instead of creating new svfg
         // JH todo: should use pts of this instead of ander.
-        // memSSA.updatePTROnlySvfgForPointerLevel(ander, currentPointerLevel, pointerLevelMap);
+        // memSSA.updatePTROnlySvfgForPointerLevel(this, currentPointerLevel, pointerLevelMap);
         svfg = memSSA.buildPTROnlySvfgForPointerLevel(this, currentPointerLevel, pointerLevelMap);
         setGraph(svfg);
         svfg->dump("svfg-pl" + std::to_string(currentPointerLevel), true);

@@ -62,6 +62,7 @@ public:
     SVFG* buildPTROnlySvfgForPointerLevel(BVDataPTAImpl* pta, size_t pl, std::map<NodeID, size_t>& plMap);
 
 
+
     /// Get SVFG instance
     inline SVFG* getSVFG() const
     {
@@ -86,6 +87,7 @@ public:
     void updatePTROnlySvfgForPointerLevel(BVDataPTAImpl* pta, size_t pl, std::map<NodeID, size_t>& plMap);
     void updateMssaForSvfg(std::unique_ptr<SVF::MemSSA> &mssa);
     void updateSVFGForPointerLevel(size_t pl, std::map<NodeID, size_t>& plMap);
+    void updateMssaForPointerLevel(BVDataPTAImpl* pta, bool ptrOnlyMSSA, size_t pl, std::map<NodeID, size_t>& plMap, MemSSA *);
 
 
 
