@@ -114,7 +114,7 @@ void LevelByLevelFlowSensitive::analyze(){
 
 void LevelByLevelFlowSensitive::solveConstraints(){
 
-    while(currentPointerLevel){
+    while(true){
         outs() << "Solving pointer level " << currentPointerLevel << "\n";
         do
         {
@@ -130,11 +130,14 @@ void LevelByLevelFlowSensitive::solveConstraints(){
         while (updateCallGraph(getIndirectCallsites()));
         
         --currentPointerLevel;
+        if(currentPointerLevel == 0){
+            break;
+        }
         // JH todo: this should be updating svfg instead of creating new svfg
         // JH todo: should use pts of this instead of ander.
-        // memSSA.updatePTROnlySvfgForPointerLevel(this, currentPointerLevel, pointerLevelMap);
-        svfg = memSSA.buildPTROnlySvfgForPointerLevel(this, currentPointerLevel, pointerLevelMap);
-        setGraph(svfg);
+        memSSA.updatePTROnlySvfgForPointerLevel(this, currentPointerLevel, pointerLevelMap);
+        // svfg = memSSA.buildPTROnlySvfgForPointerLevel(this, currentPointerLevel, pointerLevelMap);
+        // setGraph(svfg);
         svfg->dump("svfg-pl" + std::to_string(currentPointerLevel), true);
 
     }

@@ -296,6 +296,7 @@ void SVFG::addSVFGNodesForAddrTakenVarsForPointerLevel(size_t pl, std::map<NodeI
         }
         const StmtSVFGNode* sNode = getStmtVFGNode(store);
         for(CHISet::iterator pi = mssa->getCHISet(store).begin(), epi = mssa->getCHISet(store).end(); pi!=epi; ++pi){
+            // outs() << *((*pi)->getResVer()) << " " << *sNode << "\n";
             setDef((*pi)->getResVer(),sNode);
         }
             
@@ -676,6 +677,7 @@ SVFGEdge* SVFG::addIntraIndirectVFEdge(NodeID srcId, NodeID dstId, const NodeBS&
 {
     SVFGNode* srcNode = getSVFGNode(srcId);
     SVFGNode* dstNode = getSVFGNode(dstId);
+    outs() << *srcNode << " " << *dstNode << "\n";
     checkIntraEdgeParents(srcNode, dstNode);
     if(SVFGEdge* edge = hasIntraVFGEdge(srcNode,dstNode,SVFGEdge::IntraIndirectVF))
     {

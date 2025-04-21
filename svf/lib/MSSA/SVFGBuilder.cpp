@@ -57,7 +57,7 @@ void SVFGBuilder::updateMssaForPointerLevel(BVDataPTAImpl* pta, bool ptrOnlyMSSA
 
     DBOUT(DGENERAL, outs() << pasMsg("Update Memory SSA \n"));
 
-    mssa->updateDetail(pta, ptrOnlyMSSA);
+    mssa->updateDetail(pta, ptrOnlyMSSA, pl, plMap);
 
     CallGraph* svfirCallGraph = PAG::getPAG()->getCallGraph();
     for (const auto& item: *svfirCallGraph)
@@ -69,8 +69,8 @@ void SVFGBuilder::updateMssaForPointerLevel(BVDataPTAImpl* pta, bool ptrOnlyMSSA
 
         mssa->buildMemSsaForPointerLevel(*fun, pl, plMap);
     }
-    // outs() << "MSSA for pointer level " << pl << "\n";
-    // mssa->dumpMSSA();
+    outs() << "MSSA for pointer level " << pl << "\n";
+    mssa->dumpMSSA();
 
 
     mssa->performStat();

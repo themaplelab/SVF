@@ -428,6 +428,8 @@ public:
 
     /// Start generating memory regions
     virtual void generateMRs();
+    virtual void updateMRs(size_t pl, std::map<NodeID, size_t>& plMap);
+
 
     /// Get the function which SVFIR Edge located
     const FunObjVar* getFunction(const PAGEdge* pagEdge) const
@@ -481,6 +483,10 @@ public:
     ModRefInfo getModRefInfo(const CallICFGNode* cs, const SVFVar* V);
     ModRefInfo getModRefInfo(const CallICFGNode* cs1, const CallICFGNode* cs2);
     //@}
+
+    inline void updatePta(BVDataPTAImpl* p){
+        pta = p;
+    }
 
 };
 

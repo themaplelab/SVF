@@ -308,7 +308,7 @@ public:
     /// Constructor
     MemSSA(BVDataPTAImpl* p, bool ptrOnlyMSSA);
 
-    void updateDetail(BVDataPTAImpl* p, bool ptrOnlyMSSA);
+    void updateDetail(BVDataPTAImpl* p, bool ptrOnlyMSSA, size_t pl, std::map<NodeID, size_t>& plMap);
 
 
     /// Destructor

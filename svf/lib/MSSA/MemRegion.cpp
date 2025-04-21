@@ -147,6 +147,29 @@ void MRGenerator::generateMRs()
     updateAliasMRs();
 }
 
+void MRGenerator::updateMRs(size_t pl, std::map<NodeID, size_t>& plMap)
+{
+
+    callGraphSCC->find();
+
+    DBOUT(DGENERAL, outs() << pasMsg("\tCollect ModRef For Load/Store \n"));
+
+    /// collect mod-ref for loads/stores
+    collectModRefForLoadStore();
+
+    DBOUT(DGENERAL, outs() << pasMsg("\tCollect ModRef For const CallICFGNode*\n"));
+
+    /// collect mod-ref for calls
+    collectModRefForCall();
+
+    DBOUT(DGENERAL, outs() << pasMsg("\tPartition Memory Regions \n"));
+    /// Partition memory regions
+    partitionMRs();
+    /// attach memory regions for loads/stores/calls
+    updateAliasMRs();
+}
+
+
 bool MRGenerator::hasSVFStmtList(const ICFGNode* node)
 {
     SVFIR* pag = pta->getPAG();
