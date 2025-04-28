@@ -70,7 +70,6 @@ namespace SVF{
                         NodeID nodeId = nodeStack.top();
                         nodeStack.pop();
                         allNodes.push_back(nodeId);
-                        // pushIntoWorklist(nodeId);
                     }
                 }
                 for(auto nId : allNodes){

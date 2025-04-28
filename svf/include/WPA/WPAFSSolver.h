@@ -66,12 +66,8 @@ protected:
     /// SCC detection
     virtual NodeStack& SCCDetect()
     {
-        
-        // std::cout << "bbbb" << " " << (this->getSCCDetector() == nullptr) << "\n";
-
         /// SCC detection
         this->getSCCDetector()->find();
-        std::cout << nodeStack.size() << "\n";
         assert(nodeStack.empty() && "node stack is not empty, some nodes are not popped properly.");
 
         /// Both rep and sub nodes need to be processed later.

@@ -369,7 +369,6 @@ protected:
     //@{
     inline void setDef(const MRVer* mvar, const SVFGNode* node)
     {
-        SVF::SVFUtil::outs() << *mvar << " " << *node << "\n";
         MSSAVarToDefMapTy::iterator it = MSSAVarToDefMap.find(mvar);
         if(it==MSSAVarToDefMap.end())
         {
@@ -378,7 +377,6 @@ protected:
         }
         else
         {
-            SVF::SVFUtil::outs() << "Extra " << it->second << "\n";
             assert((it->second == node->getId()) && "a SVFIR node can only have unique definition ");
         }
     }

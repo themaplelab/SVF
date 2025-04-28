@@ -18,7 +18,6 @@ size_t LevelByLevelFlowSensitive::computeMaxPointerLevel(std::map<NodeID, std::s
     for(auto it = preAnalysis->getAllValidPtrs().begin(); it != preAnalysis->getAllValidPtrs().end(); ++it){
         SVF::NodeID nid = *it;
         auto pl = computePointerLevel(nid, dag);
-        // outs() << nid << " " << pl << "\n";
         maxPl = std::max(maxPl, pl);
         pointerLevelToNodeIDsMap[pl].insert(nid);
     }
@@ -80,23 +79,14 @@ void LevelByLevelFlowSensitive::initialize(){
             }
         }
     }
-    outs() << "1\n";
     currentPointerLevel = computeMaxPointerLevel(dag);
-    outs() << "2\n";
 
-    // for(auto p : pointerLevelMap){
-    //     outs() << p.first << " " << p.second << "\n";
-    // }
 
 
     svfg = memSSA.buildPTROnlySvfgForPointerLevel(this, currentPointerLevel, pointerLevelMap);
     setGraph(svfg);
-    outs() << "3\n";
-
 
     svfg->dump("svfg-pl" + std::to_string(currentPointerLevel), true);
-    // std::terminate();
-
     outs() << "End of initialization\n";
 }
 
@@ -126,6 +116,7 @@ void LevelByLevelFlowSensitive::solveConstraints(){
             callGraphSCC->find();
             initWorklist();
             solveWorklist();
+
         }
         while (updateCallGraph(getIndirectCallsites()));
         
@@ -457,12 +448,12 @@ bool LevelByLevelFlowSensitive::hasCurrentPointerLevel(NodeID nId){
 
     
     for(auto inst : stmts){
-        if(const LoadStmt* load = SVFUtil::dyn_cast<LoadStmt>(inst)){
+        if(SVFUtil::isa<LoadStmt>(inst)){
             if(pointerLevelMap.at(inst->getDstID()) == currentPointerLevel){
                 return true;
             }
         }
-        else if (const StoreStmt* store = SVFUtil::dyn_cast<StoreStmt>(inst)){
+        else if (SVFUtil::isa<StoreStmt>(inst)){
             if(pointerLevelMap.at(inst->getDstID()) == currentPointerLevel){
                 return true;
             }
@@ -626,7 +617,7 @@ size_t LevelByLevelFlowSensitive::getPointerLevel(SVFGNode *node){
         return getPointerLevelFromPagNodeId(phi->getRes()->getId());
 
     }
-    else if(const auto *null = SVFUtil::dyn_cast<NullPtrVFGNode>(node)){
+    else if(SVFUtil::isa<NullPtrVFGNode>(node)){
         return 0;
     }
 

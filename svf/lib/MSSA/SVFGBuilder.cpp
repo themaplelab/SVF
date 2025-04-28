@@ -69,9 +69,6 @@ void SVFGBuilder::updateMssaForPointerLevel(BVDataPTAImpl* pta, bool ptrOnlyMSSA
 
         mssa->buildMemSsaForPointerLevel(*fun, pl, plMap);
     }
-    outs() << "MSSA for pointer level " << pl << "\n";
-    mssa->dumpMSSA();
-
 
     mssa->performStat();
     if (Options::DumpMSSA())
@@ -112,26 +109,16 @@ SVFG* SVFGBuilder::buildPTROnlySvfgForPointerLevel(BVDataPTAImpl* pta, size_t pl
 }
 
 SVFG* SVFGBuilder::buildPointerLevel(BVDataPTAImpl* pta, VFG::VFGK kind, size_t pl, std::map<NodeID, size_t>& plMap){
-
-    outs() << "2.1\n";
     
-
-    // JH todo: build mssa for each layer.
     auto mssa = buildMssaForPointerLevel(pta, (VFG::PTRONLYSVFG==kind || VFG::PTRONLYSVFG_OPT==kind), pl, plMap);
-    // mssa->dumpMSSA();
 
     DBOUT(DGENERAL, outs() << pasMsg("Build Sparse Value-Flow Graph \n"));
     if(kind == VFG::FULLSVFG_OPT || kind == VFG::PTRONLYSVFG_OPT)
         svfg = std::make_unique<SVFGOPT>(std::move(mssa), kind);
     else
         svfg = std::unique_ptr<SVFG>(new SVFG(std::move(mssa),kind));
-
-    outs() << "2.2\n";
     
     buildSVFGForPointerLevel(pl, plMap);
-
-    outs() << "2.3\n";
-
 
     /// Update call graph using pre-analysis results
     if(Options::SVFGWithIndirectCall() || SVFGWithIndCall)
@@ -154,8 +141,6 @@ std::unique_ptr<MemSSA> SVFGBuilder::buildMssaForPointerLevel(BVDataPTAImpl* pta
     // Do not need to update, it is just preparation.
     auto mssa = std::make_unique<MemSSA>(pta, ptrOnlyMSSA);
 
-
-
     CallGraph* svfirCallGraph = PAG::getPAG()->getCallGraph();
     for (const auto& item: *svfirCallGraph)
     {
@@ -166,8 +151,6 @@ std::unique_ptr<MemSSA> SVFGBuilder::buildMssaForPointerLevel(BVDataPTAImpl* pta
 
         mssa->buildMemSsaForPointerLevel(*fun, pl, plMap);
     }
-    mssa->dumpMSSA();
-
 
     mssa->performStat();
     if (Options::DumpMSSA())
