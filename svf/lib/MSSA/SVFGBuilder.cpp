@@ -70,7 +70,10 @@ void SVFGBuilder::updateMssaForPointerLevel(BVDataPTAImpl* pta, bool ptrOnlyMSSA
         mssa->buildMemSsaForPointerLevel(*fun, pl, plMap);
     }
 
-    mssa->performStat();
+    if(pl == 1){
+        mssa->performStat();
+    }
+    
     if (Options::DumpMSSA())
     {
         mssa->dumpMSSA();
@@ -96,7 +99,7 @@ void SVFGBuilder::updatePTROnlySvfgForPointerLevel(BVDataPTAImpl* pta, size_t pl
     if(Options::SVFGWithIndirectCall() || SVFGWithIndCall)
         svfg->updateCallGraph(pta);
 
-    if(svfg->getMSSA()->getPTA()->printStat())
+    if(svfg->getMSSA()->getPTA()->printStat() && pl == 1)
         svfg->performStat();
 
     if(Options::DumpVFG())
@@ -124,7 +127,7 @@ SVFG* SVFGBuilder::buildPointerLevel(BVDataPTAImpl* pta, VFG::VFGK kind, size_t 
     if(Options::SVFGWithIndirectCall() || SVFGWithIndCall)
         svfg->updateCallGraph(pta);
 
-    if(svfg->getMSSA()->getPTA()->printStat())
+    if(svfg->getMSSA()->getPTA()->printStat() && pl == 1)
         svfg->performStat();
 
     if(Options::DumpVFG())
@@ -152,7 +155,10 @@ std::unique_ptr<MemSSA> SVFGBuilder::buildMssaForPointerLevel(BVDataPTAImpl* pta
         mssa->buildMemSsaForPointerLevel(*fun, pl, plMap);
     }
 
-    mssa->performStat();
+    if(pl == 1){
+        mssa->performStat();
+    }
+    
     if (Options::DumpMSSA())
     {
         mssa->dumpMSSA();

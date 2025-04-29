@@ -29,7 +29,13 @@ namespace SVF{
 
     class LevelByLevelFlowSensitive : public WPASVFGFSSolver, public BVDataPTAImpl{
 
+        friend class LevelByLevelFlowSensitiveStat;
+
+
         public:
+            typedef BVDataPTAImpl::MutDFPTDataTy MutDFPTDataTy;
+            typedef BVDataPTAImpl::MutDFPTDataTy::DFPtsMap DFInOutMap;
+            typedef BVDataPTAImpl::MutDFPTDataTy::PtsMap PtsMap;
             // JH todo : add PointToGraph
             typedef SCCDetection<PointsToGraph*> PointsToGraphSCC;
 
@@ -135,7 +141,23 @@ namespace SVF{
             size_t getPointerLevelFromPagNodeId(NodeID nId);
 
 
+            inline const DFInOutMap& getDFInputMap() const
+            {
+                return getMutDFPTDataTy()->getDFIn();
+            }
+            inline const DFInOutMap& getDFOutputMap() const
+            {
+                return getMutDFPTDataTy()->getDFOut();
+            }
 
+            inline const PointsTo& getDFInPtsSet(const SVFGNode* stmt, const NodeID node)
+            {
+                return getDFPTDataTy()->getDFInPtsSet(stmt->getId(),node);
+            }
+            inline const PointsTo& getDFOutPtsSet(const SVFGNode* stmt, const NodeID node)
+            {
+                return getDFPTDataTy()->getDFOutPtsSet(stmt->getId(),node);
+            }
 
 
 
@@ -167,6 +189,12 @@ namespace SVF{
 
             NodeBS svfgHasSU;
 
+            u32_t maxSCCSize;
+            u32_t numOfSCC;
+            u32_t numOfNodesInSCC;
+
+            
+
 
 
 
@@ -182,8 +210,10 @@ namespace SVF{
 
             std::vector<NodeID> allNodes;
 
-
             AndersenWaveDiff *ander;
+
+
+            
 
             size_t computeMaxPointerLevel(std::map<NodeID, std::set<NodeID>>&);
             size_t computePointerLevel(NodeID id, std::map<NodeID, std::set<NodeID>>&);

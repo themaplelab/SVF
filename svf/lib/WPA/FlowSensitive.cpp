@@ -70,6 +70,7 @@ void FlowSensitive::initialize()
 
     svfg = memSSA.buildPTROnlySVFG(ander);
 
+
     setGraph(svfg);
     //AndersenWaveDiff::releaseAndersenWaveDiff();
 }
@@ -135,7 +136,6 @@ void FlowSensitive::analyze()
         if(Options::WriteAnder().empty())
         {
             initialize();
-            dumpTopLevelPtsTo();
             solveConstraints();
             finalize();
         }

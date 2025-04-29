@@ -1,62 +1,62 @@
 
 *********General Stats***************
-################ (program : interSwap.ll)###############
-AddrsNum            19
-BBWith2Succ         1
+################ (program : lbm_r.bc)###############
+AddrsNum            376
+BBWith2Succ         74
 BBWith3Succ         0
-CallsNum            2
+CallsNum            46
 ConstArrayObj       0
 ConstStructObj      0
 ConstantObj         0
-CopysNum            3
-FIObjNum            0
-FSObjNum            13
-FunctionObjs        2
-GepsNum             1
-GlobalObjs          0
-HeapObjs            1
+CopysNum            700
+FIObjNum            7
+FSObjNum            174
+FunctionObjs        35
+GepsNum             857
+GlobalObjs          2
+HeapObjs            5
 IndCallSites        0
-LoadsNum            14
-MaxStructSize       0
-NonPtrObj           6
+LoadsNum            2773
+MaxStructSize       22
+NonPtrObj           138
 ReturnsNum          0
-StackObjs           10
-StoresNum           13
-TotalCallSite       1
-TotalFieldObjects   0
-TotalObjects        14
-TotalPTASVFStmts    39
-TotalPointers       63
-TotalSVFStmts       57
-VarArrayObj         2
-VarStructObj        0
+StackObjs           139
+StoresNum           423
+TotalCallSite       71
+TotalFieldObjects   14
+TotalObjects        196
+TotalPTASVFStmts    1947
+TotalPointers       8199
+TotalSVFStmts       7986
+VarArrayObj         8
+VarStructObj        2
 ----------------Time and memory stats--------------------
-LLVMIRTime          0.006
-SVFIRTime           0
-SymbolTableTime     0
+LLVMIRTime          0.009
+SVFIRTime           0.014
+SymbolTableTime     0.197
 #######################################################
 
 *********PTACallGraph Stats (Andersen analysis)***************
-################ (program : interSwap.ll)###############
+################ (program : lbm_r.bc)###############
 ----------------Numbers stats----------------------------
 CalRetPairInCycle   0
 MaxNodeInCycle      0
 NodeInCycle         0
 TotalCycle          0
-TotalEdge           1
-TotalNode           2
+TotalEdge           71
+TotalNode           35
 #######################################################
 
 *********Andersen Pointer Analysis Stats***************
-################ (program : interSwap.ll)###############
+################ (program : lbm_r.bc)###############
 ----------------Time and memory stats--------------------
-AvgIn/OutAddrEdge   0.27907
-AvgIn/OutCopyEdge   0.139535
-AvgIn/OutEdge       0.906977
-AvgIn/OutLoadEdge   0.27907
-AvgIn/OutStoreEdge  0.209302
-AvgPtsSetSize       0.298701
-AvgTopLvlPtsSize    0.7
+AvgIn/OutAddrEdge   0.0951918
+AvgIn/OutCopyEdge   0.842156
+AvgIn/OutEdge       1.33026
+AvgIn/OutLoadEdge   0.367169
+AvgIn/OutStoreEdge  0.0257407
+AvgPtsSetSize       0.197856
+AvgTopLvlPtsSize    0.860874
 CollapseTime        0
 CopyGepTime         0
 LoadStoreTime       0
@@ -64,409 +64,70 @@ MemoryUsageVmrss    0
 MemoryUsageVmsize   0
 SCCDetectTime       0
 SCCMergeTime        0
-TotalTime           0.001
+TotalTime           0.006
 UpdateCGTime        0
 ----------------Numbers stats----------------------------
-AddrProcessed       12
-CopyProcessed       0
-DummyFieldPtrs      0
-FieldObjs           0
-GepProcessed        0
+AddrProcessed       198
+CopyProcessed       756
+DummyFieldPtrs      2
+FieldObjs           14
+GepProcessed        725
 IndCallSites        0
 IndEdgeSolved       0
-LoadProcessed       0
+LoadProcessed       752
 LocalVarInRecur     0
 MaxInAddrEdge       1
-MaxInCopyEdge       1
-MaxInLoadEdge       1
+MaxInCopyEdge       3
+MaxInLoadEdge       4
 MaxInStoreEdge      1
-MaxNodesInSCC       0
-MaxOutAddrEdge      1
-MaxOutCopyEdge      2
-MaxOutLoadEdge      3
-MaxOutStoreEdge     1
-MaxPtsSetSize       1
-MemObjects          14
-NodesInCycles       0
+MaxNodesInSCC       8
+MaxOutAddrEdge      18
+MaxOutCopyEdge      174
+MaxOutLoadEdge      174
+MaxOutStoreEdge     4
+MaxPtsSetSize       3
+MemObjects          196
+NodesInCycles       8
 NullPointer         5
-NumOfAddrs          12
-NumOfCGEdge         27
-NumOfCGNode         45
-NumOfCopys          5
+NumOfAddrs          196
+NumOfCGEdge         2543
+NumOfCGNode         2094
+NumOfCopys          878
 NumOfFieldExpand    0
-NumOfGeps           1
-NumOfLoads          12
-NumOfSCCDetect      0
+NumOfGeps           856
+NumOfLoads          756
+NumOfSCCDetect      4
 NumOfSFRs           0
-NumOfStores         9
-NumOfValidNode      43
-NumOfValidObjNode   12
-Pointers            63
+NumOfStores         53
+NumOfValidNode      2059
+NumOfValidObjNode   183
+Pointers            8199
 PointsToBlkPtr      0
-PointsToConstPtr    0
-SolveIterations     1
-StoreProcessed      0
-TotalCycleNum       0
-TotalObjects        14
-TotalPWCCycleNum    0
-TotalPointers       63
-#######################################################
-
-****Persistent Points-To Cache Statistics: Andersen's analysis bitvector****
-################ (program : interSwap.ll)###############
-UniquePointsToSets       13
-TotalUnions              36
-PropertyUnions           36
-UniqueUnions             0
-LookupUnions             0
-PreemptiveUnions         0
-TotalComplements         0
-PropertyComplements      0
-UniqueComplements        0
-LookupComplements        0
-PreemptiveComplements    0
-TotalIntersections       0
-PropertyIntersections    0
-UniqueIntersections      0
-LookupIntersections      0
-PreemptiveIntersections  0
-#######################################################
-
-*********PTACallGraph Stats (Andersen analysis)***************
-################ (program : interSwap.ll)###############
-----------------Numbers stats----------------------------
-CalRetPairInCycle   0
-MaxNodeInCycle      0
-NodeInCycle         0
-TotalCycle          0
-TotalEdge           1
-TotalNode           2
-#######################################################
-
-*********Andersen Pointer Analysis Stats***************
-################ (program : interSwap.ll)###############
-----------------Time and memory stats--------------------
-AvgIn/OutAddrEdge   0.263158
-AvgIn/OutCopyEdge   0.552632
-AvgIn/OutEdge       1.36842
-AvgIn/OutLoadEdge   0.315789
-AvgIn/OutStoreEdge  0.236842
-AvgPtsSetSize       0.576923
-AvgTopLvlPtsSize    1.16667
-CollapseTime        0
-CopyGepTime         0
-LoadStoreTime       0
-MemoryUsageVmrss    0
-MemoryUsageVmsize   0
-SCCDetectTime       0
-SCCMergeTime        0
-TotalTime           0
-UpdateCGTime        0
-----------------Numbers stats----------------------------
-AddrProcessed       24
-CopyProcessed       22
-DummyFieldPtrs      0
-FieldObjs           1
-GepProcessed        1
-IndCallSites        0
-IndEdgeSolved       0
-LoadProcessed       12
-LocalVarInRecur     0
-MaxInAddrEdge       1
-MaxInCopyEdge       2
-MaxInLoadEdge       3
-MaxInStoreEdge      1
-MaxNodesInSCC       6
-MaxOutAddrEdge      1
-MaxOutCopyEdge      3
-MaxOutLoadEdge      3
-MaxOutStoreEdge     3
-MaxPtsSetSize       2
-MemObjects          14
-NodesInCycles       6
-NullPointer         0
-NumOfAddrs          10
-NumOfCGEdge         42
-NumOfCGNode         41
-NumOfCopys          20
-NumOfFieldExpand    0
-NumOfGeps           1
-NumOfLoads          12
-NumOfSCCDetect      3
-NumOfSFRs           0
-NumOfStores         9
-NumOfValidNode      38
-NumOfValidObjNode   10
-Pointers            63
-PointsToBlkPtr      0
-PointsToConstPtr    0
-SolveIterations     3
-StoreProcessed      9
+PointsToConstPtr    2
+SolveIterations     4
+StoreProcessed      56
 TotalCycleNum       1
-TotalObjects        14
+TotalObjects        196
 TotalPWCCycleNum    0
-TotalPointers       63
+TotalPointers       8199
 #######################################################
 
 ****Persistent Points-To Cache Statistics: Andersen's analysis bitvector****
-################ (program : interSwap.ll)###############
-UniquePointsToSets       15
-TotalUnions              42
-PropertyUnions           36
-UniqueUnions             1
-LookupUnions             3
-PreemptiveUnions         2
-TotalComplements         133
-PropertyComplements      129
+################ (program : lbm_r.bc)###############
+UniquePointsToSets       202
+TotalUnions              1749
+PropertyUnions           1733
+UniqueUnions             5
+LookupUnions             1
+PreemptiveUnions         10
+TotalComplements         8426
+PropertyComplements      8421
 UniqueComplements        1
-LookupComplements        2
+LookupComplements        3
 PreemptiveComplements    1
-TotalIntersections       28
-PropertyIntersections    26
+TotalIntersections       816
+PropertyIntersections    814
 UniqueIntersections      0
 LookupIntersections      0
 PreemptiveIntersections  2
-#######################################################
-
-*********Memory SSA Statistics***************
-################ (program : interSwap.ll)###############
-----------------Time and memory stats--------------------
-AverageRegSize      0
-GenMUCHITime        0
-GenRegionTime       0
-InsertPHITime       0
-SSARenameTime       0
-TotalMSSATime       0
-----------------Numbers stats----------------------------
-BBHasMSSAPhi        0
-CSChiNode           0
-CSHasChi            0
-CSHasMu             0
-CSMuNode            0
-FunEntryChi         0
-FunHasEntryChi      0
-FunHasRetMu         2
-FunRetMu            0
-LoadHasMu           12
-LoadMuNode          0
-MSSAPhi             0
-MaxRegSize          0
-MemRegions          0
-StoreChiNode        0
-StoreHasChi         9
-#######################################################
-
-*********SVFG Statistics***************
-################ (program : interSwap.ll)###############
-----------------Time and memory stats--------------------
-ATNodeTime          0
-AvgWeight           0
-ConnDirEdgeTime     0
-ConnIndEdgeTime     0
-OptTime             0
-TLNodeTime          0
-TotalTime           0
-----------------Numbers stats----------------------------
-ActualIn            0
-ActualOut           0
-ActualParam         2
-ActualRet           0
-Addr                12
-AvgInDegree         0
-AvgIndInDeg         0
-AvgIndOutDeg        0
-AvgOutDegree        0
-Copy                3
-DirectCallEdge      2
-DirectEdge          38
-DirectRetEdge       0
-FormalIn            0
-FormalOut           0
-FormalParam         2
-FormalRet           0
-Gep                 1
-IndCallEdge         0
-IndRetEdge          0
-IndirectEdge        0
-IndirectEdgeLabels  0
-Load                12
-MSSAPhi             0
-MaxInDegree         2
-MaxIndInDeg         0
-MaxIndOutDeg        0
-MaxOutDegree        5
-PHI                 0
-Store               9
-TotalEdge           38
-TotalNode           42
-#######################################################
-Writing 'svfg-pl3.dot'...End of initialization
-Solving pointer level 3
-
-*********Memory SSA Statistics***************
-################ (program : interSwap.ll)###############
-----------------Time and memory stats--------------------
-AverageRegSize      1
-GenMUCHITime        0
-GenRegionTime       0
-InsertPHITime       0
-SSARenameTime       0
-TotalMSSATime       0.001
-----------------Numbers stats----------------------------
-BBHasMSSAPhi        0
-CSChiNode           0
-CSHasChi            0
-CSHasMu             0
-CSMuNode            0
-FunEntryChi         4
-FunHasEntryChi      2
-FunHasRetMu         2
-FunRetMu            4
-LoadHasMu           12
-LoadMuNode          6
-MSSAPhi             0
-MaxRegSize          1
-MemRegions          4
-StoreChiNode        4
-StoreHasChi         9
-#######################################################
-
-*********SVFG Statistics***************
-################ (program : interSwap.ll)###############
-----------------Time and memory stats--------------------
-ATNodeTime          0
-AvgWeight           1
-ConnDirEdgeTime     0
-ConnIndEdgeTime     0
-OptTime             0
-TLNodeTime          0
-TotalTime           0
-----------------Numbers stats----------------------------
-ActualIn            0
-ActualOut           0
-ActualParam         2
-ActualRet           0
-Addr                12
-AvgInDegree         1
-AvgIndInDeg         1
-AvgIndOutDeg        1
-AvgOutDegree        1
-Copy                3
-DirectCallEdge      2
-DirectEdge          38
-DirectRetEdge       0
-FormalIn            4
-FormalOut           4
-FormalParam         2
-FormalRet           0
-Gep                 1
-IndCallEdge         0
-IndRetEdge          0
-IndirectEdge        14
-IndirectEdgeLabels  14
-Load                12
-MSSAPhi             0
-MaxInDegree         3
-MaxIndInDeg         1
-MaxIndOutDeg        3
-MaxOutDegree        5
-PHI                 0
-Store               9
-TotalEdge           52
-TotalNode           50
-#######################################################
-Writing 'svfg-pl2.dot'...Solving pointer level 2
-
-*********Memory SSA Statistics***************
-################ (program : interSwap.ll)###############
-----------------Time and memory stats--------------------
-AverageRegSize      1
-GenMUCHITime        0
-GenRegionTime       0
-InsertPHITime       0
-SSARenameTime       0
-TotalMSSATime       0.001
-----------------Numbers stats----------------------------
-BBHasMSSAPhi        1
-CSChiNode           2
-CSHasChi            1
-CSHasMu             1
-CSMuNode            2
-FunEntryChi         5
-FunHasEntryChi      2
-FunHasRetMu         2
-FunRetMu            5
-LoadHasMu           12
-LoadMuNode          12
-MSSAPhi             2
-MaxRegSize          1
-MemRegions          7
-StoreChiNode        9
-StoreHasChi         9
-#######################################################
-
-*********SVFG Statistics***************
-################ (program : interSwap.ll)###############
-----------------Time and memory stats--------------------
-ATNodeTime          0
-AvgWeight           1
-ConnDirEdgeTime     0
-ConnIndEdgeTime     0
-OptTime             0
-TLNodeTime          0
-TotalTime           0
-----------------Numbers stats----------------------------
-ActualIn            2
-ActualOut           2
-ActualParam         2
-ActualRet           0
-Addr                12
-AvgInDegree         1
-AvgIndInDeg         1
-AvgIndOutDeg        1
-AvgOutDegree        1
-Copy                3
-DirectCallEdge      2
-DirectEdge          38
-DirectRetEdge       0
-FormalIn            9
-FormalOut           9
-FormalParam         2
-FormalRet           0
-Gep                 1
-IndCallEdge         2
-IndRetEdge          2
-IndirectEdge        40
-IndirectEdgeLabels  40
-Load                12
-MSSAPhi             2
-MaxInDegree         3
-MaxIndInDeg         2
-MaxIndOutDeg        3
-MaxOutDegree        5
-PHI                 0
-Store               9
-TotalEdge           78
-TotalNode           66
-#######################################################
-Writing 'svfg-pl1.dot'...Solving pointer level 1
-
-****Persistent Points-To Cache Statistics: flow-sensitive analysis bitvector****
-################ (program : interSwap.ll)###############
-UniquePointsToSets       15
-TotalUnions              82
-PropertyUnions           74
-UniqueUnions             1
-LookupUnions             5
-PreemptiveUnions         2
-TotalComplements         0
-PropertyComplements      0
-UniqueComplements        0
-LookupComplements        0
-PreemptiveComplements    0
-TotalIntersections       0
-PropertyIntersections    0
-UniqueIntersections      0
-LookupIntersections      0
-PreemptiveIntersections  0
 #######################################################

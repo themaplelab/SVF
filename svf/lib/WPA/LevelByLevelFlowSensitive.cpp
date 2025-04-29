@@ -52,8 +52,6 @@ size_t LevelByLevelFlowSensitive::computePointerLevel(NodeID id, std::map<NodeID
 
 }
 
-
-
 void LevelByLevelFlowSensitive::initialize(){
     PointerAnalysis::initialize();
 
@@ -90,19 +88,17 @@ void LevelByLevelFlowSensitive::initialize(){
     outs() << "End of initialization\n";
 }
 
-
-
 void LevelByLevelFlowSensitive::analyze(){
 
     initialize();
     solveConstraints();
     finalize();
-
-    std::terminate();
 }
 
-
 void LevelByLevelFlowSensitive::solveConstraints(){
+
+    bool limitTimerSet = SVFUtil::startAnalysisLimitTimer(Options::FsTimeLimit());
+    double start = stat->getClk(true);
 
     while(true){
         outs() << "Solving pointer level " << currentPointerLevel << "\n";
@@ -125,20 +121,20 @@ void LevelByLevelFlowSensitive::solveConstraints(){
             break;
         }
         // JH todo: this should be updating svfg instead of creating new svfg
-        // JH todo: should use pts of this instead of ander.
         memSSA.updatePTROnlySvfgForPointerLevel(this, currentPointerLevel, pointerLevelMap);
-        // svfg = memSSA.buildPTROnlySvfgForPointerLevel(this, currentPointerLevel, pointerLevelMap);
-        // setGraph(svfg);
         svfg->dump("svfg-pl" + std::to_string(currentPointerLevel), true);
 
     }
+
+    SVFUtil::stopAnalysisLimitTimer(limitTimerSet);
+    double end = stat->getClk(true);
+    solveTime += (end - start) / TIMEINTERVAL;
 }
 
 bool LevelByLevelFlowSensitive::updateCallGraph(const CallSiteToFunPtrMap& callsites){
     // JH todo: update according to fspta
     return false;
 }
-
 
 /*!
  * Finalize analysis
@@ -150,7 +146,6 @@ void LevelByLevelFlowSensitive::finalize(){
 
     BVDataPTAImpl::finalize();
 }
-
 
 void LevelByLevelFlowSensitive::processNode(NodeID nodeId){
 
