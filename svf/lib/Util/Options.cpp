@@ -695,6 +695,8 @@ OptionMultiple<PointerAnalysis::PTATY> Options::PASelected(
     {PointerAnalysis::TypeCPP_WPA, "type", "Type-based fast analysis for Callgraph, SVFIR and CHA"},
     //LFSPA
     {PointerAnalysis::LevPA_WPA, "levpa", "Level by level flow sensitive pointer analysis"},
+    {PointerAnalysis::LevPaOpt_WPA, "lfspa", "Level by level flow sensitive pointer analysis with optimization for intermediate variables"},
+
 }
 );
 

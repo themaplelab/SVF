@@ -86,6 +86,7 @@ public:
 
         // LFSPA
         LevPA_WPA,
+        LevPaOpt_WPA,
 
 
         Default_PTA		///< default pta without any analysis

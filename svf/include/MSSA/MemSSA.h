@@ -110,6 +110,9 @@ public:
     static double timeOfSSARenaming;	///< Time for SSA rename
     //@}
 
+    typedef SVF::GenericGraphTraits<SVFIR> GTraits;
+    // typedef typename GTraits::ChildIteratorType child_iterator;
+
     enum MemPartition
     {
         Distinct,
@@ -135,6 +138,7 @@ protected:
     virtual void insertPHIForPointerLevel(const FunObjVar& fun, size_t pl, std::map<NodeID, size_t>& plMap);
     virtual void SSARenameForPointerLevel(const FunObjVar& fun, size_t pl, std::map<NodeID, size_t>& plMap);
     virtual void SSARenameBBForPointerLevel(const SVFBasicBlock& bb, size_t pl, std::map<NodeID, size_t>& plMap);
+    void createMUCHIForPointerLevelOptimized(const FunObjVar& fun, size_t pl, std::map<NodeID, size_t>& plMap);
 
 
 
@@ -331,6 +335,8 @@ public:
     /// We start from here
     virtual void buildMemSSA(const FunObjVar& fun);
     virtual void buildMemSsaForPointerLevel(const FunObjVar& fun, size_t pl, std::map<NodeID, size_t>& plMap);
+    virtual void buildMemSsaForPointerLevelOptimized(const FunObjVar& fun, size_t pl, std::map<NodeID, size_t>& plMap);
+
 
 
     /// Perform statistics

@@ -129,6 +129,153 @@ void MemSSA::buildMemSSA(const FunObjVar& fun)
 
 }
 
+void MemSSA::buildMemSsaForPointerLevelOptimized(const FunObjVar& fun, size_t pl, std::map<NodeID, size_t>& plMap)
+{
+
+    assert(!isExtCall(&fun) && "we do not build memory ssa for external functions");
+
+    DBOUT(DMSSA, outs() << "Building Memory SSA for function " << fun.getName()
+          << " \n");
+
+    // nor sure if we need to remove below two lines for pointer level.
+    usedRegs.clear();
+    reg2BBMap.clear();
+
+    /// Create mus/chis for loads/stores/calls for memory regions
+    double muchiStart = stat->getClk(true);
+    createMUCHIForPointerLevelOptimized(fun, pl, plMap);
+    double muchiEnd = stat->getClk(true);
+    timeOfCreateMUCHI += (muchiEnd - muchiStart)/TIMEINTERVAL;
+
+    /// Insert PHI for memory regions
+    double phiStart = stat->getClk(true);
+    insertPHIForPointerLevel(fun, pl, plMap);
+    double phiEnd = stat->getClk(true);
+    timeOfInsertingPHI += (phiEnd - phiStart)/TIMEINTERVAL;
+
+    /// SSA rename for memory regions
+    double renameStart = stat->getClk(true);
+    SSARenameForPointerLevel(fun, pl, plMap);
+    double renameEnd = stat->getClk(true);
+    timeOfSSARenaming += (renameEnd - renameStart)/TIMEINTERVAL;
+
+}
+
+void MemSSA::createMUCHIForPointerLevelOptimized(const FunObjVar& fun, size_t pl, std::map<NodeID, size_t>& plMap){
+
+    // outs() << "createMUCHIForPointerLevelOptimized\n";
+
+
+    DBOUT(DMSSA,
+          outs() << "\t creating mu chi for function " << fun.getName()
+          << "\n");
+    // 1. create mu/chi
+    //	insert a set of mus for memory regions at each load
+    //  inset a set of chis for memory regions at each store
+
+    // 2. find global names (region name before renaming) of each memory region,
+    // collect used mrs in usedRegs, and collect its def basic block in reg2BBMap
+    // in the form of mu(r) and r = chi (r)
+    // a) mu(r):
+    // 		if(r \not\in varKills) global = global \cup r
+    // b) r = chi(r):
+    // 		if(r \not\in varKills) global = global \cup r
+    //		varKills = varKills \cup r
+    //		block(r) = block(r) \cup bb_{chi}
+
+    /// get all reachable basic blocks from function entry
+    /// ignore dead basic blocks
+    BBList reachableBBs = fun.getReachableBBs();
+
+    for (BBList::const_iterator iter = reachableBBs.begin(), eiter = reachableBBs.end();
+            iter != eiter; ++iter)
+    {
+        const SVFBasicBlock* bb = *iter;
+        varKills.clear();
+        for (const auto& inst: bb->getICFGNodeList())
+        {
+
+            // JH todo: find a way to check if inst has pointer level pl.
+            // i.e. find inst from nodeid
+            if(mrGen->hasSVFStmtList(inst))
+            {
+                SVFStmtList& pagEdgeList = mrGen->getPAGEdgesFromInst(inst);
+                for (SVFStmtList::const_iterator bit = pagEdgeList.begin(),
+                        ebit = pagEdgeList.end(); bit != ebit; ++bit)
+                {
+                    const PAGEdge* inst = *bit;
+                    if(const LoadStmt* load = SVFUtil::dyn_cast<LoadStmt>(inst)){
+                        // outs() << "info " << pl << " " << plMap.at(inst->getDstID()) << "\n";
+                        if(plMap.at(inst->getDstID()) == pl){
+                            AddLoadMU(bb, load, mrGen->getLoadMRSet(load));
+
+                            // we want to add mu at all use of load, which should be able to find from pag.
+                            // auto pag = getPAG();
+                            // auto node = pag->getGNode(inst->getDstID());
+                            // // outs() << node->getOutEdges().size() << "aaaaaaa\n";
+                            // for(auto nNode : node->getOutEdges()){
+                            //     // outs() << "get direct use " << *nNode << "\n";
+                            //     if(const LoadStmt* nLoad = SVFUtil::dyn_cast<LoadStmt>(nNode)){
+                            //         AddLoadMU(nLoad->getBB(), nLoad, mrGen->getLoadMRSet(load));
+                            //     }
+                            //     else if(const StoreStmt* nStore = SVFUtil::dyn_cast<StoreStmt>(nNode)){
+                            //         AddStoreCHI(nStore->getBB(), nStore, mrGen->getLoadMRSet(load));
+                            //     }
+                            // }
+                        }
+                    }
+                        
+                    else if (const StoreStmt* store = SVFUtil::dyn_cast<StoreStmt>(inst)){
+                        
+                        if(plMap.at(inst->getDstID()) == pl+1){
+                            AddStoreCHI(bb, store, mrGen->getStoreMRSet(store));
+                        }
+                    }
+                }
+            }
+
+            // JH todo: need to check if the inst satisfy pointer level requirement.
+            if (isNonInstricCallSite(inst))
+            {
+                // if(plMap.at(inst->getSrcId())
+                const CallICFGNode* cs = cast<CallICFGNode>(inst);
+                if(mrGen->hasRefMRSet(cs))
+                    AddCallSiteMU(cs,mrGen->getCallSiteRefMRSet(cs));
+
+                if(mrGen->hasModMRSet(cs))
+                    AddCallSiteCHI(cs,mrGen->getCallSiteModMRSet(cs));
+            }
+        }
+    }
+
+    // create entry chi for this function including all memory regions
+    // initialize them with version 0 and 1 r_1 = chi (r_0)
+    for (MRSet::iterator iter = usedRegs.begin(), eiter = usedRegs.end();
+            iter != eiter; ++iter)
+    {
+        const MemRegion* mr = *iter;
+        // initialize mem region version and stack for renaming phase
+        mr2CounterMap[mr] = 0;
+        mr2VerStackMap[mr].clear();
+        ENTRYCHI* chi = new ENTRYCHI(&fun, mr);
+        chi->setOpVer(newSSAName(mr,chi));
+        chi->setResVer(newSSAName(mr,chi));
+        funToEntryChiSetMap[&fun].insert(chi);
+
+        /// if the function does not have a reachable return instruction from function entry
+        /// then we won't create return mu for it
+        if(fun.hasReturn())
+        {
+            RETMU* mu = new RETMU(&fun, mr);
+            funToReturnMuSetMap[&fun].insert(mu);
+        }
+
+    }
+
+}
+
+
+
 void MemSSA::buildMemSsaForPointerLevel(const FunObjVar& fun, size_t pl, std::map<NodeID, size_t>& plMap)
 {
 
@@ -210,6 +357,7 @@ void MemSSA::createMUCHIForPointerLevel(const FunObjVar& fun, size_t pl, std::ma
                     if(const LoadStmt* load = SVFUtil::dyn_cast<LoadStmt>(inst)){
                         if(plMap.at(inst->getDstID()) == pl){
                             AddLoadMU(bb, load, mrGen->getLoadMRSet(load));
+
                         }
                     }
                         

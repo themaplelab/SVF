@@ -123,7 +123,6 @@ void LevelByLevelFlowSensitive::solveConstraints(){
         // JH todo: this should be updating svfg instead of creating new svfg
         memSSA.updatePTROnlySvfgForPointerLevel(this, currentPointerLevel, pointerLevelMap);
         svfg->dump("svfg-pl" + std::to_string(currentPointerLevel), true);
-
     }
 
     SVFUtil::stopAnalysisLimitTimer(limitTimerSet);

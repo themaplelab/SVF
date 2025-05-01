@@ -46,7 +46,7 @@ namespace SVF{
 
             void analyze() override;
             void initialize() override;
-            void solveConstraints();
+            virtual void solveConstraints();
             void finalize() override;
 
 
@@ -122,7 +122,7 @@ namespace SVF{
             bool processCopy(const CopySVFGNode* copy);
             bool processPhi(const PHISVFGNode* phi);
             bool processGep(const GepSVFGNode* edge);
-            bool processLoad(const LoadSVFGNode* load);
+            virtual bool processLoad(const LoadSVFGNode* load);
             bool processStore(const StoreSVFGNode* store);
 
             bool isStrongUpdate(const SVFGNode* node, NodeID& singleton);
@@ -193,29 +193,32 @@ namespace SVF{
             u32_t numOfSCC;
             u32_t numOfNodesInSCC;
 
-            
-
-
-
-
-        private:
-            Steensgaard *steen;
             PointsToGraphSCC *ptgScc;
             PointsToGraph *ptg;
             std::map<NodeID, size_t> pointerLevelMap;
             std::map<size_t, std::set<NodeID>> pointerLevelToNodeIDsMap;
+
             SVFGBuilder memSSA;
             SVFG* svfg;
+
             size_t currentPointerLevel;
 
             std::vector<NodeID> allNodes;
+
+            size_t computeMaxPointerLevel(std::map<NodeID, std::set<NodeID>>&);
+
+        private:
+            Steensgaard *steen;
+            
+            
+            
 
             AndersenWaveDiff *ander;
 
 
             
 
-            size_t computeMaxPointerLevel(std::map<NodeID, std::set<NodeID>>&);
+            
             size_t computePointerLevel(NodeID id, std::map<NodeID, std::set<NodeID>>&);
             inline AndersenWaveDiff* getPreAnalysis(){
                 //JH todo: update to steen

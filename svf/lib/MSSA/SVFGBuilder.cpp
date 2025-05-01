@@ -39,6 +39,62 @@ using namespace SVF;
 using namespace SVFUtil;
 
 
+void SVFGBuilder::updateMssaForPointerLevelOptimized(BVDataPTAImpl* pta, bool ptrOnlyMSSA, size_t pl, std::map<NodeID, size_t>& plMap, MemSSA *mssa){
+
+    DBOUT(DGENERAL, outs() << pasMsg("Update Memory SSA \n"));
+
+    mssa->updateDetail(pta, ptrOnlyMSSA, pl, plMap);
+
+    CallGraph* svfirCallGraph = PAG::getPAG()->getCallGraph();
+    for (const auto& item: *svfirCallGraph)
+    {
+
+        const FunObjVar *fun = item.second->getFunction();
+        if (isExtCall(fun))
+            continue;
+
+        mssa->buildMemSsaForPointerLevelOptimized(*fun, pl, plMap);
+    }
+
+    if(pl == 1){
+        mssa->performStat();
+    }
+    
+    if (Options::DumpMSSA())
+    {
+        mssa->dumpMSSA();
+    }
+
+    return;
+}
+
+void SVFGBuilder::buildSVFGForPointerLevelOptimized(size_t pl, std::map<NodeID, size_t>& plMap){
+
+    svfg->updateSVFGForPointerLevel(pl, plMap);
+
+}
+
+
+void SVFGBuilder::updatePTROnlySvfgForPointerLevelOptimized(BVDataPTAImpl* pta, size_t pl, std::map<NodeID, size_t>& plMap){
+
+    // JH todo: should also update rather than give new.
+    updateMssaForPointerLevelOptimized(pta, true, pl, plMap, svfg->getMSSA());
+    buildSVFGForPointerLevel(pl, plMap);
+
+    /// Update call graph using pre-analysis results
+    if(Options::SVFGWithIndirectCall() || SVFGWithIndCall)
+        svfg->updateCallGraph(pta);
+
+    if(svfg->getMSSA()->getPTA()->printStat() && pl == 1)
+        svfg->performStat();
+
+    if(Options::DumpVFG())
+        svfg->dump("svfg_final");
+
+}
+
+
+
 
 
 
@@ -88,11 +144,6 @@ void SVFGBuilder::updatePTROnlySvfgForPointerLevel(BVDataPTAImpl* pta, size_t pl
 
     // JH todo: should also update rather than give new.
     updateMssaForPointerLevel(pta, true, pl, plMap, svfg->getMSSA());
-    // svfg->getMSSA();
-
-    // updateMssaForSvfg(mssa);
-
-    // updateSVFGForPointerLevel(pl, plMap);
     buildSVFGForPointerLevel(pl, plMap);
 
     /// Update call graph using pre-analysis results

@@ -517,6 +517,10 @@ void SVFIRBuilder::initialiseValVars()
         {
             pag->addConstantAggValNode(iter->second, icfgNode, llvmModuleSet()->getSVFType(llvmValue->getType()));
         }
+        else if(SVFUtil::isa<AllocaInst>(llvmValue)){
+            //todo: add new type for top-level alloca
+            pag->addValNodeForAlloca(iter->second, llvmModuleSet()->getSVFType(llvmValue->getType()), icfgNode);
+        }
         else
         {
             // Add value node to PAG

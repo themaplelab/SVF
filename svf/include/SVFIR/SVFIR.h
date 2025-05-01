@@ -567,6 +567,12 @@ private:
         return addValNode(node);
     }
 
+    inline NodeID addValNodeForAlloca(NodeID i, const SVFType* type, const ICFGNode* icfgNode)
+    {
+        SVFVar *node = new ValVar(i, type, icfgNode, ValVar::ValNodeAlloca);
+        return addValNode(node);
+    }
+
     NodeID addFunValNode(NodeID i, const ICFGNode* icfgNode, const FunObjVar* funObjVar, const SVFType* type)
     {
         FunValVar* node = new FunValVar(i, icfgNode, funObjVar, type);

@@ -63,6 +63,7 @@ public:
         // └─────────────────────────────────────────────────────────────────────────┘
         // └─ Subclass: ValVar (Top-level variable nodes)
         ValNode,                 // ├── Represents a standard value variable
+        ValNodeAlloca,           // ├── Represents a standard value variable introduced by an alloca instruction
         ArgValNode,              // ├── Represents an argument value variable
         FunValNode,              // ├── Represents a function value variable
         GepValNode,              // ├── Represents a GEP value variable
@@ -227,7 +228,7 @@ protected:
 
     static inline bool isSVFVarKind(GNodeK n)
     {
-        static_assert(DummyObjNode - ValNode == 26,
+        static_assert(DummyObjNode - ValNode == 27,
                       "The number of SVFVarKinds has changed, make sure the "
                       "range is correct");
 
@@ -236,7 +237,7 @@ protected:
 
     static inline bool isValVarKinds(GNodeK n)
     {
-        static_assert(DummyValNode - ValNode == 13,
+        static_assert(DummyValNode - ValNode == 14,
                       "The number of ValVarKinds has changed, make sure the "
                       "range is correct");
         return n <= DummyValNode && n >= ValNode;

@@ -90,6 +90,12 @@ public:
     void updateMssaForPointerLevel(BVDataPTAImpl* pta, bool ptrOnlyMSSA, size_t pl, std::map<NodeID, size_t>& plMap, MemSSA *);
 
 
+    void updatePTROnlySvfgForPointerLevelOptimized(BVDataPTAImpl* pta, size_t pl, std::map<NodeID, size_t>& plMap);
+    void updateMssaForPointerLevelOptimized(BVDataPTAImpl* pta, bool ptrOnlyMSSA, size_t pl, std::map<NodeID, size_t>& plMap, MemSSA *mssa);
+    void buildSVFGForPointerLevelOptimized(size_t pl, std::map<NodeID, size_t>& plMap);
+
+
+
 
 
 
