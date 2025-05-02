@@ -32,7 +32,7 @@ VarArrayObj         2
 VarStructObj        0
 ----------------Time and memory stats--------------------
 LLVMIRTime          0.004
-SVFIRTime           0
+SVFIRTime           0.001
 SymbolTableTime     0
 #######################################################
 
@@ -112,6 +112,96 @@ TotalPWCCycleNum    0
 TotalPointers       63
 #######################################################
 
+NodeID 0 		PointsTo: {empty}
+
+
+NodeID 4 		PointsTo: { 5 }
+
+
+NodeID 7 		PointsTo: { 8 }
+
+
+NodeID 10 		PointsTo: { 11 }
+
+
+NodeID 12 		PointsTo: { 13 }
+
+
+NodeID 14 		PointsTo: { 15 }
+
+
+NodeID 16 		PointsTo: { 17 }
+
+
+NodeID 18 		PointsTo: { 19 }
+
+
+NodeID 20 		PointsTo: { 21 }
+
+
+NodeID 26 		PointsTo: { 11 }
+
+
+NodeID 28 		PointsTo: { 13 }
+
+
+NodeID 30 		PointsTo: { 11 }
+
+
+NodeID 36 		PointsTo: {empty}
+
+
+NodeID 41 		PointsTo: { 15 }
+
+
+NodeID 42 		PointsTo: { 17 }
+
+
+NodeID 44 		PointsTo: { 45 }
+
+
+NodeID 46 		PointsTo: {empty}
+
+
+NodeID 50 		PointsTo: {empty}
+
+
+NodeID 56 		PointsTo: { 15 }
+
+
+NodeID 57 		PointsTo: { 17 }
+
+
+NodeID 58 		PointsTo: { 59 }
+
+
+NodeID 60 		PointsTo: { 61 }
+
+
+NodeID 62 		PointsTo: { 63 }
+
+
+NodeID 66 		PointsTo: { 15 }
+
+
+NodeID 67 		PointsTo: {empty}
+
+
+NodeID 69 		PointsTo: { 17 }
+
+
+NodeID 70 		PointsTo: {empty}
+
+
+NodeID 71 		PointsTo: {empty}
+
+
+NodeID 73 		PointsTo: {empty}
+
+
+NodeID 74 		PointsTo: {empty}
+
+
 ****Persistent Points-To Cache Statistics: Andersen's analysis bitvector****
 ################ (program : interSwap.ll)###############
 UniquePointsToSets       13
@@ -160,7 +250,7 @@ MemoryUsageVmrss    0
 MemoryUsageVmsize   0
 SCCDetectTime       0
 SCCMergeTime        0
-TotalTime           0.001
+TotalTime           0
 UpdateCGTime        0
 ----------------Numbers stats----------------------------
 AddrProcessed       24
@@ -207,6 +297,66 @@ TotalObjects        14
 TotalPWCCycleNum    0
 TotalPointers       63
 #######################################################
+
+NodeID 0 		PointsTo: {empty}
+
+NodeID 4 		PointsTo: { 5 }
+
+NodeID 7 		PointsTo: { 8 }
+
+NodeID 10 		PointsTo: { 11 }
+
+NodeID 12 		PointsTo: { 13 }
+
+NodeID 14 		PointsTo: { 15 }
+
+NodeID 16 		PointsTo: { 17 }
+
+NodeID 18 		PointsTo: { 19 }
+
+NodeID 20 		PointsTo: { 21 }
+
+NodeID 26 		PointsTo: { 11 }
+
+NodeID 28 		PointsTo: { 13 }
+
+NodeID 30 		PointsTo: { 77 }
+
+NodeID 36 		PointsTo: { 11 13 }
+
+NodeID 41 		PointsTo: { 15 }
+
+NodeID 42 		PointsTo: { 17 }
+
+NodeID 44 		PointsTo: { 45 }
+
+NodeID 46 		PointsTo: { 11 13 }
+
+NodeID 50 		PointsTo: { 11 13 }
+
+NodeID 56 		PointsTo: { 15 }
+
+NodeID 57 		PointsTo: { 17 }
+
+NodeID 58 		PointsTo: { 59 }
+
+NodeID 60 		PointsTo: { 61 }
+
+NodeID 62 		PointsTo: { 63 }
+
+NodeID 66 		PointsTo: { 15 }
+
+NodeID 67 		PointsTo: { 11 13 }
+
+NodeID 69 		PointsTo: { 17 }
+
+NodeID 70 		PointsTo: { 11 13 }
+
+NodeID 71 		PointsTo: { 15 }
+
+NodeID 73 		PointsTo: { 11 13 }
+
+NodeID 74 		PointsTo: { 17 }
 
 ****Persistent Points-To Cache Statistics: Andersen's analysis bitvector****
 ################ (program : interSwap.ll)###############
@@ -426,6 +576,30 @@ IntraICFGNode52 {fun: swap}
    ret void 
 Writing 'svfg-pl3.dot'...End of initialization
 Solving pointer level 3
+load 20 LoadVFGNode ID: 20 LoadStmt: [Var41 <-- Var18]	
+ValVar ID: 41
+   %4 = load ptr, ptr %t1, align 8 
+pts1 19
+load 21 LoadVFGNode ID: 21 LoadStmt: [Var42 <-- Var20]	
+ValVar ID: 42
+   %5 = load ptr, ptr %t2, align 8 
+pts1 21
+load 22 LoadVFGNode ID: 22 LoadStmt: [Var66 <-- Var58]	
+ValVar ID: 66
+   %0 = load ptr, ptr %p.addr, align 8 
+pts1 59
+load 23 LoadVFGNode ID: 23 LoadStmt: [Var71 <-- Var58]	
+ValVar ID: 71
+   %4 = load ptr, ptr %p.addr, align 8 
+pts1 59
+load 24 LoadVFGNode ID: 24 LoadStmt: [Var69 <-- Var60]	
+ValVar ID: 69
+   %2 = load ptr, ptr %q.addr, align 8 
+pts1 61
+load 25 LoadVFGNode ID: 25 LoadStmt: [Var74 <-- Var60]	
+ValVar ID: 74
+   %6 = load ptr, ptr %q.addr, align 8 
+pts1 61
 ==========FUNCTION: main==========
 8V_1 = ENCHI(MR_8V_0) 	pts{21 }
 6V_1 = ENCHI(MR_6V_0) 	pts{19 }
@@ -651,6 +825,96 @@ IntraICFGNode52 {fun: swap}
 RETMU(MR_4V_2) 	pts{61 }
 RETMU(MR_2V_2) 	pts{59 }
 Writing 'svfg-pl2.dot'...Solving pointer level 2
+load 20 LoadVFGNode ID: 20 LoadStmt: [Var41 <-- Var18]	
+ValVar ID: 41
+   %4 = load ptr, ptr %t1, align 8 
+pts1 19
+load 21 LoadVFGNode ID: 21 LoadStmt: [Var42 <-- Var20]	
+ValVar ID: 42
+   %5 = load ptr, ptr %t2, align 8 
+pts1 21
+load 22 LoadVFGNode ID: 22 LoadStmt: [Var66 <-- Var58]	
+ValVar ID: 66
+   %0 = load ptr, ptr %p.addr, align 8 
+pts1 59
+load 23 LoadVFGNode ID: 23 LoadStmt: [Var71 <-- Var58]	
+ValVar ID: 71
+   %4 = load ptr, ptr %p.addr, align 8 
+pts1 59
+load 24 LoadVFGNode ID: 24 LoadStmt: [Var69 <-- Var60]	
+ValVar ID: 69
+   %2 = load ptr, ptr %q.addr, align 8 
+pts1 61
+load 25 LoadVFGNode ID: 25 LoadStmt: [Var74 <-- Var60]	
+ValVar ID: 74
+   %6 = load ptr, ptr %q.addr, align 8 
+pts1 61
+load 17 LoadVFGNode ID: 17 LoadStmt: [Var36 <-- Var14]	
+ValVar ID: 36
+   %3 = load ptr, ptr %a, align 8 
+pts1 15
+load 18 LoadVFGNode ID: 18 LoadStmt: [Var46 <-- Var14]	
+ValVar ID: 46
+   %6 = load ptr, ptr %a, align 8 
+pts1 15
+load 19 LoadVFGNode ID: 19 LoadStmt: [Var50 <-- Var14]	
+ValVar ID: 50
+   %7 = load ptr, ptr %a, align 8 
+pts1 15
+load 26 LoadVFGNode ID: 26 LoadStmt: [Var73 <-- Var62]	
+ValVar ID: 73
+   %5 = load ptr, ptr %tmp, align 8 
+pts1 63
+load 20 LoadVFGNode ID: 20 LoadStmt: [Var41 <-- Var18]	
+ValVar ID: 41
+   %4 = load ptr, ptr %t1, align 8 
+pts1 19
+before 15
+after 15
+result 15
+load 21 LoadVFGNode ID: 21 LoadStmt: [Var42 <-- Var20]	
+ValVar ID: 42
+   %5 = load ptr, ptr %t2, align 8 
+pts1 21
+before 17
+after 17
+result 17
+load 22 LoadVFGNode ID: 22 LoadStmt: [Var66 <-- Var58]	
+ValVar ID: 66
+   %0 = load ptr, ptr %p.addr, align 8 
+pts1 59
+before 15
+after 15
+result 15
+load 23 LoadVFGNode ID: 23 LoadStmt: [Var71 <-- Var58]	
+ValVar ID: 71
+   %4 = load ptr, ptr %p.addr, align 8 
+pts1 59
+before 15
+after 15
+result 15
+load 24 LoadVFGNode ID: 24 LoadStmt: [Var69 <-- Var60]	
+ValVar ID: 69
+   %2 = load ptr, ptr %q.addr, align 8 
+pts1 61
+before 17
+after 17
+result 17
+load 25 LoadVFGNode ID: 25 LoadStmt: [Var74 <-- Var60]	
+ValVar ID: 74
+   %6 = load ptr, ptr %q.addr, align 8 
+pts1 61
+before 17
+after 17
+result 17
+load 27 LoadVFGNode ID: 27 LoadStmt: [Var67 <-- Var66]	
+ValVar ID: 67
+   %1 = load ptr, ptr %0, align 8 
+pts1 15
+load 28 LoadVFGNode ID: 28 LoadStmt: [Var70 <-- Var69]	
+ValVar ID: 70
+   %3 = load ptr, ptr %2, align 8 
+pts1 17
 
 *********Memory SSA Statistics***************
 ################ (program : interSwap.ll)###############
@@ -842,8 +1106,8 @@ IntraICFGNode36 {fun: main}
 RETMU(MR_18V_4) 	pts{17 }
 RETMU(MR_16V_4) 	pts{15 }
 ==========FUNCTION: swap==========
-18V_1 = ENCHI(MR_18V_0) 	pts{17 }
 22V_1 = ENCHI(MR_22V_0) 	pts{63 }
+18V_1 = ENCHI(MR_18V_0) 	pts{17 }
 16V_1 = ENCHI(MR_16V_0) 	pts{15 }
 entry
 IntraICFGNode37 {fun: swap}
@@ -978,6 +1242,82 @@ TotalEdge           78
 TotalNode           66
 #######################################################
 Writing 'svfg-pl1.dot'...Solving pointer level 1
+load 17 LoadVFGNode ID: 17 LoadStmt: [Var36 <-- Var14]	
+ValVar ID: 36
+   %3 = load ptr, ptr %a, align 8 
+pts1 15
+load 18 LoadVFGNode ID: 18 LoadStmt: [Var46 <-- Var14]	
+ValVar ID: 46
+   %6 = load ptr, ptr %a, align 8 
+pts1 15
+load 19 LoadVFGNode ID: 19 LoadStmt: [Var50 <-- Var14]	
+ValVar ID: 50
+   %7 = load ptr, ptr %a, align 8 
+pts1 15
+load 27 LoadVFGNode ID: 27 LoadStmt: [Var67 <-- Var66]	
+ValVar ID: 67
+   %1 = load ptr, ptr %0, align 8 
+pts1 15
+load 28 LoadVFGNode ID: 28 LoadStmt: [Var70 <-- Var69]	
+ValVar ID: 70
+   %3 = load ptr, ptr %2, align 8 
+pts1 17
+load 26 LoadVFGNode ID: 26 LoadStmt: [Var73 <-- Var62]	
+ValVar ID: 73
+   %5 = load ptr, ptr %tmp, align 8 
+pts1 63
+load 17 LoadVFGNode ID: 17 LoadStmt: [Var36 <-- Var14]	
+ValVar ID: 36
+   %3 = load ptr, ptr %a, align 8 
+pts1 15
+before 11
+after 11
+result 11
+load 19 LoadVFGNode ID: 19 LoadStmt: [Var50 <-- Var14]	
+ValVar ID: 50
+   %7 = load ptr, ptr %a, align 8 
+pts1 15
+before 11
+after 11
+result 11
+load 27 LoadVFGNode ID: 27 LoadStmt: [Var67 <-- Var66]	
+ValVar ID: 67
+   %1 = load ptr, ptr %0, align 8 
+pts1 15
+before 11
+after 11
+result 11
+load 28 LoadVFGNode ID: 28 LoadStmt: [Var70 <-- Var69]	
+ValVar ID: 70
+   %3 = load ptr, ptr %2, align 8 
+pts1 17
+before 13
+after 13
+result 13
+load 26 LoadVFGNode ID: 26 LoadStmt: [Var73 <-- Var62]	
+ValVar ID: 73
+   %5 = load ptr, ptr %tmp, align 8 
+pts1 63
+before 11
+after 11
+result 11
+load 18 LoadVFGNode ID: 18 LoadStmt: [Var46 <-- Var14]	
+ValVar ID: 46
+   %6 = load ptr, ptr %a, align 8 
+pts1 15
+before 13
+after 13
+result 13
+load 19 LoadVFGNode ID: 19 LoadStmt: [Var50 <-- Var14]	
+ValVar ID: 50
+   %7 = load ptr, ptr %a, align 8 
+pts1 15
+before 11
+before 13
+after 11
+after 13
+result 11
+result 13
 
 *********PTACallGraph Stats (Flow-sensitive analysis)***************
 ################ (program : interSwap.ll)###############
@@ -1089,6 +1429,96 @@ VarHaveOUT_LD       0
 VarHaveOUT_PHI      0
 VarHaveOUT_ST       0
 #######################################################
+
+NodeID 0 		PointsTo: {empty}
+
+
+NodeID 4 		PointsTo: { 5 }
+
+
+NodeID 7 		PointsTo: { 8 }
+
+
+NodeID 10 		PointsTo: { 11 }
+
+
+NodeID 12 		PointsTo: { 13 }
+
+
+NodeID 14 		PointsTo: { 15 }
+
+
+NodeID 16 		PointsTo: { 17 }
+
+
+NodeID 18 		PointsTo: { 19 }
+
+
+NodeID 20 		PointsTo: { 21 }
+
+
+NodeID 26 		PointsTo: { 11 }
+
+
+NodeID 28 		PointsTo: { 13 }
+
+
+NodeID 30 		PointsTo: { 77 }
+
+
+NodeID 36 		PointsTo: { 11 }
+
+
+NodeID 41 		PointsTo: { 15 }
+
+
+NodeID 42 		PointsTo: { 17 }
+
+
+NodeID 44 		PointsTo: { 45 }
+
+
+NodeID 46 		PointsTo: { 13 }
+
+
+NodeID 50 		PointsTo: { 11 13 }
+
+
+NodeID 56 		PointsTo: { 15 }
+
+
+NodeID 57 		PointsTo: { 17 }
+
+
+NodeID 58 		PointsTo: { 59 }
+
+
+NodeID 60 		PointsTo: { 61 }
+
+
+NodeID 62 		PointsTo: { 63 }
+
+
+NodeID 66 		PointsTo: { 15 }
+
+
+NodeID 67 		PointsTo: { 11 }
+
+
+NodeID 69 		PointsTo: { 17 }
+
+
+NodeID 70 		PointsTo: { 13 }
+
+
+NodeID 71 		PointsTo: { 15 }
+
+
+NodeID 73 		PointsTo: { 11 }
+
+
+NodeID 74 		PointsTo: { 17 }
+
 
 ****Persistent Points-To Cache Statistics: flow-sensitive analysis bitvector****
 ################ (program : interSwap.ll)###############

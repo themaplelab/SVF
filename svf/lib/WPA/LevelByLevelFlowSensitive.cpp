@@ -157,6 +157,8 @@ void LevelByLevelFlowSensitive::processNode(NodeID nodeId){
 }
 
 bool LevelByLevelFlowSensitive::processSVFGNode(SVFGNode* node){
+
+    outs() << "Processing svfg node " << *node << "\n";
     double start = stat->getClk();
     bool changed = false;
     if (AddrSVFGNode* addr = SVFUtil::dyn_cast<AddrSVFGNode>(node))
@@ -321,15 +323,24 @@ bool LevelByLevelFlowSensitive::processLoad(const LoadSVFGNode* load)
     // p = *q, the type of p must be a pointer
     if(load->getPAGDstNode()->isPointer())
     {
+        outs() << "load " << load->getId() << " " << *load << "\n";
         for (PointsTo::iterator ptdIt = srcPts.begin(); ptdIt != srcPts.end(); ++ptdIt)
         {
             NodeID ptd = *ptdIt;
-
+            outs() << "pts1 " << ptd << "\n";
             if (pag->isConstantObj(ptd))
                 continue;
 
+            for(auto pte : getDFPTDataTy()->getDFInPtsSet(load->getId(), ptd)){
+                outs() << "before " << pte << "\n";
+            }
+
             if (unionPtsFromIn(load, ptd, dstVar))
                 changed = true;
+
+            for(auto pte : getDFPTDataTy()->getDFInPtsSet(load->getId(), ptd)){
+                outs() << "after " << pte << "\n";
+            }
 
             if (isFieldInsensitive(ptd))
             {
@@ -344,6 +355,11 @@ bool LevelByLevelFlowSensitive::processLoad(const LoadSVFGNode* load)
                 }
             }
         }
+
+        for(auto p : getPts(dstVar)){
+            outs() << "result " << p << "\n";
+        }
+
     }
     double end = stat->getClk();
     loadTime += (end - start) / TIMEINTERVAL;
@@ -490,12 +506,22 @@ bool LevelByLevelFlowSensitive::propAlongDirectEdge(const DirectSVFGEdge* edge)
         changed = propagateFromAPToFP(ap, dst);
     else if (FormalRetSVFGNode* fp = SVFUtil::dyn_cast<FormalRetSVFGNode>(src))
         changed = propagateFromFRToAR(fp, dst);
+    else if(ActualParmSVFGNode* ap = SVFUtil::dyn_cast<ActualParmSVFGNode>(dst)){
+        changed = propagateToAR(src, ap);
+    }
+    else if(FormalParmSVFGNode* fp = SVFUtil::dyn_cast<FormalParmSVFGNode>(src)){
+        changed = propagateFromFP(fp, dst);
+    }
     else
     {
         // Direct SVFG edge links between def and use of a top-level pointer.
         // There's no points-to information propagated along direct edge.
         // Since the top-level pointer's value has been changed at src node,
         // return TRUE to put dst node into the work list.
+
+
+
+
         changed = true;
     }
 
@@ -513,6 +539,38 @@ bool LevelByLevelFlowSensitive::propagateFromAPToFP(const ActualParmSVFGNode* ap
     const PointsTo &srcCPts = getPts(ap->getParam()->getId());
     bool changed = unionPts(pagDst, srcCPts);
 
+    // bool changed = false;
+
+    for(auto alias : srcCPts){
+        outs() << "alias at AP: " << alias << "\n";
+        // if(unionPtsFromIn(ap, alias, pagDst)){
+        //     changed = true;
+        // }
+        for(auto p : getDFInPtsSet(ap, alias)){
+            outs() << "in: " << p << "\n";
+        }
+
+        if(updateOutFromIn(ap, alias, fp, alias)){
+            changed = true;
+        }
+        // if(updateInFromIn(fp, alias, ap, alias)){
+        //     changed = true;
+        // }
+    }
+
+    
+
+
+
+    // for(auto pte : getPts(ap->getParam()->getId())){
+    //     if(updateInFromIn(ap, pte, dst, pte)){
+    //         updateOutFromIn(dst, pte, dst, pte);
+    //         changed = true;
+    //     }
+    // }
+
+    outs() << "ACTUAL TO FORMAL changed? " << changed << "\n"; 
+
     return changed;
 }
 
@@ -528,6 +586,107 @@ bool LevelByLevelFlowSensitive::propagateFromFRToAR(const FormalRetSVFGNode* fr,
     return changed;
 }
 
+bool LevelByLevelFlowSensitive::propagateToAR(const SVFGNode* src, const SVFGNode* dst){
+    
+    outs() << "Propagate to AR " << src->getId() << " => " << dst->getId() << "\n";
+    
+    const LoadSVFGNode* ar = SVFUtil::dyn_cast<LoadSVFGNode>(src);
+    assert(ar && "expecting an actual return node");
+
+    const ActualParmSVFGNode *ap = SVFUtil::dyn_cast<ActualParmSVFGNode>(dst);
+    assert(ap && "excepting an actual param as dst");
+
+
+    if(const LoadSVFGNode *load = SVFUtil::dyn_cast<LoadSVFGNode>(src)){
+        auto alias = getPts(load->getPAGSrcNodeID());
+        
+        for(auto a : alias){
+            outs() << "alias is " << a << "\n";
+            for(auto pte : getDFPTDataTy()->getDFInPtsSet(load->getId(), a)){
+                outs() << "load before " << pte << "\n";
+            }
+            for(auto pte : getDFPTDataTy()->getDFInPtsSet(dst->getId(), a)){
+                outs() << "dst before " << pte << "\n";
+            }
+
+            // auto test = propVarPtsFromSrcToDst(a, load, dst);
+            // JH: no idea why updateInFromIn not working while updateInFromOut is working.
+            auto test = updateInFromIn(load, a, dst, a);
+            outs() << test << "\n";
+            test = updateInFromOut(load, a, dst, a);
+            outs() << test << "\n";
+
+            // for(auto pte : getDFPTDataTy()->getDFInPtsSet(load->getId(), a)){
+            //     if(updateInFromIn(load, pte, dst, pte)){
+            //         // updateOutFromIn(load, pte, )
+            //     }
+            // }
+            for(auto pte : getDFPTDataTy()->getDFOutPtsSet(load->getId(), a)){
+                outs() << "load after " << pte << "\n";
+            }
+            for(auto pte : getDFPTDataTy()->getDFInPtsSet(dst->getId(), a)){
+                outs() << "dst in after " << pte << "\n";
+            }
+            for(auto pte : getDFPTDataTy()->getDFOutPtsSet(dst->getId(), a)){
+                outs() << "dst out after " << pte << "\n";
+            }
+            
+            
+        }
+    }
+    return true;
+}
+
+bool LevelByLevelFlowSensitive::propagateFromFP(const SVFGNode* src, const SVFGNode* dst){
+    
+    outs() << "Propagate from FP " << src->getId() << " => " << dst->getId() << "\n";
+    
+
+    const FormalParmSVFGNode *fp = SVFUtil::dyn_cast<FormalParmSVFGNode>(src);
+    assert(fp && "excepting an formal param as src");
+
+
+    if(const StoreSVFGNode *store = SVFUtil::dyn_cast<StoreSVFGNode>(dst)){
+        auto alias = getPts(fp->getParam()->getId());
+        
+        for(auto a : alias){
+            outs() << "alias is " << a << "\n";
+            for(auto pte : getDFPTDataTy()->getDFInPtsSet(fp->getId(), a)){
+                outs() << "fp before " << pte << "\n";
+            }
+            for(auto pte : getDFPTDataTy()->getDFInPtsSet(store->getId(), a)){
+                outs() << "dst before " << pte << "\n";
+            }
+
+            // auto test = propVarPtsFromSrcToDst(a, load, dst);
+            // JH: no idea why updateInFromIn not working while updateInFromOut is working.
+            auto test = updateInFromIn(fp, a, store, a);
+            outs() << test << "\n";
+            test = updateInFromOut(fp, a, store, a);
+            outs() << test << "\n";
+
+            // for(auto pte : getDFPTDataTy()->getDFInPtsSet(load->getId(), a)){
+            //     if(updateInFromIn(load, pte, dst, pte)){
+            //         // updateOutFromIn(load, pte, )
+            //     }
+            // }
+            for(auto pte : getDFPTDataTy()->getDFOutPtsSet(fp->getId(), a)){
+                outs() << "fp after " << pte << "\n";
+            }
+            for(auto pte : getDFPTDataTy()->getDFInPtsSet(store->getId(), a)){
+                outs() << "dst in after " << pte << "\n";
+            }
+            for(auto pte : getDFPTDataTy()->getDFOutPtsSet(store->getId(), a)){
+                outs() << "dst out after " << pte << "\n";
+            }
+            
+            
+        }
+    }
+    return true;
+}
+
+
 bool LevelByLevelFlowSensitive::propVarPtsFromSrcToDst(NodeID var, const SVFGNode* src, const SVFGNode* dst)
 {
     bool changed = false;
@@ -541,6 +700,14 @@ bool LevelByLevelFlowSensitive::propVarPtsFromSrcToDst(NodeID var, const SVFGNod
         if (updateInFromIn(src, var, dst, var))
             changed = true;
     }
+
+    // if(!SVFUtil::isa<StoreSVFGNode>(dst)){
+    //     if(updateOutFromIn(dst, var, dst, var)){
+    //         changed = true;
+    //     }
+    // }
+
+
     return changed;
 }
 
@@ -560,7 +727,7 @@ bool LevelByLevelFlowSensitive::propAlongIndirectEdge(const IndirectSVFGEdge* ed
     for (NodeBS::iterator ptdIt = pts.begin(), ptdEit = pts.end(); ptdIt != ptdEit; ++ptdIt)
     {
         NodeID ptd = *ptdIt;
-
+        // outs() << "argu for ptd " << ptd << "\n";
         if (propVarPtsFromSrcToDst(ptd, src, dst))
             changed = true;
 

@@ -28,6 +28,8 @@ namespace SVF{
 
         protected:
             virtual bool processLoad(const LoadSVFGNode* load) override;
+            virtual bool processStore(const StoreSVFGNode* store) override;
+
             
 
 

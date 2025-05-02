@@ -107,25 +107,58 @@ bool LevelByLevelFlowSensitiveOptimized::processLoad(const LoadSVFGNode* load)
 
     
 
-    // const PointsTo& srcPts = getPts(load->getPAGSrcNodeID());
+    const PointsTo& srcPts = getPts(load->getPAGSrcNodeID());
 
     // p = *q, the type of p must be a pointer
     if(load->getPAGDstNode()->isPointer()){
         // todo: cannot differentiate alloca variables with others.
+        // if(false){
         if(load->getPAGSrcNode()->getNodeKind() == SVFValue::ValNodeAlloca){
+
             outs() << *load << " " << load->getPAGSrcNode()->getNodeKind() << " 1\n";
             if(unionPts(dstVar, load->getPAGSrcNodeID())){
                 changed = true;
+            }
+            // if(unionPtsFromIn(load, load->getPAGSrcNodeID(), dstVar)){
+            //     changed = true;
+            // }
+            for (PointsTo::iterator ptdIt = srcPts.begin(); ptdIt != srcPts.end(); ++ptdIt){
+                NodeID ptd = *ptdIt;
+                outs() << "confirmed " << ptd << "\n";
+                for(auto pte : getDFPTDataTy()->getDFInPtsSet(load->getId(), ptd)){
+                    outs() << "before " << pte << "\n";
+                }
+
+                if(updateOutFromIn(load, ptd, load, ptd)){
+                    changed = true;
+                }
+
+                for(auto pte : getDFPTDataTy()->getDFOutPtsSet(load->getId(), ptd)){
+                    outs() << "after " << pte << "\n";
+                }
             }
         }
         else{
             outs() << *load << " " << load->getPAGSrcNode()->getNodeKind() << " 0\n";
 
             auto alias = getPts(load->getPAGSrcNodeID());
-            for(auto pte : alias){
-                if(unionPtsFromIn(load, pte, dstVar)){
-                    changed = true;
+            for(auto a : alias){
+                outs() << "alias " << a << "\n";
+                // if(unionPts(dstVar, pte)){
+                //     changed = true;
+                // }
+                // if(unionPtsFromIn(load, a, dstVar)){
+                //     changed = true;
+                // }
+
+
+                for(auto pte : getDFPTDataTy()->getDFInPtsSet(load->getPAGDstNodeID(), a)){
+                    outs() << "pte " << pte << "\n";
+                    if(unionPtsFromIn(load, pte, dstVar)){
+                        changed = true;
+                    }
                 }
+                
             }
 
         }
@@ -136,6 +169,8 @@ bool LevelByLevelFlowSensitiveOptimized::processLoad(const LoadSVFGNode* load)
         for(auto pte : getPts(dstVar)){
             outs() << pte << "\n";
         }
+
+        outs() << "Changed? " << changed << "\n";
 
 
         // for (PointsTo::iterator ptdIt = srcPts.begin(); ptdIt != srcPts.end(); ++ptdIt)
@@ -164,5 +199,105 @@ bool LevelByLevelFlowSensitiveOptimized::processLoad(const LoadSVFGNode* load)
     }
     double end = stat->getClk();
     loadTime += (end - start) / TIMEINTERVAL;
+    return changed;
+}
+
+
+bool LevelByLevelFlowSensitiveOptimized::processStore(const StoreSVFGNode* store)
+{
+
+    const PointsTo & dstPts = getPts(store->getPAGDstNodeID());
+
+    /// STORE statement can only be processed if the pointer on the LHS
+    /// points to something. If we handle STORE with an empty points-to
+    /// set, the OUT set will be updated from IN set. Then if LHS pointer
+    /// points-to one target and it has been identified as a strong
+    /// update, we can't remove those points-to information computed
+    /// before this strong update from the OUT set.
+    if (dstPts.empty())
+        return false;
+
+    double start = stat->getClk();
+    bool changed = false;
+
+    // *p = q, the type of q must be a pointer
+    if(getPts(store->getPAGSrcNodeID()).empty() == false && store->getPAGSrcNode()->isPointer())
+    {
+
+        if(store->getPAGSrcNode()->getNodeKind() == SVFValue::ValNodeAlloca){
+
+            for (PointsTo::iterator it = dstPts.begin(), eit = dstPts.end(); it != eit; ++it){
+                NodeID ptd = *it;
+
+                if (pag->isConstantObj(ptd))
+                    continue;
+
+                if (unionPtsFromTop(store, store->getPAGSrcNodeID(), ptd))
+                    changed = true;
+
+
+                // verify result.
+                for(auto dp : dstPts){
+                    outs() << dp << " => \n";
+                    for(auto pte : getDFPTDataTy()->getDFOutPtsSet(store->getId(), dp)){
+                        outs() << pte << "\n";
+                    }
+                }
+            }
+        }
+        else{
+            for (PointsTo::iterator it = dstPts.begin(), eit = dstPts.end(); it != eit; ++it)
+            {
+                NodeID ptd = *it;
+                for(auto alias : getPts(store->getPAGSrcNodeID())){
+                    outs() << *store << "\n";
+                    outs() << "Store alias " << alias << "\n";
+
+                    for(auto p : getDFInPtsSet(store, alias)){
+                        outs() << "IN " << p << "\n";
+                    }
+
+                    for(auto p : getDFOutPtsSet(store, alias)){
+                        outs() << "OUT " << p << "\n";
+                    }
+
+
+                    if (pag->isConstantObj(alias))
+                        continue;
+                        
+                    outs() << getDFPTDataTy()->getDFInPtsSet(store->getId(), alias).count() << "\n";
+                
+                    if (unionPtsFromIn(store, alias, ptd))
+                        changed = true;
+                }
+            }      
+        }
+    }
+
+    outs() << "CHANGED? " << changed << "\n";
+
+    double end = stat->getClk();
+    storeTime += (end - start) / TIMEINTERVAL;
+
+    double updateStart = stat->getClk();
+    // also merge the DFInSet to DFOutSet.
+    /// check if this is a strong updates store
+    NodeID singleton;
+    bool isSU = isStrongUpdate(store, singleton);
+    if (isSU)
+    {
+        svfgHasSU.set(store->getId());
+        if (strongUpdateOutFromIn(store, singleton))
+            changed = true;
+    }
+    else
+    {
+        svfgHasSU.reset(store->getId());
+        if (weakUpdateOutFromIn(store))
+            changed = true;
+    }
+    double updateEnd = stat->getClk();
+    updateTime += (updateEnd - updateStart) / TIMEINTERVAL;
+
     return changed;
 }

@@ -115,6 +115,10 @@ namespace SVF{
             {
                 return getDFPTDataTy()->updateDFInFromOut(srcStmt->getId(),srcVar, dstStmt->getId(),dstVar);
             }
+            virtual inline bool updateOutFromIn(const SVFGNode* srcStmt, NodeID srcVar, const SVFGNode* dstStmt, NodeID dstVar)
+            {
+                return getDFPTDataTy()->updateDFOutFromIn(srcStmt->getId(),srcVar, dstStmt->getId(),dstVar);
+            }
 
             void processNode(NodeID nodeId) override;
             bool processSVFGNode(SVFGNode* node);
@@ -123,7 +127,7 @@ namespace SVF{
             bool processPhi(const PHISVFGNode* phi);
             bool processGep(const GepSVFGNode* edge);
             virtual bool processLoad(const LoadSVFGNode* load);
-            bool processStore(const StoreSVFGNode* store);
+            virtual bool processStore(const StoreSVFGNode* store);
 
             bool isStrongUpdate(const SVFGNode* node, NodeID& singleton);
 
@@ -134,6 +138,9 @@ namespace SVF{
             bool propagateFromAPToFP(const ActualParmSVFGNode* ap, const SVFGNode* dst);
             bool propagateFromFRToAR(const FormalRetSVFGNode* fr, const SVFGNode* dst);
             bool propVarPtsFromSrcToDst(NodeID var, const SVFGNode* src, const SVFGNode* dst);
+            bool propagateToAR(const SVFGNode* fr, const SVFGNode* dst);
+            bool propagateFromFP(const SVFGNode* fr, const SVFGNode* dst);
+
 
 
             size_t getPointerLevel(SVFGNode *node);
