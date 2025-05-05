@@ -74,19 +74,24 @@ public:
         return edge->getEdgeKind() == IntraIndirectVF  ||
                edge->getEdgeKind() == CallIndVF ||
                edge->getEdgeKind() == RetIndVF ||
-               edge->getEdgeKind() == TheadMHPIndirectVF;
+               edge->getEdgeKind() == TheadMHPIndirectVF ||
+               edge->getEdgeKind() == ByPassingVF;
     }
     static inline bool classof(const GenericVFGEdgeTy *edge)
     {
         return edge->getEdgeKind() == IntraIndirectVF  ||
                edge->getEdgeKind() == CallIndVF ||
                edge->getEdgeKind() == RetIndVF ||
-               edge->getEdgeKind() == TheadMHPIndirectVF;
+               edge->getEdgeKind() == TheadMHPIndirectVF ||
+               edge->getEdgeKind() == ByPassingVF;
     }
     //@}
 
     virtual const std::string toString() const;
 };
+
+
+
 
 /*!
  * Intra SVFG edge representing indirect intra-procedural value-flows
@@ -114,6 +119,35 @@ public:
     static inline bool classof(const GenericVFGEdgeTy *edge)
     {
         return edge->getEdgeKind() == IntraIndirectVF;
+    }
+    //@}
+
+    virtual const std::string toString() const;
+};
+
+class ByPassingSVFGEdge : public IndirectSVFGEdge
+{
+
+public:
+    ByPassingSVFGEdge(VFGNode* s, VFGNode* d): IndirectSVFGEdge(s,d, ByPassingVF)
+    {
+    }
+    //@{ Methods for support type inquiry through isa, cast, and dyn_cast:
+    static inline bool classof(const ByPassingSVFGEdge*)
+    {
+        return true;
+    }
+    static inline bool classof(const IndirectSVFGEdge *edge)
+    {
+        return edge->getEdgeKind() == ByPassingVF;
+    }
+    static inline bool classof(const VFGEdge *edge)
+    {
+        return edge->getEdgeKind() == ByPassingVF;
+    }
+    static inline bool classof(const GenericVFGEdgeTy *edge)
+    {
+        return edge->getEdgeKind() == ByPassingVF;
     }
     //@}
 

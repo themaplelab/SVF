@@ -73,12 +73,16 @@ void LevelByLevelFlowSensitiveOptimized::solveConstraints(){
         }
         // JH todo: this should be updating svfg with special handling to intermediate variables.
         memSSA.updatePTROnlySvfgForPointerLevelOptimized(this, currentPointerLevel, pointerLevelMap);
+        svfg->addByPassingEdges();
         svfg->dump("svfg-pl" + std::to_string(currentPointerLevel), true);
     }
 
     SVFUtil::stopAnalysisLimitTimer(limitTimerSet);
     double end = stat->getClk(true);
     solveTime += (end - start) / TIMEINTERVAL;
+
+    outs() << "PTS after pointer level 2\n";
+    dumpTopLevelPtsTo();
 }
 
 

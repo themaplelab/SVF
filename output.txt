@@ -31,7 +31,7 @@ TotalSVFStmts       57
 VarArrayObj         2
 VarStructObj        0
 ----------------Time and memory stats--------------------
-LLVMIRTime          0.006
+LLVMIRTime          0.004
 SVFIRTime           0.001
 SymbolTableTime     0
 #######################################################
@@ -968,6 +968,18 @@ IntraICFGNode52 {fun: swap}
    ret void 
 RETMU(MR_4V_2) 	pts{61 }
 RETMU(MR_2V_2) 	pts{59 }
+29 38
+29 33
+29 40
+30 39
+30 34
+30 41
+33 35
+33 27
+33 36
+34 36
+34 28
+34 37
 Writing 'svfg-pl2.dot'...opt Solving pointer level 2
 Processing svfg node StoreVFGNode ID: 29 StoreStmt: [Var18 <-- Var14]	
 ValVar ID: 24
@@ -1150,8 +1162,9 @@ StoreVFGNode ID: 33 StoreStmt: [Var58 <-- Var56]
 ValVar ID: 64
    store ptr %p, ptr %p.addr, align 8 
 Store alias 19
-0
-CHANGED? 0
+IN 15
+1
+CHANGED? 1
 Processing svfg node StoreVFGNode ID: 34 StoreStmt: [Var60 <-- Var57]	
 ValVar ID: 65
    store ptr %q, ptr %q.addr, align 8 
@@ -1159,8 +1172,9 @@ StoreVFGNode ID: 34 StoreStmt: [Var60 <-- Var57]
 ValVar ID: 65
    store ptr %q, ptr %q.addr, align 8 
 Store alias 21
-0
-CHANGED? 0
+IN 17
+1
+CHANGED? 1
 Processing svfg node LoadVFGNode ID: 26 LoadStmt: [Var73 <-- Var62]	
 ValVar ID: 73
    %5 = load ptr, ptr %tmp, align 8 
@@ -1245,16 +1259,18 @@ Processing svfg node FormalParmVFGNode ID: 40 Fun[swap]ArgValVar ID: 56
  ptr %p { 0th arg swap  }
 Propagate from FP 40 => 33
 alias is 19
+dst before 15
 0
-1
+0
 fp after 15
 dst in after 15
 Processing svfg node FormalParmVFGNode ID: 41 Fun[swap]ArgValVar ID: 57
  ptr %q { 1st arg swap  }
 Propagate from FP 41 => 34
 alias is 21
+dst before 17
 0
-1
+0
 fp after 17
 dst in after 17
 Processing svfg node StoreVFGNode ID: 33 StoreStmt: [Var58 <-- Var56]	
@@ -1266,7 +1282,7 @@ ValVar ID: 64
 Store alias 19
 IN 15
 1
-CHANGED? 1
+CHANGED? 0
 Processing svfg node StoreVFGNode ID: 34 StoreStmt: [Var60 <-- Var57]	
 ValVar ID: 65
    store ptr %q, ptr %q.addr, align 8 
@@ -1276,7 +1292,7 @@ ValVar ID: 65
 Store alias 21
 IN 17
 1
-CHANGED? 1
+CHANGED? 0
 
 *********Memory SSA Statistics***************
 ################ (program : interSwap.ll)###############
@@ -1461,8 +1477,8 @@ IntraICFGNode36 {fun: main}
 RETMU(MR_24V_2) 	pts{17 }
 RETMU(MR_22V_2) 	pts{15 }
 ==========FUNCTION: swap==========
-4V_1 = ENCHI(MR_4V_0) 	pts{61 }
 20V_1 = ENCHI(MR_20V_0) 	pts{63 }
+4V_1 = ENCHI(MR_4V_0) 	pts{61 }
 2V_1 = ENCHI(MR_2V_0) 	pts{59 }
 entry
 IntraICFGNode37 {fun: swap}
@@ -1583,19 +1599,36 @@ FormalRet           0
 Gep                 1
 IndCallEdge         0
 IndRetEdge          0
-IndirectEdge        32
-IndirectEdgeLabels  32
+IndirectEdge        40
+IndirectEdgeLabels  40
 Load                12
 MSSAPhi             0
-MaxInDegree         4
-MaxIndInDeg         2
+MaxInDegree         5
+MaxIndInDeg         3
 MaxIndOutDeg        5
-MaxOutDegree        5
+MaxOutDegree        8
 PHI                 0
 Store               9
-TotalEdge           70
+TotalEdge           78
 TotalNode           60
 #######################################################
+29 40
+29 33
+29 38
+30 41
+30 34
+30 39
+33 27
+33 35
+33 36
+33 35
+33 35
+34 28
+34 36
+34 37
+34 36
+34 36
+35 37
 Writing 'svfg-pl1.dot'...opt Solving pointer level 1
 Processing svfg node AddrVFGNode ID: 1 AddrStmt: [Var4 <-- Var5]	
 FunValVar ID: 4
@@ -1737,6 +1770,97 @@ ValVar ID: 29
 Store alias 13
 0
 CHANGED? 0
+PTS after pointer level 2
+
+NodeID 0 		PointsTo: {empty}
+
+
+NodeID 4 		PointsTo: { 5 }
+
+
+NodeID 7 		PointsTo: { 8 }
+
+
+NodeID 10 		PointsTo: { 11 }
+
+
+NodeID 12 		PointsTo: { 13 }
+
+
+NodeID 14 		PointsTo: { 15 }
+
+
+NodeID 16 		PointsTo: { 17 }
+
+
+NodeID 18 		PointsTo: { 19 }
+
+
+NodeID 20 		PointsTo: { 21 }
+
+
+NodeID 26 		PointsTo: { 11 }
+
+
+NodeID 28 		PointsTo: { 13 }
+
+
+NodeID 30 		PointsTo: { 77 }
+
+
+NodeID 36 		PointsTo: { 15 }
+
+
+NodeID 41 		PointsTo: { 19 }
+
+
+NodeID 42 		PointsTo: { 21 }
+
+
+NodeID 44 		PointsTo: { 45 }
+
+
+NodeID 46 		PointsTo: { 15 }
+
+
+NodeID 50 		PointsTo: { 15 }
+
+
+NodeID 56 		PointsTo: { 19 }
+
+
+NodeID 57 		PointsTo: { 21 }
+
+
+NodeID 58 		PointsTo: { 59 }
+
+
+NodeID 60 		PointsTo: { 61 }
+
+
+NodeID 62 		PointsTo: { 63 }
+
+
+NodeID 66 		PointsTo: { 59 }
+
+
+NodeID 67 		PointsTo: {empty}
+
+
+NodeID 69 		PointsTo: { 61 }
+
+
+NodeID 70 		PointsTo: {empty}
+
+
+NodeID 71 		PointsTo: { 59 }
+
+
+NodeID 73 		PointsTo: { 63 }
+
+
+NodeID 74 		PointsTo: { 61 }
+
 
 *********PTACallGraph Stats (Flow-sensitive analysis)***************
 ################ (program : interSwap.ll)###############
@@ -1772,10 +1896,10 @@ PhiTime             0
 ProcessTime         0
 PropagationTime     0
 SCCTime             0
-SolveTime           0.002
+SolveTime           0.001
 StoreTime           0
 Strong/WeakUpdTime  0
-TotalTime           0.003
+TotalTime           0.002
 UpdateCGTime        0
 ----------------Numbers stats----------------------------
 AI_SNodesHaveIN     0
@@ -1942,8 +2066,8 @@ NodeID 74 		PointsTo: { 61 }
 ****Persistent Points-To Cache Statistics: flow-sensitive analysis bitvector****
 ################ (program : interSwap.ll)###############
 UniquePointsToSets       14
-TotalUnions              62
-PropertyUnions           62
+TotalUnions              64
+PropertyUnions           64
 UniqueUnions             0
 LookupUnions             0
 PreemptiveUnions         0

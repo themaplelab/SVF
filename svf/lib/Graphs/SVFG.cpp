@@ -155,6 +155,14 @@ const std::string IndirectSVFGEdge::toString() const
     return rawstr.str();
 }
 
+const std::string ByPassingSVFGEdge::toString() const
+{
+    std::string str;
+    std::stringstream rawstr(str);
+    rawstr << "ByPassingSVFGEdge: " << getDstID() << "<--" << getSrcID() << "\n";
+    return rawstr.str();
+}
+
 const std::string IntraIndSVFGEdge::toString() const
 {
     std::string str;
@@ -690,6 +698,25 @@ SVFGEdge* SVFG::addIntraIndirectVFEdge(NodeID srcId, NodeID dstId, const NodeBS&
     }
 }
 
+SVFGEdge* SVFG::addBypassingVFEdge(NodeID srcId, NodeID dstId, const NodeBS& cpts)
+{
+    SVFGNode* srcNode = getSVFGNode(srcId);
+    SVFGNode* dstNode = getSVFGNode(dstId);
+    // JH: todo add new edge type.
+    if(SVFGEdge* edge = hasIntraVFGEdge(srcNode,dstNode,SVFGEdge::ByPassingVF))
+    {
+        assert(SVFUtil::isa<IndirectSVFGEdge>(edge) && "this should be a indirect value flow edge!");
+        return (SVFUtil::cast<IndirectSVFGEdge>(edge)->addPointsTo(cpts) ? edge : nullptr);
+    }
+    else
+    {
+        ByPassingSVFGEdge* indirectEdge = new ByPassingSVFGEdge(srcNode,dstNode);
+        indirectEdge->addPointsTo(cpts);
+        return (addSVFGEdge(indirectEdge) ? indirectEdge : nullptr);
+    }
+}
+
+
 
 /*!
  * Add def-use edges of a memory region between two may-happen-in-parallel statements for multithreaded program
@@ -789,6 +816,99 @@ void SVFG::dump(const std::string& file, bool simple)
 {
     GraphPrinter::WriteGraphToFile(outs(), file, this, simple);
 }
+
+void SVFG::addByPassingEdges(){
+    for(auto iter = this->begin(), eiter = this->end(); iter != eiter; ++iter){
+        auto svfgNode = iter->second;
+        if(isa<StoreSVFGNode>(svfgNode)){
+            // collections of pair<nodes, ptr>
+            auto nodesAndPtr = getAllSvfgNodesReachableWithIndirectThenDirect(svfgNode);
+            for(auto pair : nodesAndPtr){
+                for(auto dstid : pair.first){
+                    outs() << svfgNode->getId() << " " << dstid << "\n";
+                    auto dstNode = this->getSVFGNode(dstid);
+                    // addIntraIndirectVFEdge(svfgNode->getId(), dstid, pair.second);
+                    if(isa<LoadSVFGNode>(dstNode) || isa<StoreSVFGNode>(dstNode)){
+                        addBypassingVFEdge(svfgNode->getId(), dstid, pair.second);
+                    }
+                    
+                }
+            }
+        }
+    }
+}
+
+std::unordered_set<NodeID> SVFG::getAllSvfgNodesReachableWithIndirectThenDirect(const SVFGNode *node, const NodeBS &ptr){
+    std::unordered_set<NodeID> res = getAllSvfgNodeReachableOnlyWithDirect(node);
+
+    auto EI = SVF::GenericGraphTraits<SVFG*>::direct_child_begin(node);
+    auto EE = SVF::GenericGraphTraits<SVFG*>::direct_child_end(node);
+    for (; EI != EE; ++EI){
+        auto edge = *(EI.getCurrent());
+        if(const IndirectSVFGEdge *indirectEdge = dyn_cast<IndirectSVFGEdge>(edge)){
+            if(indirectEdge->getPointsTo() != ptr){
+                continue;
+            }
+            auto candidateNodes1 = getAllSvfgNodesReachableWithIndirectThenDirect(indirectEdge->getDstNode(), ptr);
+
+            res.insert(candidateNodes1.begin(), candidateNodes1.end());
+        }
+    }
+
+    return res;
+}
+
+
+std::vector<std::pair<std::unordered_set<NodeID>, const NodeBS>> SVFG::getAllSvfgNodesReachableWithIndirectThenDirect(const SVFGNode *node){
+
+    std::vector<std::pair<std::unordered_set<NodeID>, const NodeBS>> res;
+
+    // auto reachableBydirectOnly = getAllSvfgNodeReachableOnlyWithDirect(node);
+
+    auto EI = SVF::GenericGraphTraits<SVFG*>::direct_child_begin(node);
+    auto EE = SVF::GenericGraphTraits<SVFG*>::direct_child_end(node);
+        for (; EI != EE; ++EI){
+            auto edge = *(EI.getCurrent());
+            if(const IndirectSVFGEdge *indirectEdge = dyn_cast<IndirectSVFGEdge>(edge)){
+                const auto &ptr = indirectEdge->getPointsTo();
+                auto candidateNodes1 = getAllSvfgNodesReachableWithIndirectThenDirect(indirectEdge->getDstNode(), ptr);
+
+                res.push_back({candidateNodes1, ptr});
+            }
+                
+        }
+
+    return res;
+
+}
+
+const std::unordered_set<NodeID> SVFG::getAllSvfgNodeReachableOnlyWithDirect(const SVFGNode *node){
+
+    if(reachableWithOnlyDirect.count(node->getId())){
+        return reachableWithOnlyDirect.at(node->getId());
+    }
+
+    std::unordered_set<NodeID> res;
+    auto EI = SVF::GenericGraphTraits<SVFG*>::direct_child_begin(node);
+    auto EE = SVF::GenericGraphTraits<SVFG*>::direct_child_end(node);
+    for (; EI != EE; ++EI){
+        auto edge = *(EI.getCurrent());
+        if(const DirectSVFGEdge *directEdge = dyn_cast<DirectSVFGEdge>(edge)){
+            res.insert(directEdge->getDstID());
+            auto moreNodes = getAllSvfgNodeReachableOnlyWithDirect(directEdge->getDstNode());
+            res.insert(moreNodes.begin(), moreNodes.end());
+        }
+    }
+
+    reachableWithOnlyDirect.emplace(node->getId(), res);
+    return reachableWithOnlyDirect.at(node->getId());
+}
+
+// std::unordered_set<NodeID> SVFG::getAllSvfgNodeReachableWithOneIndirect(const SVFGNode *node){
+
+// }
+
+
 
 /**
  * Get all inter value flow edges at this indirect call site, including call and return edges.

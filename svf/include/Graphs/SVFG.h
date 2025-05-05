@@ -166,6 +166,8 @@ public:
     /// Dump graph into dot file
     void dump(const std::string& file, bool simple = false);
 
+    void addByPassingEdges();
+
     /// Connect SVFG nodes between caller and callee for indirect call site
     virtual void connectCallerAndCallee(const CallICFGNode* cs, const FunObjVar* callee, SVFGEdgeSetTy& edges);
 
@@ -282,6 +284,9 @@ protected:
     SVFGEdge* addRetIndirectVFEdge(NodeID srcId, NodeID dstId, const NodeBS& cpts,CallSiteID csId);
     SVFGEdge* addThreadMHPIndirectVFEdge(NodeID srcId, NodeID dstId, const NodeBS& cpts);
     //@}
+
+    SVFGEdge* addBypassingVFEdge(NodeID srcId, NodeID dstId, const NodeBS& cpts);
+
 
     /// Add inter VF edge from callsite mu to function entry chi
     SVFGEdge* addInterIndirectVFCallEdge(const ActualINSVFGNode* src, const FormalINSVFGNode* dst,CallSiteID csId);
@@ -472,6 +477,19 @@ protected:
         return (callSiteToActualINMap.find(cs) != callSiteToActualINMap.end());
     }
     //@}
+
+private:
+    std::vector<std::pair<std::unordered_set<NodeID>, const NodeBS>> getAllSvfgNodesReachableWithIndirectThenDirect(const SVFGNode *node);
+    std::unordered_set<NodeID> getAllSvfgNodeReachableWithOneIndirect(const SVFGNode *node);
+    const std::unordered_set<NodeID> getAllSvfgNodeReachableOnlyWithDirect(const SVFGNode *node);
+    std::unordered_set<NodeID> getAllSvfgNodesReachableWithIndirectThenDirect(const SVFGNode *node, const NodeBS &ptr);
+
+
+
+    std::unordered_map<NodeID, std::unordered_set<NodeID>> reachableWithOnlyDirect;
+
+
+
 };
 
 } // End namespace SVF

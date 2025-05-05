@@ -482,6 +482,10 @@ bool LevelByLevelFlowSensitive::propFromSrcToDst(SVFGEdge* edge)
         changed = propAlongDirectEdge(dirEdge);
     else if (IndirectSVFGEdge* indEdge = SVFUtil::dyn_cast<IndirectSVFGEdge>(edge))
         changed = propAlongIndirectEdge(indEdge);
+    // else if (ByPassingSVFGEdge *bpEdge = SVFUtil::dyn_cast<ByPassingSVFGEdge>(edge)){
+    //     changed = propAlongIndirectEdge(indEdge);
+
+    // }
     else
         assert(false && "new kind of svfg edge?");
 

@@ -56,7 +56,8 @@ public:
         RetDirVF,
         CallIndVF,
         RetIndVF,
-        TheadMHPIndirectVF
+        TheadMHPIndirectVF,
+        ByPassingVF
     };
 
     typedef VFGEdgeK SVFGEdgeK;
@@ -113,6 +114,10 @@ public:
     {
         return getEdgeKind() == TheadMHPIndirectVF;
     }
+    inline bool isByPassingVFGEdge() const{
+        return getEdgeKind() == ByPassingVF;
+    }
+
     //@}
     typedef GenericNode<VFGNode,VFGEdge>::GEdgeSetTy VFGEdgeSetTy;
     typedef VFGEdgeSetTy SVFGEdgeSetTy;
