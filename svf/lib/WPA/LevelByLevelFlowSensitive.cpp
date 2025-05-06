@@ -101,7 +101,7 @@ void LevelByLevelFlowSensitive::solveConstraints(){
     double start = stat->getClk(true);
 
     while(true){
-        outs() << "Solving pointer level " << currentPointerLevel << "\n";
+        // outs() << "Solving pointer level " << currentPointerLevel << "\n";
         do
         {
             numOfIteration++;
