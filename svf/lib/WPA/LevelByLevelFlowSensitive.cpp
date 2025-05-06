@@ -84,8 +84,8 @@ void LevelByLevelFlowSensitive::initialize(){
     svfg = memSSA.buildPTROnlySvfgForPointerLevel(this, currentPointerLevel, pointerLevelMap);
     setGraph(svfg);
 
-    svfg->dump("svfg-pl" + std::to_string(currentPointerLevel), true);
-    outs() << "End of initialization\n";
+    // svfg->dump("svfg-pl" + std::to_string(currentPointerLevel), true);
+    // outs() << "End of initialization\n";
 }
 
 void LevelByLevelFlowSensitive::analyze(){
@@ -122,7 +122,7 @@ void LevelByLevelFlowSensitive::solveConstraints(){
         }
         // JH todo: this should be updating svfg instead of creating new svfg
         memSSA.updatePTROnlySvfgForPointerLevel(this, currentPointerLevel, pointerLevelMap);
-        svfg->dump("svfg-pl" + std::to_string(currentPointerLevel), true);
+        // svfg->dump("svfg-pl" + std::to_string(currentPointerLevel), true);
 
     }
 
