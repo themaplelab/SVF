@@ -154,14 +154,17 @@ bool LevelByLevelFlowSensitiveOptimized::processLoad(const LoadSVFGNode* load)
                 // if(unionPtsFromIn(load, a, dstVar)){
                 //     changed = true;
                 // }
-
-
-                for(auto pte : getDFPTDataTy()->getDFInPtsSet(load->getPAGDstNodeID(), a)){
-                    outs() << "pte " << pte << "\n";
-                    if(unionPtsFromIn(load, pte, dstVar)){
-                        changed = true;
-                    }
+                if(unionPtsFromIn(load, a, dstVar)){
+                    changed = true;
                 }
+
+
+                // for(auto pte : getDFInPtsSet(load, a)){
+                //     outs() << "pte " << pte << "\n";
+                //     if(unionPtsFromIn(load, pte, dstVar)){
+                //         changed = true;
+                //     }
+                // }
                 
             }
 
@@ -172,7 +175,15 @@ bool LevelByLevelFlowSensitiveOptimized::processLoad(const LoadSVFGNode* load)
         outs() << "New alias for " << dstVar << "\n";
         for(auto pte : getPts(dstVar)){
             outs() << pte << "\n";
+
+            outs() << "output pts for address taken variable: \n";
+            outs() << pte << " => \n";
+            for(auto pp : getDFInPtsSet(load, pte)){
+                outs() << "addr " << pp << "\n";
+            }
         }
+
+        
 
         outs() << "Changed? " << changed << "\n";
 
@@ -271,12 +282,21 @@ bool LevelByLevelFlowSensitiveOptimized::processStore(const StoreSVFGNode* store
                         
                     outs() << getDFPTDataTy()->getDFInPtsSet(store->getId(), alias).count() << "\n";
                 
-                    if (unionPtsFromIn(store, alias, ptd))
+                    if (updateOutFromIn(store, alias, store, ptd))
                         changed = true;
                 }
             }      
         }
     }
+
+    outs() << "verify store\n";
+    for(auto p : dstPts){
+        outs() << p << " => \n";
+        for(auto ptd : getDFOutPtsSet(store, p)){
+            outs() << ptd <<"\n";
+        }
+    }
+
 
     outs() << "CHANGED? " << changed << "\n";
 

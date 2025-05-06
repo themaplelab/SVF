@@ -31,7 +31,7 @@ TotalSVFStmts       57
 VarArrayObj         2
 VarStructObj        0
 ----------------Time and memory stats--------------------
-LLVMIRTime          0.004
+LLVMIRTime          0.003
 SVFIRTime           0.001
 SymbolTableTime     0
 #######################################################
@@ -576,30 +576,72 @@ IntraICFGNode52 {fun: swap}
    ret void 
 Writing 'svfg-pl3.dot'...End of initialization
 Solving pointer level 3
+Processing svfg node AddrVFGNode ID: 7 AddrStmt: [Var18 <-- Var19]	
+ValVar ID: 18
+   %t1 = alloca ptr, align 8 
+Processing svfg node AddrVFGNode ID: 8 AddrStmt: [Var20 <-- Var21]	
+ValVar ID: 20
+   %t2 = alloca ptr, align 8 
+Processing svfg node AddrVFGNode ID: 10 AddrStmt: [Var58 <-- Var59]	
+ValVar ID: 58
+   %p.addr = alloca ptr, align 8 
+Processing svfg node AddrVFGNode ID: 11 AddrStmt: [Var60 <-- Var61]	
+ValVar ID: 60
+   %q.addr = alloca ptr, align 8 
+Processing svfg node LoadVFGNode ID: 20 LoadStmt: [Var41 <-- Var18]	
+ValVar ID: 41
+   %4 = load ptr, ptr %t1, align 8 
 load 20 LoadVFGNode ID: 20 LoadStmt: [Var41 <-- Var18]	
 ValVar ID: 41
    %4 = load ptr, ptr %t1, align 8 
 pts1 19
+Processing svfg node StoreVFGNode ID: 29 StoreStmt: [Var18 <-- Var14]	
+ValVar ID: 24
+   store ptr %a, ptr %t1, align 8 
+Processing svfg node LoadVFGNode ID: 21 LoadStmt: [Var42 <-- Var20]	
+ValVar ID: 42
+   %5 = load ptr, ptr %t2, align 8 
 load 21 LoadVFGNode ID: 21 LoadStmt: [Var42 <-- Var20]	
 ValVar ID: 42
    %5 = load ptr, ptr %t2, align 8 
 pts1 21
+Processing svfg node StoreVFGNode ID: 30 StoreStmt: [Var20 <-- Var16]	
+ValVar ID: 25
+   store ptr %b, ptr %t2, align 8 
+Processing svfg node LoadVFGNode ID: 22 LoadStmt: [Var66 <-- Var58]	
+ValVar ID: 66
+   %0 = load ptr, ptr %p.addr, align 8 
 load 22 LoadVFGNode ID: 22 LoadStmt: [Var66 <-- Var58]	
 ValVar ID: 66
    %0 = load ptr, ptr %p.addr, align 8 
 pts1 59
+Processing svfg node LoadVFGNode ID: 23 LoadStmt: [Var71 <-- Var58]	
+ValVar ID: 71
+   %4 = load ptr, ptr %p.addr, align 8 
 load 23 LoadVFGNode ID: 23 LoadStmt: [Var71 <-- Var58]	
 ValVar ID: 71
    %4 = load ptr, ptr %p.addr, align 8 
 pts1 59
+Processing svfg node StoreVFGNode ID: 33 StoreStmt: [Var58 <-- Var56]	
+ValVar ID: 64
+   store ptr %p, ptr %p.addr, align 8 
+Processing svfg node LoadVFGNode ID: 24 LoadStmt: [Var69 <-- Var60]	
+ValVar ID: 69
+   %2 = load ptr, ptr %q.addr, align 8 
 load 24 LoadVFGNode ID: 24 LoadStmt: [Var69 <-- Var60]	
 ValVar ID: 69
    %2 = load ptr, ptr %q.addr, align 8 
 pts1 61
+Processing svfg node LoadVFGNode ID: 25 LoadStmt: [Var74 <-- Var60]	
+ValVar ID: 74
+   %6 = load ptr, ptr %q.addr, align 8 
 load 25 LoadVFGNode ID: 25 LoadStmt: [Var74 <-- Var60]	
 ValVar ID: 74
    %6 = load ptr, ptr %q.addr, align 8 
 pts1 61
+Processing svfg node StoreVFGNode ID: 34 StoreStmt: [Var60 <-- Var57]	
+ValVar ID: 65
+   store ptr %q, ptr %q.addr, align 8 
 ==========FUNCTION: main==========
 8V_1 = ENCHI(MR_8V_0) 	pts{21 }
 6V_1 = ENCHI(MR_6V_0) 	pts{19 }
@@ -825,46 +867,165 @@ IntraICFGNode52 {fun: swap}
 RETMU(MR_4V_2) 	pts{61 }
 RETMU(MR_2V_2) 	pts{59 }
 Writing 'svfg-pl2.dot'...Solving pointer level 2
+Processing svfg node StoreVFGNode ID: 29 StoreStmt: [Var18 <-- Var14]	
+ValVar ID: 24
+   store ptr %a, ptr %t1, align 8 
+Processing svfg node AddrVFGNode ID: 5 AddrStmt: [Var14 <-- Var15]	
+ValVar ID: 14
+   %a = alloca ptr, align 8 
+Processing svfg node StoreVFGNode ID: 30 StoreStmt: [Var20 <-- Var16]	
+ValVar ID: 25
+   store ptr %b, ptr %t2, align 8 
+Processing svfg node AddrVFGNode ID: 6 AddrStmt: [Var16 <-- Var17]	
+ValVar ID: 16
+   %b = alloca ptr, align 8 
+Processing svfg node StoreVFGNode ID: 33 StoreStmt: [Var58 <-- Var56]	
+ValVar ID: 64
+   store ptr %p, ptr %p.addr, align 8 
+Processing svfg node FormalParmVFGNode ID: 40 Fun[swap]ArgValVar ID: 56
+ ptr %p { 0th arg swap  }
+Propagate from FP 40 => 33
+Processing svfg node ActualParmVFGNode ID: 38 CS[CallICFGNode: ]ValVar ID: 41
+   %4 = load ptr, ptr %t1, align 8 
+ACTUAL TO FORMAL changed? 0
+Processing svfg node LoadVFGNode ID: 20 LoadStmt: [Var41 <-- Var18]	
+ValVar ID: 41
+   %4 = load ptr, ptr %t1, align 8 
 load 20 LoadVFGNode ID: 20 LoadStmt: [Var41 <-- Var18]	
 ValVar ID: 41
    %4 = load ptr, ptr %t1, align 8 
 pts1 19
+Processing svfg node StoreVFGNode ID: 34 StoreStmt: [Var60 <-- Var57]	
+ValVar ID: 65
+   store ptr %q, ptr %q.addr, align 8 
+Processing svfg node FormalParmVFGNode ID: 41 Fun[swap]ArgValVar ID: 57
+ ptr %q { 1st arg swap  }
+Propagate from FP 41 => 34
+Processing svfg node ActualParmVFGNode ID: 39 CS[CallICFGNode: ]ValVar ID: 42
+   %5 = load ptr, ptr %t2, align 8 
+ACTUAL TO FORMAL changed? 0
+Processing svfg node LoadVFGNode ID: 21 LoadStmt: [Var42 <-- Var20]	
+ValVar ID: 42
+   %5 = load ptr, ptr %t2, align 8 
 load 21 LoadVFGNode ID: 21 LoadStmt: [Var42 <-- Var20]	
 ValVar ID: 42
    %5 = load ptr, ptr %t2, align 8 
 pts1 21
+Processing svfg node LoadVFGNode ID: 22 LoadStmt: [Var66 <-- Var58]	
+ValVar ID: 66
+   %0 = load ptr, ptr %p.addr, align 8 
 load 22 LoadVFGNode ID: 22 LoadStmt: [Var66 <-- Var58]	
 ValVar ID: 66
    %0 = load ptr, ptr %p.addr, align 8 
 pts1 59
+Processing svfg node LoadVFGNode ID: 23 LoadStmt: [Var71 <-- Var58]	
+ValVar ID: 71
+   %4 = load ptr, ptr %p.addr, align 8 
 load 23 LoadVFGNode ID: 23 LoadStmt: [Var71 <-- Var58]	
 ValVar ID: 71
    %4 = load ptr, ptr %p.addr, align 8 
 pts1 59
+Processing svfg node LoadVFGNode ID: 24 LoadStmt: [Var69 <-- Var60]	
+ValVar ID: 69
+   %2 = load ptr, ptr %q.addr, align 8 
 load 24 LoadVFGNode ID: 24 LoadStmt: [Var69 <-- Var60]	
 ValVar ID: 69
    %2 = load ptr, ptr %q.addr, align 8 
 pts1 61
+Processing svfg node LoadVFGNode ID: 25 LoadStmt: [Var74 <-- Var60]	
+ValVar ID: 74
+   %6 = load ptr, ptr %q.addr, align 8 
 load 25 LoadVFGNode ID: 25 LoadStmt: [Var74 <-- Var60]	
 ValVar ID: 74
    %6 = load ptr, ptr %q.addr, align 8 
 pts1 61
+Processing svfg node AddrVFGNode ID: 12 AddrStmt: [Var62 <-- Var63]	
+ValVar ID: 62
+   %tmp = alloca ptr, align 8 
+Processing svfg node LoadVFGNode ID: 17 LoadStmt: [Var36 <-- Var14]	
+ValVar ID: 36
+   %3 = load ptr, ptr %a, align 8 
 load 17 LoadVFGNode ID: 17 LoadStmt: [Var36 <-- Var14]	
 ValVar ID: 36
    %3 = load ptr, ptr %a, align 8 
 pts1 15
+Processing svfg node LoadVFGNode ID: 18 LoadStmt: [Var46 <-- Var14]	
+ValVar ID: 46
+   %6 = load ptr, ptr %a, align 8 
 load 18 LoadVFGNode ID: 18 LoadStmt: [Var46 <-- Var14]	
 ValVar ID: 46
    %6 = load ptr, ptr %a, align 8 
 pts1 15
+Processing svfg node LoadVFGNode ID: 19 LoadStmt: [Var50 <-- Var14]	
+ValVar ID: 50
+   %7 = load ptr, ptr %a, align 8 
 load 19 LoadVFGNode ID: 19 LoadStmt: [Var50 <-- Var14]	
 ValVar ID: 50
    %7 = load ptr, ptr %a, align 8 
 pts1 15
+Processing svfg node StoreVFGNode ID: 29 StoreStmt: [Var18 <-- Var14]	
+ValVar ID: 24
+   store ptr %a, ptr %t1, align 8 
+pass 19 from 29 to 20
+before update: 
+19 => 
+15
+after update: 
+19 => 
+15
+Changed? 1
+pass 19 from 29 to 49
+before update: 
+19 => 
+15
+after update: 
+19 => 
+15
+Changed? 1
+Processing svfg node StoreVFGNode ID: 31 StoreStmt: [Var14 <-- Var26]	
+ValVar ID: 27
+   store ptr %0, ptr %a, align 8 
+Processing svfg node StoreVFGNode ID: 30 StoreStmt: [Var20 <-- Var16]	
+ValVar ID: 25
+   store ptr %b, ptr %t2, align 8 
+pass 21 from 30 to 21
+before update: 
+21 => 
+17
+after update: 
+21 => 
+17
+Changed? 1
+pass 21 from 30 to 48
+before update: 
+21 => 
+17
+after update: 
+21 => 
+17
+Changed? 1
+Processing svfg node StoreVFGNode ID: 32 StoreStmt: [Var16 <-- Var28]	
+ValVar ID: 29
+   store ptr %1, ptr %b, align 8 
+Processing svfg node StoreVFGNode ID: 33 StoreStmt: [Var58 <-- Var56]	
+ValVar ID: 64
+   store ptr %p, ptr %p.addr, align 8 
+Processing svfg node StoreVFGNode ID: 34 StoreStmt: [Var60 <-- Var57]	
+ValVar ID: 65
+   store ptr %q, ptr %q.addr, align 8 
+Processing svfg node LoadVFGNode ID: 26 LoadStmt: [Var73 <-- Var62]	
+ValVar ID: 73
+   %5 = load ptr, ptr %tmp, align 8 
 load 26 LoadVFGNode ID: 26 LoadStmt: [Var73 <-- Var62]	
 ValVar ID: 73
    %5 = load ptr, ptr %tmp, align 8 
 pts1 63
+Processing svfg node StoreVFGNode ID: 35 StoreStmt: [Var62 <-- Var67]	
+ValVar ID: 68
+   store ptr %1, ptr %tmp, align 8 
+Processing svfg node LoadVFGNode ID: 20 LoadStmt: [Var41 <-- Var18]	
+ValVar ID: 41
+   %4 = load ptr, ptr %t1, align 8 
 load 20 LoadVFGNode ID: 20 LoadStmt: [Var41 <-- Var18]	
 ValVar ID: 41
    %4 = load ptr, ptr %t1, align 8 
@@ -872,6 +1033,17 @@ pts1 19
 before 15
 after 15
 result 15
+Propagate to AR 20 => 38
+alias is 19
+load before 15
+0
+0
+Processing svfg node FormalOUTSVFGNode ID: 49 {fun: main}RETMU(6V_2)
+pts{19 }
+
+Processing svfg node LoadVFGNode ID: 21 LoadStmt: [Var42 <-- Var20]	
+ValVar ID: 42
+   %5 = load ptr, ptr %t2, align 8 
 load 21 LoadVFGNode ID: 21 LoadStmt: [Var42 <-- Var20]	
 ValVar ID: 42
    %5 = load ptr, ptr %t2, align 8 
@@ -879,6 +1051,91 @@ pts1 21
 before 17
 after 17
 result 17
+Propagate to AR 21 => 39
+alias is 21
+load before 17
+0
+0
+Processing svfg node FormalOUTSVFGNode ID: 48 {fun: main}RETMU(8V_2)
+pts{21 }
+
+Processing svfg node ActualParmVFGNode ID: 38 CS[CallICFGNode: ]ValVar ID: 41
+   %4 = load ptr, ptr %t1, align 8 
+alias at AP: 15
+ACTUAL TO FORMAL changed? 1
+Processing svfg node ActualParmVFGNode ID: 39 CS[CallICFGNode: ]ValVar ID: 42
+   %5 = load ptr, ptr %t2, align 8 
+alias at AP: 17
+ACTUAL TO FORMAL changed? 1
+Processing svfg node FormalParmVFGNode ID: 40 Fun[swap]ArgValVar ID: 56
+ ptr %p { 0th arg swap  }
+Propagate from FP 40 => 33
+alias is 15
+0
+0
+Processing svfg node FormalParmVFGNode ID: 41 Fun[swap]ArgValVar ID: 57
+ ptr %q { 1st arg swap  }
+Propagate from FP 41 => 34
+alias is 17
+0
+0
+Processing svfg node StoreVFGNode ID: 33 StoreStmt: [Var58 <-- Var56]	
+ValVar ID: 64
+   store ptr %p, ptr %p.addr, align 8 
+pass 59 from 33 to 22
+before update: 
+59 => 
+15
+after update: 
+59 => 
+15
+Changed? 1
+pass 59 from 33 to 23
+before update: 
+59 => 
+15
+after update: 
+59 => 
+15
+Changed? 1
+pass 59 from 33 to 47
+before update: 
+59 => 
+15
+after update: 
+59 => 
+15
+Changed? 1
+Processing svfg node StoreVFGNode ID: 34 StoreStmt: [Var60 <-- Var57]	
+ValVar ID: 65
+   store ptr %q, ptr %q.addr, align 8 
+pass 61 from 34 to 24
+before update: 
+61 => 
+17
+after update: 
+61 => 
+17
+Changed? 1
+pass 61 from 34 to 25
+before update: 
+61 => 
+17
+after update: 
+61 => 
+17
+Changed? 1
+pass 61 from 34 to 46
+before update: 
+61 => 
+17
+after update: 
+61 => 
+17
+Changed? 1
+Processing svfg node LoadVFGNode ID: 22 LoadStmt: [Var66 <-- Var58]	
+ValVar ID: 66
+   %0 = load ptr, ptr %p.addr, align 8 
 load 22 LoadVFGNode ID: 22 LoadStmt: [Var66 <-- Var58]	
 ValVar ID: 66
    %0 = load ptr, ptr %p.addr, align 8 
@@ -886,6 +1143,9 @@ pts1 59
 before 15
 after 15
 result 15
+Processing svfg node LoadVFGNode ID: 23 LoadStmt: [Var71 <-- Var58]	
+ValVar ID: 71
+   %4 = load ptr, ptr %p.addr, align 8 
 load 23 LoadVFGNode ID: 23 LoadStmt: [Var71 <-- Var58]	
 ValVar ID: 71
    %4 = load ptr, ptr %p.addr, align 8 
@@ -893,6 +1153,12 @@ pts1 59
 before 15
 after 15
 result 15
+Processing svfg node FormalOUTSVFGNode ID: 47 {fun: swap}RETMU(2V_2)
+pts{59 }
+
+Processing svfg node LoadVFGNode ID: 24 LoadStmt: [Var69 <-- Var60]	
+ValVar ID: 69
+   %2 = load ptr, ptr %q.addr, align 8 
 load 24 LoadVFGNode ID: 24 LoadStmt: [Var69 <-- Var60]	
 ValVar ID: 69
    %2 = load ptr, ptr %q.addr, align 8 
@@ -900,6 +1166,9 @@ pts1 61
 before 17
 after 17
 result 17
+Processing svfg node LoadVFGNode ID: 25 LoadStmt: [Var74 <-- Var60]	
+ValVar ID: 74
+   %6 = load ptr, ptr %q.addr, align 8 
 load 25 LoadVFGNode ID: 25 LoadStmt: [Var74 <-- Var60]	
 ValVar ID: 74
    %6 = load ptr, ptr %q.addr, align 8 
@@ -907,14 +1176,29 @@ pts1 61
 before 17
 after 17
 result 17
+Processing svfg node FormalOUTSVFGNode ID: 46 {fun: swap}RETMU(4V_2)
+pts{61 }
+
+Processing svfg node LoadVFGNode ID: 27 LoadStmt: [Var67 <-- Var66]	
+ValVar ID: 67
+   %1 = load ptr, ptr %0, align 8 
 load 27 LoadVFGNode ID: 27 LoadStmt: [Var67 <-- Var66]	
 ValVar ID: 67
    %1 = load ptr, ptr %0, align 8 
 pts1 15
+Processing svfg node StoreVFGNode ID: 36 StoreStmt: [Var71 <-- Var70]	
+ValVar ID: 72
+   store ptr %3, ptr %4, align 8 
+Processing svfg node LoadVFGNode ID: 28 LoadStmt: [Var70 <-- Var69]	
+ValVar ID: 70
+   %3 = load ptr, ptr %2, align 8 
 load 28 LoadVFGNode ID: 28 LoadStmt: [Var70 <-- Var69]	
 ValVar ID: 70
    %3 = load ptr, ptr %2, align 8 
 pts1 17
+Processing svfg node StoreVFGNode ID: 37 StoreStmt: [Var74 <-- Var73]	
+ValVar ID: 75
+   store ptr %5, ptr %6, align 8 
 
 *********Memory SSA Statistics***************
 ################ (program : interSwap.ll)###############
@@ -1067,10 +1351,10 @@ ValVar ID: 43
 CallPE: [Var57 <-- Var42]	
 ValVar ID: 43
    call void @swap(ptr %4, ptr %5) 
-18V_3 = CALCHI(MR_18V_2) 	pts{17 }
-16V_3 = CALCHI(MR_16V_2) 	pts{15 }
+18V_4 = CALCHI(MR_18V_2) 	pts{17 }
+16V_4 = CALCHI(MR_16V_2) 	pts{15 }
 
-LDMU(MR_16V_3) 	pts{15 }
+LDMU(MR_16V_4) 	pts{15 }
 IntraICFGNode31 {fun: main}
 LoadStmt: [Var46 <-- Var14]	
 ValVar ID: 46
@@ -1085,10 +1369,10 @@ Successor 0 ICFGNode30
 ValVar ID: 49
    br label %if.end 
 if.end
-18V_4 = PHI(MR_18V_2, MR_18V_3, )
-16V_4 = PHI(MR_16V_2, MR_16V_3, )
+18V_3 = PHI(MR_18V_2, MR_18V_4, )
+16V_3 = PHI(MR_16V_2, MR_16V_4, )
 
-LDMU(MR_16V_4) 	pts{15 }
+LDMU(MR_16V_3) 	pts{15 }
 IntraICFGNode30 {fun: main}
 LoadStmt: [Var50 <-- Var14]	
 ValVar ID: 50
@@ -1103,8 +1387,8 @@ ValVar ID: 53
    %8 = load i32, ptr %retval, align 4 
 IntraICFGNode36 {fun: main}
    ret i32 %8 
-RETMU(MR_18V_4) 	pts{17 }
-RETMU(MR_16V_4) 	pts{15 }
+RETMU(MR_18V_3) 	pts{17 }
+RETMU(MR_16V_3) 	pts{15 }
 ==========FUNCTION: swap==========
 22V_1 = ENCHI(MR_22V_0) 	pts{63 }
 18V_1 = ENCHI(MR_18V_0) 	pts{17 }
@@ -1242,30 +1526,145 @@ TotalEdge           78
 TotalNode           66
 #######################################################
 Writing 'svfg-pl1.dot'...Solving pointer level 1
+Processing svfg node AddrVFGNode ID: 1 AddrStmt: [Var4 <-- Var5]	
+FunValVar ID: 4
+main
+Processing svfg node AddrVFGNode ID: 2 AddrStmt: [Var7 <-- Var8]	
+ValVar ID: 7
+   %retval = alloca i32, align 4 
+Processing svfg node StoreVFGNode ID: 31 StoreStmt: [Var14 <-- Var26]	
+ValVar ID: 27
+   store ptr %0, ptr %a, align 8 
+Processing svfg node CopyVFGNode ID: 14 CopyStmt: [Var26 <-- Var10]	
+ValVar ID: 26
+   %0 = bitcast ptr %A to ptr 
+Processing svfg node GepVFGNode ID: 16 GepStmt: [Var30 <-- Var10]	
+ValVar ID: 30
+   %arrayidx = getelementptr inbounds [1 x i8], ptr %A, i64 0, i64 0 
+Processing svfg node AddrVFGNode ID: 3 AddrStmt: [Var10 <-- Var11]	
+ValVar ID: 10
+   %A = alloca [1 x i8], align 1 
+Processing svfg node StoreVFGNode ID: 32 StoreStmt: [Var16 <-- Var28]	
+ValVar ID: 29
+   store ptr %1, ptr %b, align 8 
+Processing svfg node CopyVFGNode ID: 15 CopyStmt: [Var28 <-- Var12]	
+ValVar ID: 28
+   %1 = bitcast ptr %B to ptr 
+Processing svfg node AddrVFGNode ID: 4 AddrStmt: [Var12 <-- Var13]	
+ValVar ID: 12
+   %B = alloca [1 x i8], align 1 
+Processing svfg node LoadVFGNode ID: 17 LoadStmt: [Var36 <-- Var14]	
+ValVar ID: 36
+   %3 = load ptr, ptr %a, align 8 
 load 17 LoadVFGNode ID: 17 LoadStmt: [Var36 <-- Var14]	
 ValVar ID: 36
    %3 = load ptr, ptr %a, align 8 
 pts1 15
+Processing svfg node LoadVFGNode ID: 18 LoadStmt: [Var46 <-- Var14]	
+ValVar ID: 46
+   %6 = load ptr, ptr %a, align 8 
 load 18 LoadVFGNode ID: 18 LoadStmt: [Var46 <-- Var14]	
 ValVar ID: 46
    %6 = load ptr, ptr %a, align 8 
 pts1 15
+Processing svfg node LoadVFGNode ID: 19 LoadStmt: [Var50 <-- Var14]	
+ValVar ID: 50
+   %7 = load ptr, ptr %a, align 8 
 load 19 LoadVFGNode ID: 19 LoadStmt: [Var50 <-- Var14]	
 ValVar ID: 50
    %7 = load ptr, ptr %a, align 8 
 pts1 15
+Processing svfg node AddrVFGNode ID: 9 AddrStmt: [Var44 <-- Var45]	
+FunValVar ID: 44
+swap
+Processing svfg node StoreVFGNode ID: 35 StoreStmt: [Var62 <-- Var67]	
+ValVar ID: 68
+   store ptr %1, ptr %tmp, align 8 
+Processing svfg node LoadVFGNode ID: 27 LoadStmt: [Var67 <-- Var66]	
+ValVar ID: 67
+   %1 = load ptr, ptr %0, align 8 
 load 27 LoadVFGNode ID: 27 LoadStmt: [Var67 <-- Var66]	
 ValVar ID: 67
    %1 = load ptr, ptr %0, align 8 
 pts1 15
+Processing svfg node StoreVFGNode ID: 36 StoreStmt: [Var71 <-- Var70]	
+ValVar ID: 72
+   store ptr %3, ptr %4, align 8 
+Processing svfg node LoadVFGNode ID: 28 LoadStmt: [Var70 <-- Var69]	
+ValVar ID: 70
+   %3 = load ptr, ptr %2, align 8 
 load 28 LoadVFGNode ID: 28 LoadStmt: [Var70 <-- Var69]	
 ValVar ID: 70
    %3 = load ptr, ptr %2, align 8 
 pts1 17
+Processing svfg node StoreVFGNode ID: 37 StoreStmt: [Var74 <-- Var73]	
+ValVar ID: 75
+   store ptr %5, ptr %6, align 8 
+Processing svfg node LoadVFGNode ID: 26 LoadStmt: [Var73 <-- Var62]	
+ValVar ID: 73
+   %5 = load ptr, ptr %tmp, align 8 
 load 26 LoadVFGNode ID: 26 LoadStmt: [Var73 <-- Var62]	
 ValVar ID: 73
    %5 = load ptr, ptr %tmp, align 8 
 pts1 63
+Processing svfg node CopyVFGNode ID: 14 CopyStmt: [Var26 <-- Var10]	
+ValVar ID: 26
+   %0 = bitcast ptr %A to ptr 
+Processing svfg node GepVFGNode ID: 16 GepStmt: [Var30 <-- Var10]	
+ValVar ID: 30
+   %arrayidx = getelementptr inbounds [1 x i8], ptr %A, i64 0, i64 0 
+Processing svfg node CopyVFGNode ID: 15 CopyStmt: [Var28 <-- Var12]	
+ValVar ID: 28
+   %1 = bitcast ptr %B to ptr 
+Processing svfg node StoreVFGNode ID: 31 StoreStmt: [Var14 <-- Var26]	
+ValVar ID: 27
+   store ptr %0, ptr %a, align 8 
+pass 15 from 31 to 17
+before update: 
+15 => 
+11
+after update: 
+15 => 
+11
+Changed? 1
+pass 15 from 31 to 51
+before update: 
+15 => 
+11
+after update: 
+15 => 
+11
+Changed? 1
+pass 15 from 31 to 63
+before update: 
+15 => 
+11
+after update: 
+15 => 
+11
+Changed? 1
+Processing svfg node StoreVFGNode ID: 32 StoreStmt: [Var16 <-- Var28]	
+ValVar ID: 29
+   store ptr %1, ptr %b, align 8 
+pass 17 from 32 to 50
+before update: 
+17 => 
+13
+after update: 
+17 => 
+13
+Changed? 1
+pass 17 from 32 to 62
+before update: 
+17 => 
+13
+after update: 
+17 => 
+13
+Changed? 1
+Processing svfg node LoadVFGNode ID: 17 LoadStmt: [Var36 <-- Var14]	
+ValVar ID: 36
+   %3 = load ptr, ptr %a, align 8 
 load 17 LoadVFGNode ID: 17 LoadStmt: [Var36 <-- Var14]	
 ValVar ID: 36
    %3 = load ptr, ptr %a, align 8 
@@ -1273,6 +1672,29 @@ pts1 15
 before 11
 after 11
 result 11
+Processing svfg node IntraMSSAPHISVFGNode ID: 51 {fun: main}MSSAPHISVFGNode ID: 51 {fun: main}MR_16V_3 = PHI(MR_16V_4, MR_16V_2, )
+pts{15 }
+pass 15 from 51 to 19
+Changed? 1
+pass 15 from 51 to 61
+Changed? 1
+Processing svfg node ActualINSVFGNode ID: 63 at callsite:    call void @swap(ptr %4, ptr %5) CallICFGNode:  {fun: main}CSMU(16V_2)
+pts{15 }
+CS[CallICFGNode: ]
+pass 15 from 63 to 54
+Changed? 1
+Processing svfg node IntraMSSAPHISVFGNode ID: 50 {fun: main}MSSAPHISVFGNode ID: 50 {fun: main}MR_18V_3 = PHI(MR_18V_4, MR_18V_2, )
+pts{17 }
+pass 17 from 50 to 60
+Changed? 1
+Processing svfg node ActualINSVFGNode ID: 62 at callsite:    call void @swap(ptr %4, ptr %5) CallICFGNode:  {fun: main}CSMU(18V_2)
+pts{17 }
+CS[CallICFGNode: ]
+pass 17 from 62 to 53
+Changed? 1
+Processing svfg node LoadVFGNode ID: 19 LoadStmt: [Var50 <-- Var14]	
+ValVar ID: 50
+   %7 = load ptr, ptr %a, align 8 
 load 19 LoadVFGNode ID: 19 LoadStmt: [Var50 <-- Var14]	
 ValVar ID: 50
    %7 = load ptr, ptr %a, align 8 
@@ -1280,6 +1702,29 @@ pts1 15
 before 11
 after 11
 result 11
+Processing svfg node FormalOUTSVFGNode ID: 61 {fun: main}RETMU(16V_3)
+pts{15 }
+
+Processing svfg node FormalINSVFGNode ID: 54 {fun: swap}16V_1 = ENCHI(MR_16V_1)
+pts{15 }
+
+pass 15 from 54 to 27
+Changed? 1
+pass 15 from 54 to 36
+Changed? 1
+Processing svfg node FormalOUTSVFGNode ID: 60 {fun: main}RETMU(18V_3)
+pts{17 }
+
+Processing svfg node FormalINSVFGNode ID: 53 {fun: swap}18V_1 = ENCHI(MR_18V_1)
+pts{17 }
+
+pass 17 from 53 to 28
+Changed? 1
+pass 17 from 53 to 37
+Changed? 1
+Processing svfg node LoadVFGNode ID: 27 LoadStmt: [Var67 <-- Var66]	
+ValVar ID: 67
+   %1 = load ptr, ptr %0, align 8 
 load 27 LoadVFGNode ID: 27 LoadStmt: [Var67 <-- Var66]	
 ValVar ID: 67
    %1 = load ptr, ptr %0, align 8 
@@ -1287,6 +1732,12 @@ pts1 15
 before 11
 after 11
 result 11
+Processing svfg node StoreVFGNode ID: 36 StoreStmt: [Var71 <-- Var70]	
+ValVar ID: 72
+   store ptr %3, ptr %4, align 8 
+Processing svfg node LoadVFGNode ID: 28 LoadStmt: [Var70 <-- Var69]	
+ValVar ID: 70
+   %3 = load ptr, ptr %2, align 8 
 load 28 LoadVFGNode ID: 28 LoadStmt: [Var70 <-- Var69]	
 ValVar ID: 70
    %3 = load ptr, ptr %2, align 8 
@@ -1294,6 +1745,42 @@ pts1 17
 before 13
 after 13
 result 13
+Processing svfg node StoreVFGNode ID: 37 StoreStmt: [Var74 <-- Var73]	
+ValVar ID: 75
+   store ptr %5, ptr %6, align 8 
+Processing svfg node StoreVFGNode ID: 35 StoreStmt: [Var62 <-- Var67]	
+ValVar ID: 68
+   store ptr %1, ptr %tmp, align 8 
+pass 63 from 35 to 26
+before update: 
+63 => 
+11
+after update: 
+63 => 
+11
+Changed? 1
+pass 63 from 35 to 57
+before update: 
+63 => 
+11
+after update: 
+63 => 
+11
+Changed? 1
+Processing svfg node StoreVFGNode ID: 36 StoreStmt: [Var71 <-- Var70]	
+ValVar ID: 72
+   store ptr %3, ptr %4, align 8 
+pass 15 from 36 to 59
+before update: 
+15 => 
+13
+after update: 
+15 => 
+13
+Changed? 1
+Processing svfg node LoadVFGNode ID: 26 LoadStmt: [Var73 <-- Var62]	
+ValVar ID: 73
+   %5 = load ptr, ptr %tmp, align 8 
 load 26 LoadVFGNode ID: 26 LoadStmt: [Var73 <-- Var62]	
 ValVar ID: 73
    %5 = load ptr, ptr %tmp, align 8 
@@ -1301,6 +1788,40 @@ pts1 63
 before 11
 after 11
 result 11
+Processing svfg node FormalOUTSVFGNode ID: 57 {fun: swap}RETMU(22V_2)
+pts{63 }
+
+Processing svfg node FormalOUTSVFGNode ID: 59 {fun: swap}RETMU(16V_2)
+pts{15 }
+
+pass 15 from 59 to 65
+Changed? 1
+Processing svfg node StoreVFGNode ID: 37 StoreStmt: [Var74 <-- Var73]	
+ValVar ID: 75
+   store ptr %5, ptr %6, align 8 
+pass 17 from 37 to 58
+before update: 
+17 => 
+11
+after update: 
+17 => 
+11
+Changed? 1
+Processing svfg node ActualOUTSVFGNode ID: 65 at callsite:    call void @swap(ptr %4, ptr %5) CallICFGNode:  {fun: main}16V_4 = CSCHI(MR_16V_4)
+pts{15 }
+CS[CallICFGNode: ]
+pass 15 from 65 to 18
+Changed? 1
+pass 15 from 65 to 51
+Changed? 1
+Processing svfg node FormalOUTSVFGNode ID: 58 {fun: swap}RETMU(18V_2)
+pts{17 }
+
+pass 17 from 58 to 64
+Changed? 1
+Processing svfg node LoadVFGNode ID: 18 LoadStmt: [Var46 <-- Var14]	
+ValVar ID: 46
+   %6 = load ptr, ptr %a, align 8 
 load 18 LoadVFGNode ID: 18 LoadStmt: [Var46 <-- Var14]	
 ValVar ID: 46
    %6 = load ptr, ptr %a, align 8 
@@ -1308,6 +1829,20 @@ pts1 15
 before 13
 after 13
 result 13
+Processing svfg node IntraMSSAPHISVFGNode ID: 51 {fun: main}MSSAPHISVFGNode ID: 51 {fun: main}MR_16V_3 = PHI(MR_16V_4, MR_16V_2, )
+pts{15 }
+pass 15 from 51 to 19
+Changed? 1
+pass 15 from 51 to 61
+Changed? 1
+Processing svfg node ActualOUTSVFGNode ID: 64 at callsite:    call void @swap(ptr %4, ptr %5) CallICFGNode:  {fun: main}18V_4 = CSCHI(MR_18V_4)
+pts{17 }
+CS[CallICFGNode: ]
+pass 17 from 64 to 50
+Changed? 1
+Processing svfg node LoadVFGNode ID: 19 LoadStmt: [Var50 <-- Var14]	
+ValVar ID: 50
+   %7 = load ptr, ptr %a, align 8 
 load 19 LoadVFGNode ID: 19 LoadStmt: [Var50 <-- Var14]	
 ValVar ID: 50
    %7 = load ptr, ptr %a, align 8 
@@ -1318,6 +1853,16 @@ after 11
 after 13
 result 11
 result 13
+Processing svfg node FormalOUTSVFGNode ID: 61 {fun: main}RETMU(16V_3)
+pts{15 }
+
+Processing svfg node IntraMSSAPHISVFGNode ID: 50 {fun: main}MSSAPHISVFGNode ID: 50 {fun: main}MR_18V_3 = PHI(MR_18V_4, MR_18V_2, )
+pts{17 }
+pass 17 from 50 to 60
+Changed? 1
+Processing svfg node FormalOUTSVFGNode ID: 60 {fun: main}RETMU(18V_3)
+pts{17 }
+
 
 *********PTACallGraph Stats (Flow-sensitive analysis)***************
 ################ (program : interSwap.ll)###############

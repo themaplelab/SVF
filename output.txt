@@ -31,7 +31,7 @@ TotalSVFStmts       57
 VarArrayObj         2
 VarStructObj        0
 ----------------Time and memory stats--------------------
-LLVMIRTime          0.004
+LLVMIRTime          0.005
 SVFIRTime           0.001
 SymbolTableTime     0
 #######################################################
@@ -598,6 +598,8 @@ ValVar ID: 41
 confirmed 19
 New alias for 41
 19
+output pts for address taken variable: 
+19 => 
 Changed? 1
 Propagate to AR 20 => 38
 alias is 19
@@ -606,6 +608,8 @@ alias is 19
 Processing svfg node StoreVFGNode ID: 29 StoreStmt: [Var18 <-- Var14]	
 ValVar ID: 24
    store ptr %a, ptr %t1, align 8 
+verify store
+19 => 
 CHANGED? 0
 Processing svfg node LoadVFGNode ID: 21 LoadStmt: [Var42 <-- Var20]	
 ValVar ID: 42
@@ -617,6 +621,8 @@ ValVar ID: 42
 confirmed 21
 New alias for 42
 21
+output pts for address taken variable: 
+21 => 
 Changed? 1
 Propagate to AR 21 => 39
 alias is 21
@@ -625,6 +631,8 @@ alias is 21
 Processing svfg node StoreVFGNode ID: 30 StoreStmt: [Var20 <-- Var16]	
 ValVar ID: 25
    store ptr %b, ptr %t2, align 8 
+verify store
+21 => 
 CHANGED? 0
 Processing svfg node LoadVFGNode ID: 22 LoadStmt: [Var66 <-- Var58]	
 ValVar ID: 66
@@ -636,6 +644,8 @@ ValVar ID: 66
 confirmed 59
 New alias for 66
 59
+output pts for address taken variable: 
+59 => 
 Changed? 1
 Processing svfg node LoadVFGNode ID: 23 LoadStmt: [Var71 <-- Var58]	
 ValVar ID: 71
@@ -647,10 +657,14 @@ ValVar ID: 71
 confirmed 59
 New alias for 71
 59
+output pts for address taken variable: 
+59 => 
 Changed? 1
 Processing svfg node StoreVFGNode ID: 33 StoreStmt: [Var58 <-- Var56]	
 ValVar ID: 64
    store ptr %p, ptr %p.addr, align 8 
+verify store
+59 => 
 CHANGED? 0
 Processing svfg node LoadVFGNode ID: 24 LoadStmt: [Var69 <-- Var60]	
 ValVar ID: 69
@@ -662,6 +676,8 @@ ValVar ID: 69
 confirmed 61
 New alias for 69
 61
+output pts for address taken variable: 
+61 => 
 Changed? 1
 Processing svfg node LoadVFGNode ID: 25 LoadStmt: [Var74 <-- Var60]	
 ValVar ID: 74
@@ -673,10 +689,14 @@ ValVar ID: 74
 confirmed 61
 New alias for 74
 61
+output pts for address taken variable: 
+61 => 
 Changed? 1
 Processing svfg node StoreVFGNode ID: 34 StoreStmt: [Var60 <-- Var57]	
 ValVar ID: 65
    store ptr %q, ptr %q.addr, align 8 
+verify store
+61 => 
 CHANGED? 0
 Processing svfg node ActualParmVFGNode ID: 38 CS[CallICFGNode: ]ValVar ID: 41
    %4 = load ptr, ptr %t1, align 8 
@@ -699,6 +719,8 @@ Changed? 0
 Processing svfg node StoreVFGNode ID: 36 StoreStmt: [Var71 <-- Var70]	
 ValVar ID: 72
    store ptr %3, ptr %4, align 8 
+verify store
+59 => 
 CHANGED? 0
 Processing svfg node LoadVFGNode ID: 28 LoadStmt: [Var70 <-- Var69]	
 ValVar ID: 70
@@ -713,6 +735,8 @@ Changed? 0
 Processing svfg node StoreVFGNode ID: 37 StoreStmt: [Var74 <-- Var73]	
 ValVar ID: 75
    store ptr %5, ptr %6, align 8 
+verify store
+61 => 
 CHANGED? 0
 Processing svfg node FormalParmVFGNode ID: 40 Fun[swap]ArgValVar ID: 56
  ptr %p { 0th arg swap  }
@@ -734,6 +758,8 @@ ValVar ID: 64
    store ptr %p, ptr %p.addr, align 8 
 Store alias 19
 0
+verify store
+59 => 
 CHANGED? 0
 Processing svfg node StoreVFGNode ID: 34 StoreStmt: [Var60 <-- Var57]	
 ValVar ID: 65
@@ -743,6 +769,8 @@ ValVar ID: 65
    store ptr %q, ptr %q.addr, align 8 
 Store alias 21
 0
+verify store
+61 => 
 CHANGED? 0
 ==========FUNCTION: main==========
 8V_1 = ENCHI(MR_8V_0) 	pts{21 }
@@ -984,6 +1012,8 @@ Writing 'svfg-pl2.dot'...opt Solving pointer level 2
 Processing svfg node StoreVFGNode ID: 29 StoreStmt: [Var18 <-- Var14]	
 ValVar ID: 24
    store ptr %a, ptr %t1, align 8 
+verify store
+19 => 
 CHANGED? 0
 Processing svfg node AddrVFGNode ID: 5 AddrStmt: [Var14 <-- Var15]	
 ValVar ID: 14
@@ -991,6 +1021,8 @@ ValVar ID: 14
 Processing svfg node StoreVFGNode ID: 30 StoreStmt: [Var20 <-- Var16]	
 ValVar ID: 25
    store ptr %b, ptr %t2, align 8 
+verify store
+21 => 
 CHANGED? 0
 Processing svfg node AddrVFGNode ID: 6 AddrStmt: [Var16 <-- Var17]	
 ValVar ID: 16
@@ -1003,6 +1035,8 @@ ValVar ID: 64
    store ptr %p, ptr %p.addr, align 8 
 Store alias 19
 0
+verify store
+59 => 
 CHANGED? 0
 Processing svfg node FormalParmVFGNode ID: 40 Fun[swap]ArgValVar ID: 56
  ptr %p { 0th arg swap  }
@@ -1024,6 +1058,8 @@ ValVar ID: 41
 confirmed 19
 New alias for 41
 19
+output pts for address taken variable: 
+19 => 
 Changed? 0
 Processing svfg node StoreVFGNode ID: 34 StoreStmt: [Var60 <-- Var57]	
 ValVar ID: 65
@@ -1033,6 +1069,8 @@ ValVar ID: 65
    store ptr %q, ptr %q.addr, align 8 
 Store alias 21
 0
+verify store
+61 => 
 CHANGED? 0
 Processing svfg node FormalParmVFGNode ID: 41 Fun[swap]ArgValVar ID: 57
  ptr %q { 1st arg swap  }
@@ -1054,6 +1092,8 @@ ValVar ID: 42
 confirmed 21
 New alias for 42
 21
+output pts for address taken variable: 
+21 => 
 Changed? 0
 Processing svfg node LoadVFGNode ID: 22 LoadStmt: [Var66 <-- Var58]	
 ValVar ID: 66
@@ -1065,6 +1105,8 @@ ValVar ID: 66
 confirmed 59
 New alias for 66
 59
+output pts for address taken variable: 
+59 => 
 Changed? 0
 Processing svfg node LoadVFGNode ID: 23 LoadStmt: [Var71 <-- Var58]	
 ValVar ID: 71
@@ -1076,6 +1118,8 @@ ValVar ID: 71
 confirmed 59
 New alias for 71
 59
+output pts for address taken variable: 
+59 => 
 Changed? 0
 Processing svfg node LoadVFGNode ID: 24 LoadStmt: [Var69 <-- Var60]	
 ValVar ID: 69
@@ -1087,6 +1131,8 @@ ValVar ID: 69
 confirmed 61
 New alias for 69
 61
+output pts for address taken variable: 
+61 => 
 Changed? 0
 Processing svfg node LoadVFGNode ID: 25 LoadStmt: [Var74 <-- Var60]	
 ValVar ID: 74
@@ -1098,6 +1144,8 @@ ValVar ID: 74
 confirmed 61
 New alias for 74
 61
+output pts for address taken variable: 
+61 => 
 Changed? 0
 Processing svfg node AddrVFGNode ID: 12 AddrStmt: [Var62 <-- Var63]	
 ValVar ID: 62
@@ -1112,6 +1160,8 @@ ValVar ID: 36
 confirmed 15
 New alias for 36
 15
+output pts for address taken variable: 
+15 => 
 Changed? 1
 Processing svfg node LoadVFGNode ID: 18 LoadStmt: [Var46 <-- Var14]	
 ValVar ID: 46
@@ -1123,6 +1173,8 @@ ValVar ID: 46
 confirmed 15
 New alias for 46
 15
+output pts for address taken variable: 
+15 => 
 Changed? 1
 Processing svfg node LoadVFGNode ID: 19 LoadStmt: [Var50 <-- Var14]	
 ValVar ID: 50
@@ -1134,26 +1186,86 @@ ValVar ID: 50
 confirmed 15
 New alias for 50
 15
+output pts for address taken variable: 
+15 => 
 Changed? 1
 Processing svfg node StoreVFGNode ID: 29 StoreStmt: [Var18 <-- Var14]	
 ValVar ID: 24
    store ptr %a, ptr %t1, align 8 
 19 => 
 15
+verify store
+19 => 
+15
 CHANGED? 1
+pass 19 from 29 to 20
+before update: 
+19 => 
+15
+after update: 
+19 => 
+15
+Changed? 1
+pass 19 from 29 to 49
+before update: 
+19 => 
+15
+after update: 
+19 => 
+15
+Changed? 1
+pass 19 from 29 to 33
+before update: 
+19 => 
+15
+after update: 
+19 => 
+15
+Changed? 1
 Processing svfg node StoreVFGNode ID: 31 StoreStmt: [Var14 <-- Var26]	
 ValVar ID: 27
    store ptr %0, ptr %a, align 8 
+verify store
+15 => 
 CHANGED? 0
 Processing svfg node StoreVFGNode ID: 30 StoreStmt: [Var20 <-- Var16]	
 ValVar ID: 25
    store ptr %b, ptr %t2, align 8 
 21 => 
 17
+verify store
+21 => 
+17
 CHANGED? 1
+pass 21 from 30 to 21
+before update: 
+21 => 
+17
+after update: 
+21 => 
+17
+Changed? 1
+pass 21 from 30 to 48
+before update: 
+21 => 
+17
+after update: 
+21 => 
+17
+Changed? 1
+pass 21 from 30 to 34
+before update: 
+21 => 
+17
+after update: 
+21 => 
+17
+Changed? 1
 Processing svfg node StoreVFGNode ID: 32 StoreStmt: [Var16 <-- Var28]	
 ValVar ID: 29
    store ptr %1, ptr %b, align 8 
+verify store
+17 => 
 CHANGED? 0
 Processing svfg node StoreVFGNode ID: 33 StoreStmt: [Var58 <-- Var56]	
 ValVar ID: 64
@@ -1164,7 +1276,58 @@ ValVar ID: 64
 Store alias 19
 IN 15
 1
+verify store
+59 => 
+15
 CHANGED? 1
+pass 59 from 33 to 22
+before update: 
+59 => 
+15
+after update: 
+59 => 
+15
+Changed? 1
+pass 59 from 33 to 23
+before update: 
+59 => 
+15
+after update: 
+59 => 
+15
+Changed? 1
+pass 59 from 33 to 47
+before update: 
+59 => 
+15
+after update: 
+59 => 
+15
+Changed? 1
+pass 59 from 33 to 27
+before update: 
+59 => 
+15
+after update: 
+59 => 
+15
+Changed? 1
+pass 59 from 33 to 35
+before update: 
+59 => 
+15
+after update: 
+59 => 
+15
+Changed? 1
+pass 59 from 33 to 36
+before update: 
+59 => 
+15
+after update: 
+59 => 
+15
+Changed? 1
 Processing svfg node StoreVFGNode ID: 34 StoreStmt: [Var60 <-- Var57]	
 ValVar ID: 65
    store ptr %q, ptr %q.addr, align 8 
@@ -1174,7 +1337,58 @@ ValVar ID: 65
 Store alias 21
 IN 17
 1
+verify store
+61 => 
+17
 CHANGED? 1
+pass 61 from 34 to 24
+before update: 
+61 => 
+17
+after update: 
+61 => 
+17
+Changed? 1
+pass 61 from 34 to 25
+before update: 
+61 => 
+17
+after update: 
+61 => 
+17
+Changed? 1
+pass 61 from 34 to 46
+before update: 
+61 => 
+17
+after update: 
+61 => 
+17
+Changed? 1
+pass 61 from 34 to 28
+before update: 
+61 => 
+17
+after update: 
+61 => 
+17
+Changed? 1
+pass 61 from 34 to 36
+before update: 
+61 => 
+17
+after update: 
+61 => 
+17
+Changed? 1
+pass 61 from 34 to 37
+before update: 
+61 => 
+17
+after update: 
+61 => 
+17
+Changed? 1
 Processing svfg node LoadVFGNode ID: 26 LoadStmt: [Var73 <-- Var62]	
 ValVar ID: 73
    %5 = load ptr, ptr %tmp, align 8 
@@ -1185,10 +1399,14 @@ ValVar ID: 73
 confirmed 63
 New alias for 73
 63
+output pts for address taken variable: 
+63 => 
 Changed? 1
 Processing svfg node StoreVFGNode ID: 35 StoreStmt: [Var62 <-- Var67]	
 ValVar ID: 68
    store ptr %1, ptr %tmp, align 8 
+verify store
+63 => 
 CHANGED? 0
 Processing svfg node LoadVFGNode ID: 20 LoadStmt: [Var41 <-- Var18]	
 ValVar ID: 41
@@ -1202,6 +1420,9 @@ before 15
 after 15
 New alias for 41
 19
+output pts for address taken variable: 
+19 => 
+addr 15
 Changed? 1
 Propagate to AR 20 => 38
 alias is 19
@@ -1225,6 +1446,9 @@ before 17
 after 17
 New alias for 42
 21
+output pts for address taken variable: 
+21 => 
+addr 17
 Changed? 1
 Propagate to AR 21 => 39
 alias is 21
@@ -1236,6 +1460,108 @@ dst in after 17
 Processing svfg node FormalOUTSVFGNode ID: 48 {fun: main}RETMU(8V_2)
 pts{21 }
 
+Processing svfg node LoadVFGNode ID: 22 LoadStmt: [Var66 <-- Var58]	
+ValVar ID: 66
+   %0 = load ptr, ptr %p.addr, align 8 
+opt load
+LoadVFGNode ID: 22 LoadStmt: [Var66 <-- Var58]	
+ValVar ID: 66
+   %0 = load ptr, ptr %p.addr, align 8  7 1
+confirmed 59
+before 15
+after 15
+New alias for 66
+59
+output pts for address taken variable: 
+59 => 
+addr 15
+Changed? 1
+Processing svfg node LoadVFGNode ID: 23 LoadStmt: [Var71 <-- Var58]	
+ValVar ID: 71
+   %4 = load ptr, ptr %p.addr, align 8 
+opt load
+LoadVFGNode ID: 23 LoadStmt: [Var71 <-- Var58]	
+ValVar ID: 71
+   %4 = load ptr, ptr %p.addr, align 8  7 1
+confirmed 59
+before 15
+after 15
+New alias for 71
+59
+output pts for address taken variable: 
+59 => 
+addr 15
+Changed? 1
+Processing svfg node FormalOUTSVFGNode ID: 47 {fun: swap}RETMU(2V_2)
+pts{59 }
+
+Processing svfg node LoadVFGNode ID: 27 LoadStmt: [Var67 <-- Var66]	
+ValVar ID: 67
+   %1 = load ptr, ptr %0, align 8 
+opt load
+LoadVFGNode ID: 27 LoadStmt: [Var67 <-- Var66]	
+ValVar ID: 67
+   %1 = load ptr, ptr %0, align 8  6 0
+alias 59
+New alias for 67
+15
+output pts for address taken variable: 
+15 => 
+Changed? 1
+Processing svfg node StoreVFGNode ID: 36 StoreStmt: [Var71 <-- Var70]	
+ValVar ID: 72
+   store ptr %3, ptr %4, align 8 
+verify store
+59 => 
+CHANGED? 0
+Processing svfg node LoadVFGNode ID: 24 LoadStmt: [Var69 <-- Var60]	
+ValVar ID: 69
+   %2 = load ptr, ptr %q.addr, align 8 
+opt load
+LoadVFGNode ID: 24 LoadStmt: [Var69 <-- Var60]	
+ValVar ID: 69
+   %2 = load ptr, ptr %q.addr, align 8  7 1
+confirmed 61
+before 17
+after 17
+New alias for 69
+61
+output pts for address taken variable: 
+61 => 
+addr 17
+Changed? 1
+Processing svfg node LoadVFGNode ID: 25 LoadStmt: [Var74 <-- Var60]	
+ValVar ID: 74
+   %6 = load ptr, ptr %q.addr, align 8 
+opt load
+LoadVFGNode ID: 25 LoadStmt: [Var74 <-- Var60]	
+ValVar ID: 74
+   %6 = load ptr, ptr %q.addr, align 8  7 1
+confirmed 61
+before 17
+after 17
+New alias for 74
+61
+output pts for address taken variable: 
+61 => 
+addr 17
+Changed? 1
+Processing svfg node FormalOUTSVFGNode ID: 46 {fun: swap}RETMU(4V_2)
+pts{61 }
+
+Processing svfg node LoadVFGNode ID: 28 LoadStmt: [Var70 <-- Var69]	
+ValVar ID: 70
+   %3 = load ptr, ptr %2, align 8 
+opt load
+LoadVFGNode ID: 28 LoadStmt: [Var70 <-- Var69]	
+ValVar ID: 70
+   %3 = load ptr, ptr %2, align 8  6 0
+alias 61
+New alias for 70
+17
+output pts for address taken variable: 
+17 => 
+Changed? 1
 Processing svfg node StoreVFGNode ID: 37 StoreStmt: [Var74 <-- Var73]	
 ValVar ID: 75
    store ptr %5, ptr %6, align 8 
@@ -1244,6 +1570,8 @@ ValVar ID: 75
    store ptr %5, ptr %6, align 8 
 Store alias 63
 0
+verify store
+61 => 
 CHANGED? 0
 Processing svfg node ActualParmVFGNode ID: 38 CS[CallICFGNode: ]ValVar ID: 41
    %4 = load ptr, ptr %t1, align 8 
@@ -1255,6 +1583,28 @@ Processing svfg node ActualParmVFGNode ID: 39 CS[CallICFGNode: ]ValVar ID: 42
 alias at AP: 21
 in: 17
 ACTUAL TO FORMAL changed? 1
+Processing svfg node StoreVFGNode ID: 35 StoreStmt: [Var62 <-- Var67]	
+ValVar ID: 68
+   store ptr %1, ptr %tmp, align 8 
+StoreVFGNode ID: 35 StoreStmt: [Var62 <-- Var67]	
+ValVar ID: 68
+   store ptr %1, ptr %tmp, align 8 
+Store alias 15
+0
+verify store
+63 => 
+CHANGED? 0
+Processing svfg node StoreVFGNode ID: 36 StoreStmt: [Var71 <-- Var70]	
+ValVar ID: 72
+   store ptr %3, ptr %4, align 8 
+StoreVFGNode ID: 36 StoreStmt: [Var71 <-- Var70]	
+ValVar ID: 72
+   store ptr %3, ptr %4, align 8 
+Store alias 17
+0
+verify store
+59 => 
+CHANGED? 0
 Processing svfg node FormalParmVFGNode ID: 40 Fun[swap]ArgValVar ID: 56
  ptr %p { 0th arg swap  }
 Propagate from FP 40 => 33
@@ -1282,6 +1632,9 @@ ValVar ID: 64
 Store alias 19
 IN 15
 1
+verify store
+59 => 
+15
 CHANGED? 0
 Processing svfg node StoreVFGNode ID: 34 StoreStmt: [Var60 <-- Var57]	
 ValVar ID: 65
@@ -1292,6 +1645,9 @@ ValVar ID: 65
 Store alias 21
 IN 17
 1
+verify store
+61 => 
+17
 CHANGED? 0
 
 *********Memory SSA Statistics***************
@@ -1639,6 +1995,8 @@ ValVar ID: 7
 Processing svfg node StoreVFGNode ID: 31 StoreStmt: [Var14 <-- Var26]	
 ValVar ID: 27
    store ptr %0, ptr %a, align 8 
+verify store
+15 => 
 CHANGED? 0
 Processing svfg node CopyVFGNode ID: 14 CopyStmt: [Var26 <-- Var10]	
 ValVar ID: 26
@@ -1652,6 +2010,8 @@ ValVar ID: 10
 Processing svfg node StoreVFGNode ID: 32 StoreStmt: [Var16 <-- Var28]	
 ValVar ID: 29
    store ptr %1, ptr %b, align 8 
+verify store
+17 => 
 CHANGED? 0
 Processing svfg node CopyVFGNode ID: 15 CopyStmt: [Var28 <-- Var12]	
 ValVar ID: 28
@@ -1669,6 +2029,8 @@ ValVar ID: 36
 confirmed 15
 New alias for 36
 15
+output pts for address taken variable: 
+15 => 
 Changed? 0
 Processing svfg node LoadVFGNode ID: 18 LoadStmt: [Var46 <-- Var14]	
 ValVar ID: 46
@@ -1680,6 +2042,8 @@ ValVar ID: 46
 confirmed 15
 New alias for 46
 15
+output pts for address taken variable: 
+15 => 
 Changed? 0
 Processing svfg node LoadVFGNode ID: 19 LoadStmt: [Var50 <-- Var14]	
 ValVar ID: 50
@@ -1691,6 +2055,8 @@ ValVar ID: 50
 confirmed 15
 New alias for 50
 15
+output pts for address taken variable: 
+15 => 
 Changed? 0
 Processing svfg node AddrVFGNode ID: 9 AddrStmt: [Var44 <-- Var45]	
 FunValVar ID: 44
@@ -1698,6 +2064,13 @@ swap
 Processing svfg node StoreVFGNode ID: 35 StoreStmt: [Var62 <-- Var67]	
 ValVar ID: 68
    store ptr %1, ptr %tmp, align 8 
+StoreVFGNode ID: 35 StoreStmt: [Var62 <-- Var67]	
+ValVar ID: 68
+   store ptr %1, ptr %tmp, align 8 
+Store alias 15
+0
+verify store
+63 => 
 CHANGED? 0
 Processing svfg node LoadVFGNode ID: 27 LoadStmt: [Var67 <-- Var66]	
 ValVar ID: 67
@@ -1708,10 +2081,20 @@ ValVar ID: 67
    %1 = load ptr, ptr %0, align 8  6 0
 alias 59
 New alias for 67
+15
+output pts for address taken variable: 
+15 => 
 Changed? 0
 Processing svfg node StoreVFGNode ID: 36 StoreStmt: [Var71 <-- Var70]	
 ValVar ID: 72
    store ptr %3, ptr %4, align 8 
+StoreVFGNode ID: 36 StoreStmt: [Var71 <-- Var70]	
+ValVar ID: 72
+   store ptr %3, ptr %4, align 8 
+Store alias 17
+0
+verify store
+59 => 
 CHANGED? 0
 Processing svfg node LoadVFGNode ID: 28 LoadStmt: [Var70 <-- Var69]	
 ValVar ID: 70
@@ -1722,6 +2105,9 @@ ValVar ID: 70
    %3 = load ptr, ptr %2, align 8  6 0
 alias 61
 New alias for 70
+17
+output pts for address taken variable: 
+17 => 
 Changed? 0
 Processing svfg node StoreVFGNode ID: 37 StoreStmt: [Var74 <-- Var73]	
 ValVar ID: 75
@@ -1731,6 +2117,8 @@ ValVar ID: 75
    store ptr %5, ptr %6, align 8 
 Store alias 63
 0
+verify store
+61 => 
 CHANGED? 0
 Processing svfg node LoadVFGNode ID: 26 LoadStmt: [Var73 <-- Var62]	
 ValVar ID: 73
@@ -1742,6 +2130,8 @@ ValVar ID: 73
 confirmed 63
 New alias for 73
 63
+output pts for address taken variable: 
+63 => 
 Changed? 0
 Processing svfg node CopyVFGNode ID: 14 CopyStmt: [Var26 <-- Var10]	
 ValVar ID: 26
@@ -1760,6 +2150,8 @@ ValVar ID: 27
    store ptr %0, ptr %a, align 8 
 Store alias 11
 0
+verify store
+15 => 
 CHANGED? 0
 Processing svfg node StoreVFGNode ID: 32 StoreStmt: [Var16 <-- Var28]	
 ValVar ID: 29
@@ -1769,6 +2161,8 @@ ValVar ID: 29
    store ptr %1, ptr %b, align 8 
 Store alias 13
 0
+verify store
+17 => 
 CHANGED? 0
 PTS after pointer level 2
 
@@ -1844,13 +2238,13 @@ NodeID 62 		PointsTo: { 63 }
 NodeID 66 		PointsTo: { 59 }
 
 
-NodeID 67 		PointsTo: {empty}
+NodeID 67 		PointsTo: { 15 }
 
 
 NodeID 69 		PointsTo: { 61 }
 
 
-NodeID 70 		PointsTo: {empty}
+NodeID 70 		PointsTo: { 17 }
 
 
 NodeID 71 		PointsTo: { 59 }
@@ -1880,11 +2274,11 @@ TotalNode           2
 ----------------Time and memory stats--------------------
 AddrTime            0
 AverageSCCSize      0
-AvgAddrTakenVarPts  0.222222
+AvgAddrTakenVarPts  0.444444
 AvgINPtsSize        0
 AvgOUTPtsSize       0
-AvgPtsSize          0.9
-AvgTopLvlPtsSize    0.9
+AvgPtsSize          0.966667
+AvgTopLvlPtsSize    0.966667
 CopyTime            0
 DirectPropaTime     0
 GepTime             0
@@ -1940,10 +2334,10 @@ ProcessedAddr       12
 ProcessedCopy       4
 ProcessedFRet       0
 ProcessedGep        2
-ProcessedLoad       26
-ProcessedMSSANode   2
+ProcessedLoad       32
+ProcessedMSSANode   4
 ProcessedPhi        0
-ProcessedStore      29
+ProcessedStore      32
 SNodesHaveIN        0
 SNodesHaveOUT       0
 ST_SNodesHaveIN     0
@@ -2045,13 +2439,13 @@ NodeID 62 		PointsTo: { 63 }
 NodeID 66 		PointsTo: { 59 }
 
 
-NodeID 67 		PointsTo: {empty}
+NodeID 67 		PointsTo: { 15 }
 
 
 NodeID 69 		PointsTo: { 61 }
 
 
-NodeID 70 		PointsTo: {empty}
+NodeID 70 		PointsTo: { 17 }
 
 
 NodeID 71 		PointsTo: { 59 }
@@ -2066,8 +2460,8 @@ NodeID 74 		PointsTo: { 61 }
 ****Persistent Points-To Cache Statistics: flow-sensitive analysis bitvector****
 ################ (program : interSwap.ll)###############
 UniquePointsToSets       14
-TotalUnions              64
-PropertyUnions           64
+TotalUnions              88
+PropertyUnions           88
 UniqueUnions             0
 LookupUnions             0
 PreemptiveUnions         0

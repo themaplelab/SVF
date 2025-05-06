@@ -696,8 +696,17 @@ bool LevelByLevelFlowSensitive::propVarPtsFromSrcToDst(NodeID var, const SVFGNod
     bool changed = false;
     if (SVFUtil::isa<StoreSVFGNode>(src))
     {
+        outs() << "before update: \n" << var << " => \n";
+        for(auto p : getDFOutPtsSet(src, var)){
+            outs() << p << "\n";
+        }
         if (updateInFromOut(src, var, dst, var))
             changed = true;
+
+        outs() << "after update: \n" << var << " => \n";
+            for(auto p : getDFInPtsSet(dst, var)){
+                outs() << p << "\n";
+            }
     }
     else
     {
@@ -711,7 +720,7 @@ bool LevelByLevelFlowSensitive::propVarPtsFromSrcToDst(NodeID var, const SVFGNod
     //     }
     // }
 
-
+    outs() << "Changed? " << changed << "\n";
     return changed;
 }
 
@@ -731,7 +740,7 @@ bool LevelByLevelFlowSensitive::propAlongIndirectEdge(const IndirectSVFGEdge* ed
     for (NodeBS::iterator ptdIt = pts.begin(), ptdEit = pts.end(); ptdIt != ptdEit; ++ptdIt)
     {
         NodeID ptd = *ptdIt;
-        // outs() << "argu for ptd " << ptd << "\n";
+        outs() << "pass " << ptd << " from " << src->getId() << " to " << dst->getId() << "\n";
         if (propVarPtsFromSrcToDst(ptd, src, dst))
             changed = true;
 
