@@ -354,8 +354,10 @@ protected:
         const FunObjVar *dstfun = dstNode->getFun();
         if(srcfun != nullptr && dstfun != nullptr)
         {
-            return false;
-            assert((srcfun == dstfun) && "src and dst nodes of an intra VFG edge are not in the same function?");
+            if(srcfun != dstfun){
+                return false;
+                assert((srcfun == dstfun) && "src and dst nodes of an intra VFG edge are not in the same function?");
+            }
         }
         return true;
     }

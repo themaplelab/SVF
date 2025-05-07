@@ -120,7 +120,7 @@ void LevelByLevelFlowSensitive::solveConstraints(){
             break;
         }
         // JH todo: this should be updating svfg instead of creating new svfg
-        memSSA.updatePTROnlySvfgForPointerLevel(this, currentPointerLevel, pointerLevelMap);
+        memSSA.updatePTROnlySvfgForPointerLevel(ander, currentPointerLevel, pointerLevelMap);
         // svfg->dump("svfg-pl" + std::to_string(currentPointerLevel), true);
 
     }
