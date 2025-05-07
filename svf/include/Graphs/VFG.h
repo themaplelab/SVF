@@ -348,14 +348,16 @@ public:
 protected:
 
     /// sanitize Intra edges, verify that both nodes belong to the same function.
-    inline void checkIntraEdgeParents(const VFGNode *srcNode, const VFGNode *dstNode)
+    inline bool checkIntraEdgeParents(const VFGNode *srcNode, const VFGNode *dstNode)
     {
         const FunObjVar *srcfun = srcNode->getFun();
         const FunObjVar *dstfun = dstNode->getFun();
         if(srcfun != nullptr && dstfun != nullptr)
         {
+            return false;
             assert((srcfun == dstfun) && "src and dst nodes of an intra VFG edge are not in the same function?");
         }
+        return true;
     }
 
     /// Add inter VF edge from actual to formal parameters

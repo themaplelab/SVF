@@ -80,7 +80,6 @@ void LevelByLevelFlowSensitive::initialize(){
     currentPointerLevel = computeMaxPointerLevel(dag);
 
 
-
     svfg = memSSA.buildPTROnlySvfgForPointerLevel(this, currentPointerLevel, pointerLevelMap);
     setGraph(svfg);
 
@@ -626,7 +625,14 @@ size_t LevelByLevelFlowSensitive::getPointerLevel(NodeID nId){
 }
 
 size_t LevelByLevelFlowSensitive::getPointerLevelFromPagNodeId(NodeID nId){
-    auto repNode = ptgScc->repNode(nId);
+
+
+    auto repNode = nId;
+
+    if(ptgScc->hasRepNode(nId)){
+        repNode = ptgScc->repNode(nId);
+    }
+
     if(pointerLevelMap.count(repNode)){
         return pointerLevelMap.at(repNode);
     }

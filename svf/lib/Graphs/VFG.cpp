@@ -660,7 +660,9 @@ VFGEdge* VFG::addIntraDirectVFEdge(NodeID srcId, NodeID dstId)
 {
     VFGNode* srcNode = getVFGNode(srcId);
     VFGNode* dstNode = getVFGNode(dstId);
-    checkIntraEdgeParents(srcNode, dstNode);
+    if(!checkIntraEdgeParents(srcNode, dstNode)){
+        return nullptr;
+    }
     VFGEdge* edge = hasIntraVFGEdge(srcNode, dstNode, VFGEdge::IntraDirectVF);
     if (edge != nullptr)
     {

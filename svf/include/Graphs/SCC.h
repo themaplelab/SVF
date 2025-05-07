@@ -165,6 +165,15 @@ public:
         return rep!= UINT_MAX ? rep : n ;
     }
 
+    inline bool hasRepNode(NodeID n) const
+    {
+        typename GNODESCCInfoMap::const_iterator it = _NodeSCCAuxInfo.find(n);
+        if(it==_NodeSCCAuxInfo.end()){
+            return false;
+        }
+        return true;
+    }
+
 
     /// whether the node is in a cycle
     inline bool isInCycle(NodeID n) const
